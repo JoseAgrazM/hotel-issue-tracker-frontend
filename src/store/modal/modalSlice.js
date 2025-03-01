@@ -4,7 +4,7 @@ export const modalSlice = createSlice({
 	name: 'modal',
 	initialState: {
 		isModalOpen: false,
-		modalType: null, // 'create', 'edit', null
+		modalType: null, // 'create', 'edit', 'delete', null
 	},
 	reducers: {
 		onOpenModal: (state, { payload }) => {

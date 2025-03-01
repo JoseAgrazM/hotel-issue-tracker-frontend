@@ -13,6 +13,7 @@ import {
 	CompanyDataProfile,
 	InfoPersonalProfile,
 	ModalEditCompany,
+	ModalDeleteCompany,
 } from '@/components';
 import { LayoutPage } from '../../Layouts';
 import './MyProfilePage.css';
@@ -87,27 +88,21 @@ export const MyProfilePage = () => {
 			Swal.fire({
 				position: 'top-end',
 				icon: 'success',
-				title: 'Se restablecerán los datos al iniciar sesión de nuevo',
+				title: 'Se actualizo con exito.',
 				showConfirmButton: false,
 				timer: 2000,
 			});
 		}
 	};
 
-	const onDeleteCompany = () => {
-		console.log('Delete Company');
-	};
-
 	return (
 		<>
 			{isModalOpen && modalType === 'edit' && <ModalEditCompany />}
+			{isModalOpen && modalType === 'delete' && <ModalDeleteCompany />}
 			<Navbar />
 			<LayoutPage title={`Profile: ${userLog.name} ${userLog.surname}`}>
 				<div className='parent'>
-					<CompanyDataProfile
-						companyActive={companyActive}
-						onDeleteCompany={onDeleteCompany}
-					/>
+					<CompanyDataProfile companyActive={companyActive} />
 
 					<InfoPersonalProfile userLog={userLog} />
 

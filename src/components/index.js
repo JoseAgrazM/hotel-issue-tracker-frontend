@@ -2,6 +2,7 @@ export * from './Navbar/Navbar';
 
 export * from './ModalFormCompany/ModalFormCompany';
 export * from './ModalEditCompany/ModalEditCompany';
+export * from './ModalDeleteCompany/ModalDeleteCompany';
 
 export * from './ModalFormUser/ModalFormUser';
 export * from './ModalFormUser/ModalEditUser';

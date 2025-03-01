@@ -52,6 +52,7 @@ export const useCompanyStore = () => {
 			});
 
 			dispatch(onAddNewCompany(data?.company));
+			return data;
 		} catch (error) {
 			Swal.fire('Error en registro', error?.response?.data?.msg, 'error');
 		}
@@ -71,6 +72,53 @@ export const useCompanyStore = () => {
 		}
 	};
 
+	const startEditCompany = async ({
+		companyName,
+		phoneCompany,
+		addressCompany,
+		city,
+		country,
+	}) => {
+		try {
+			const { data } = await hotelManagerApi.patch(
+				`/company/edit-company/${companyActive.id}`,
+				{
+					companyName,
+					phoneCompany,
+					addressCompany,
+					city,
+					country,
+					superAdminId: companyActive.superAdminId,
+				}
+			);
+			console.log(data);
+
+			startLoadCompanyActive(companyActive);
+			return data;
+		} catch (error) {
+			Swal.fire(
+				'Error al actualizar la empresa',
+				error?.response?.data?.msg,
+				'error'
+			);
+		}
+	};
+
+	const startDeleteCompany = async id => {
+		try {
+			const { data } = await hotelManagerApi.delete(`/company/${id}`);
+
+			startLoadCompanies();
+			return data;
+		} catch (error) {
+			Swal.fire(
+				'Error al eliminar la empresa',
+				error?.response?.data?.msg,
+				'error'
+			);
+		}
+	};
+
 	return {
 		//* Properties
 		isLoadingCompany,
@@ -81,5 +129,7 @@ export const useCompanyStore = () => {
 		startLoadCompanies,
 		setActiveCompany,
 		startLoadCompanyActive,
+		startEditCompany,
+		startDeleteCompany,
 	};
 };

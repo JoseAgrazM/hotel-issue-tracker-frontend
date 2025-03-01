@@ -1,7 +1,7 @@
 import { useModalStore } from '@/hooks';
 import './CompanyDataProfile.css';
 
-export const CompanyDataProfile = ({ companyActive, deleteCompany }) => {
+export const CompanyDataProfile = ({ companyActive }) => {
 	const { openModal } = useModalStore();
 	return (
 		<div className='info_company'>
@@ -42,7 +42,9 @@ export const CompanyDataProfile = ({ companyActive, deleteCompany }) => {
 					<button onClick={() => openModal('edit')}>
 						Edit company
 					</button>
-					<button onClick={deleteCompany}>Delte Company</button>
+					<button onClick={() => openModal('delete')}>
+						Delte Company
+					</button>
 				</section>
 			</section>
 		</div>

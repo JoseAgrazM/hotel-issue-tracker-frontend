@@ -1,10 +1,9 @@
 import Swal from 'sweetalert2';
 import { LayoutModal } from '../../hotelApp/Layouts';
-import { useModalStore, useCompanyStore } from '@/hooks';
-import { useForm } from '../../hooks';
+import { useModalStore, useCompanyStore, useForm } from '@/hooks';
 
 export const ModalEditCompany = () => {
-	const { startCreateCompany, companyActive } = useCompanyStore();
+	const { startEditCompany, companyActive } = useCompanyStore();
 	const { closeModal } = useModalStore();
 
 	const {
@@ -16,9 +15,7 @@ export const ModalEditCompany = () => {
 		onInputChange,
 	} = useForm(companyActive);
 
-	const onEditCompany = event => {
-		console.log(companyActive);
-
+	const onEditCompany = async event => {
 		event.preventDefault();
 		if (companyName.length < 4) {
 			Swal.fire(
@@ -36,14 +33,24 @@ export const ModalEditCompany = () => {
 			);
 			return;
 		}
-		startCreateCompany({
+		const resp = await startEditCompany({
 			companyName,
 			phoneCompany,
 			addressCompany,
 			city,
 			country,
 		});
-		closeModal();
+
+		if (resp.ok) {
+			Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: 'Empresa actualizada con exito!',
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			closeModal();
+		}
 	};
 	return (
 		<LayoutModal title='New Company'>

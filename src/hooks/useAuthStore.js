@@ -45,7 +45,7 @@ export const useAuthStore = () => {
 
 		try {
 			const { data } = await hotelManagerApi.get('/auth/renew');
-			
+
 			localStorage.getItem('token', data.token);
 			localStorage.setItem('token-init-date', new Date().getTime());
 
@@ -130,6 +130,24 @@ export const useAuthStore = () => {
 		}
 	};
 
+	const verifyUserPassword = async ({ email, password }) => {
+		try {
+			const { data } = await hotelManagerApi.post('/auth/login', {
+				email,
+				password,
+			});
+
+			return data;
+		} catch (error) {
+			Swal.fire(
+				'Error al eliminar la epresa',
+				error?.response?.data?.msg,
+				'error'
+			);
+			return;
+		}
+	};
+
 	return {
 		//* Properties
 		status,
@@ -143,5 +161,6 @@ export const useAuthStore = () => {
 		startRegisterAdmin,
 		startRegisterUser,
 		startGetUserLogin,
+		verifyUserPassword,
 	};
 };

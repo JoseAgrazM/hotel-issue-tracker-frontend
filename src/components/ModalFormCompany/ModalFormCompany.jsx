@@ -23,7 +23,7 @@ export const ModalFormCompany = () => {
 		onInputChange,
 	} = useForm(newCompanyForm);
 
-	const onCreateCompany = event => {
+	const onCreateCompany = async event => {
 		event.preventDefault();
 		if (companyName.length < 4) {
 			Swal.fire(
@@ -41,7 +41,7 @@ export const ModalFormCompany = () => {
 			);
 			return;
 		}
-		const resp = startCreateCompany({
+		const resp = await startCreateCompany({
 			companyName,
 			phoneCompany,
 			addressCompany,
@@ -50,6 +50,13 @@ export const ModalFormCompany = () => {
 		});
 
 		if (resp.ok) {
+			Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: 'Empresa creada con exito!',
+				showConfirmButton: false,
+				timer: 1500,
+			});
 			closeModal();
 		}
 	};
