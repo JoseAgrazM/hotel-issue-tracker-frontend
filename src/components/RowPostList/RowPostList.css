@@ -1,0 +1,76 @@
+.container_buttons_options_list {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: none;
+	background-color: transparent;
+
+	& .button_remove_post {
+		color: red;
+		font-size: 1.25rem;
+		cursor: pointer;
+		&:hover {
+			color: rgb(151, 0, 0);
+		}
+	}
+	& .button_edit_post {
+		color: rgb(0, 162, 35);
+		font-size: 1.25rem;
+		cursor: pointer;
+		&:hover {
+			color: rgb(0, 105, 23);
+		}
+	}
+}
+.status_badge_row_list {
+	display: inline-block;
+	padding: 4px 8px;
+	border-radius: 20px;
+	font-size: 0.8em;
+	font-weight: 500;
+	margin-left: 3px;
+
+	&.pending {
+		background-color: #fff3cd;
+		color: #c69400;
+	}
+
+	&.done {
+		background-color: #d4edda;
+		color: #155724;
+	}
+	&.urgent {
+		background-color: #edd4d4;
+		color: #571515;
+	}
+	&.process {
+		background-color: #d4deed;
+		color: #1f337c;
+	}
+}
+
+.truncate_row_list {
+	max-width: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+	.room_id_container {
+		grid-template-columns: 1fr;
+	}
+
+	.div2,
+	.div3 {
+		grid-column: 1 / -1;
+	}
+
+	.styled-table {
+		min-width: 100%;
+	}
+
+	.truncate_row_list {
+		max-width: 150px;
+	}
+}

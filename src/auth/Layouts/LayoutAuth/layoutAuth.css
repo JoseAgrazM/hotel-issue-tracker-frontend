@@ -1,0 +1,33 @@
+.layout-auth-container {
+	width: 100%;
+	height: 100vh;
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	background: rgb(189, 254, 143);
+	background: radial-gradient(
+		circle,
+		rgb(233, 233, 233) 28%,
+		rgba(121, 183, 255, 1) 100%
+	);
+}
+
+.content-box-auth {
+	width: 430px;
+	padding: 20px;
+	background: rgb(96, 254, 255);
+	background: linear-gradient(
+		0deg,
+		rgb(248, 248, 248) 0%,
+		rgb(232, 232, 232) 100%
+	);
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	animation-duration: 0.5s;
+
+	& h1 {
+		font-family: Figtree, sans-serif;
+		font-size: 25px;
+		margin-bottom: 40px;
+	}
+}

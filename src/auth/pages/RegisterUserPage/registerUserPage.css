@@ -1,0 +1,54 @@
+.form-user-container {
+	width: 100%;
+	display: grid;
+	place-items: center;
+	gap: 20px;
+}
+
+.container-section-form {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 40px;
+}
+
+.section-register-form {
+	display: grid;
+	place-items: center;
+	gap: 20px;
+}
+
+.form-user-group {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	gap: 20px;
+	margin-top: 20px;
+	& label {
+		position: absolute;
+		top: -20px;
+		left: 45px;
+		font-size: 16px;
+		font-weight: 500;
+	}
+}
+
+.buttton-form-user-send {
+	width: 50%;
+	background-color: rgb(101, 128, 235);
+	color: white;
+	padding: 8px;
+	border: none;
+	border-radius: 4px;
+	font-size: 1.3rem;
+	transition: background-color 0.3s;
+	cursor: pointer;
+
+	&:hover {
+		background-color: rgb(22, 53, 178);
+	}
+}

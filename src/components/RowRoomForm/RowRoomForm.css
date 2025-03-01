@@ -1,0 +1,9 @@
+.room_input_repeat {
+	border: red 2px solid;
+}
+
+.form_input_rooms {
+	height: 30px;
+	padding: 4px;
+	border-radius: 5px;
+}

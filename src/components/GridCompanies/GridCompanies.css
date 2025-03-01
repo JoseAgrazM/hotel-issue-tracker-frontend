@@ -1,0 +1,28 @@
+.grid_container_companies {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+@media (max-width: 1165px) {
+	.grid_container_companies {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 876px) {
+	.grid_container_companies {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 560px) {
+	.grid_container_companies {
+		grid-template-columns: 1fr;
+	}
+}

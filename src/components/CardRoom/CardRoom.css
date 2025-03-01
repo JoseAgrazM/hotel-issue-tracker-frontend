@@ -1,0 +1,75 @@
+.card_container_room {
+	width: 250px;
+	height: 200px;
+	background: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	transition: transform 0.2s ease-in-out;
+
+	&:hover {
+		transform: translateY(-5px);
+		box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+		cursor: pointer;
+	}
+}
+
+.roomName_title {
+	text-transform: capitalize;
+	font-size: 30px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 8px;
+}
+
+.room_details {
+	font-size: 14px;
+	color: #666;
+}
+
+.link-card-room {
+	text-decoration: none;
+}
+
+.stateAvailable {
+	background: rgb(147, 255, 96);
+	background: linear-gradient(
+		45deg,
+		rgba(147, 255, 96, 0.7) 22%,
+		rgba(45, 253, 206, 0.7) 71%
+	);
+}
+.stateOccupied {
+	background: rgb(255, 199, 9);
+	background: linear-gradient(
+		45deg,
+		rgba(255, 199, 9, 0.7) 0%,
+		rgba(232, 100, 5, 0.7) 50%,
+		rgba(255, 16, 16, 0.7) 100%
+	);
+}
+.stateBlocked {
+	background: rgb(253, 206, 45);
+	background: linear-gradient(
+		45deg,
+		rgba(253, 206, 45, 0.7) 0%,
+		rgba(197, 159, 16, 0.7) 50%,
+		rgba(164, 105, 0, 0.7) 100%
+	);
+}
+@media (max-width: 650px) {
+	.card_container_room {
+		padding: 12px;
+	}
+	.company_title {
+		font-size: 16px;
+	}
+	.company_details {
+		font-size: 12px;
+	}
+}

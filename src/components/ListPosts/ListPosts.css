@@ -1,0 +1,131 @@
+.container_options_filter_list {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+.table_container {
+	overflow-x: auto;
+	background: rgb(255, 255, 255);
+	border-radius: 0.5rem;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-right: 20px;
+}
+
+.button_new_post {
+	background-color: #007bff;
+	color: white;
+	font-size: 16px;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+
+	&:hover {
+		background-color: #0056b3;
+		transform: scale(1.05);
+	}
+}
+
+.input_search_post {
+	width: 300px;
+	height: 50px;
+	padding: 20px 10px;
+	font-size: 20px;
+}
+
+.button_clear_filter {
+	background-color: #ff9100;
+	color: white;
+	font-size: 14px;
+	padding: 10px 10px;
+	margin-left: 20px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+
+	&:hover {
+		background-color: #d27700;
+		transform: scale(1.05);
+	}
+
+	&:disabled {
+		background-color: #a1a1a17c;
+		&:hover {
+			background-color: #a1a1a17c;
+			transform: scale(1);
+			cursor: auto;
+		}
+	}
+}
+
+.button_sort_post {
+	background-color: #8400ff;
+	color: white;
+	font-size: 16px;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+
+	&:hover {
+		background-color: rgb(116, 0, 199);
+		transform: scale(1.05);
+	}
+}
+
+.styled_table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+	min-width: 600px;
+
+	& th,
+	td {
+		padding: 12px 15px;
+		border-bottom: 1px solid #e9ecef;
+	}
+
+	& tbody tr {
+		&:nth-child(odd) {
+			background-color: #e7e7e77f;
+		}
+		&:hover {
+			background-color: #d4e9ff;
+		}
+	}
+	& thead tr {
+		background-color: #e0e0e0;
+		text-align: left;
+	}
+}
+
+.truncate {
+	max-width: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.status-badge {
+	display: inline-block;
+	padding: 4px 8px;
+	border-radius: 20px;
+	font-size: 0.8em;
+	font-weight: 500;
+
+	&.pending {
+		background-color: #fff3cd;
+		color: #c69400;
+	}
+
+	&.solved {
+		background-color: #d4edda;
+		color: #155724;
+	}
+}

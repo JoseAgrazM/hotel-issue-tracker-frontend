@@ -1,0 +1,67 @@
+.container-section-form.form-room {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	scroll-behavior: smooth;
+}
+.room-entry {
+	display: flex;
+	gap: 1rem;
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	background: #f8f8f8;
+}
+
+.form-room-group {
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.add-new-room {
+	padding: 0.5rem 1rem;
+	background: #007bff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-top: 1rem;
+	&:hover {
+		background: #00aeff;
+
+		color: white;
+	}
+}
+
+.buttton-form-room-send {
+	padding: 0.5rem 1rem;
+	background: #008e1a;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-top: 1rem;
+	&:hover {
+		background: #00e42a;
+		color: white;
+	}
+}
+
+.remove-row-room {
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-size: 15px;
+}
+
+.form-room-group input {
+	width: 100%;
+	box-sizing: border-box;
+}

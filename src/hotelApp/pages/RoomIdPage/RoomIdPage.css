@@ -1,0 +1,66 @@
+.room_id_container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
+	padding: 1rem;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+.header_container {
+	grid-column: 1 / -1;
+	background: #ffffff;
+	padding: 1.5rem;
+	border-radius: 0.5rem;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stateAvailable {
+	background: rgb(147, 255, 96);
+	background: linear-gradient(
+		45deg,
+		rgba(147, 255, 96, 0.7) 22%,
+		rgba(45, 253, 206, 0.7) 71%
+	);
+}
+.stateOccupied {
+	background: rgb(255, 199, 9);
+	background: linear-gradient(
+		45deg,
+		rgba(255, 199, 9, 0.7) 0%,
+		rgba(232, 100, 5, 0.7) 50%,
+		rgba(255, 16, 16, 0.7) 100%
+	);
+}
+.stateBlocked {
+	background: rgb(253, 206, 45);
+	background: linear-gradient(
+		45deg,
+		rgba(253, 206, 45, 0.7) 0%,
+		rgba(197, 159, 16, 0.7) 50%,
+		rgba(164, 105, 0, 0.7) 100%
+	);
+}
+
+.div2 {
+	grid-column: 1 / 4;
+}
+
+@media (max-width: 768px) {
+	.room_id_container {
+		grid-template-columns: 1fr;
+	}
+
+	.div2,
+	.div3 {
+		grid-column: 1 / -1;
+	}
+
+	.styled-table {
+		min-width: 100%;
+	}
+
+	.truncate {
+		max-width: 150px;
+	}
+}

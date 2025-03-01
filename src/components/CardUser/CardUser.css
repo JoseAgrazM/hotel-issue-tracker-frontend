@@ -1,0 +1,75 @@
+.card_container_user {
+	position: relative;
+	background: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	transition: transform 0.2s ease-in-out;
+	width: 250px;
+	height: 200px;
+
+	&:hover {
+		transform: translateY(-5px);
+		box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+	}
+}
+
+.userName_title {
+	text-transform: capitalize;
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 8px;
+}
+
+.user_details {
+	font-size: 14px;
+	color: #666;
+}
+
+.container_buttons_options_users {
+	display: flex;
+	position: absolute;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	margin-top: 8px;
+	bottom: 15px;
+
+	& .button_remove_user {
+		color: red;
+		cursor: pointer;
+		font-size: 1.5rem;
+		content: '\eb41';
+		&:hover {
+			color: rgb(151, 0, 0);
+		}
+	}
+	& .button_edit_user {
+		color: rgb(0, 162, 35);
+		cursor: pointer;
+		font-size: 1.5rem;
+		content: '\ea98';
+
+		&:hover {
+			color: rgb(0, 105, 23);
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.card_container_user {
+		padding: 12px;
+	}
+	.company_title {
+		font-size: 16px;
+	}
+	.company_details {
+		font-size: 12px;
+	}
+}
