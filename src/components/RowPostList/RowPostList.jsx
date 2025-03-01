@@ -30,7 +30,6 @@ export const RowPostList = ({ post }) => {
 
 	return (
 		<tr>
-			{/* <td>{id}</td> */}
 			<td>
 				<span
 					className={`status_badge_row_list ${postStatus.toLowerCase()}`}
@@ -44,13 +43,6 @@ export const RowPostList = ({ post }) => {
 			<td>{namePost}</td>
 			<td className='truncate_row_list'>{description}</td>
 			<td>{authorName}</td>
-			{/* <td>
-				<span
-					className={`status_badge_row_list ${postStatus.toLowerCase()}`}
-				>
-					{postStatus}
-				</span>
-			</td> */}
 
 			<td>{solvedAt ? new Date(solvedAt).toLocaleDateString() : '-'}</td>
 

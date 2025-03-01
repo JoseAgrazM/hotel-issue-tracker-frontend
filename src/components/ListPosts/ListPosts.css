@@ -33,6 +33,7 @@
 .input_search_post {
 	width: 300px;
 	height: 50px;
+	border-radius: 7px;
 	padding: 20px 10px;
 	font-size: 20px;
 }
