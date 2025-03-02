@@ -59,7 +59,11 @@ export const RowRoomForm = ({
 					className='form_input_rooms'
 					type='text'
 					required
+					maxLength='250'
 				/>
+			</div>
+			<div className='char_counter_room'>
+				{room.description?.length || 0}/250
 			</div>
 			<button
 				className='remove-row-room'

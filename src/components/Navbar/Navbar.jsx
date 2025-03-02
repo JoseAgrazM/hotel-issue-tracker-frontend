@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
+import { LogoutIconSVG } from '@/ui';
 import {
 	useAuthStore,
 	useCompanyStore,
 	usePostsStore,
 	useUsersStore,
+	useRoomStore,
 } from '@/hooks';
-import { LogoutIconSVG } from '../../ui';
 import './Navbar.css';
-import { useRoomStore } from '../../hooks';
 
 export const Navbar = () => {
 	const { startLogout, user } = useAuthStore();
@@ -26,7 +26,15 @@ export const Navbar = () => {
 
 	return (
 		<nav className='nav_container'>
-			<figure className='nav_logo'>LOGO</figure>
+			<figure className='nav_logo'>
+				<NavLink to='/'>
+					<img
+						className='logo_image_hotel'
+						src='src/assets/img/icons/hotel-svgrepo-com.svg'
+						alt='logo'
+					/>
+				</NavLink>
+			</figure>
 			<ul className='nav_links'>
 				<NavLink
 					className={({ isActive }) =>

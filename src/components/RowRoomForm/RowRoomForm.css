@@ -7,3 +7,10 @@
 	padding: 4px;
 	border-radius: 5px;
 }
+
+.char_counter_room {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.8rem;
+}

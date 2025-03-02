@@ -84,7 +84,7 @@ export const ModalFormPost = () => {
 							<input
 								list='nameRoomIds'
 								name='nameRoomId'
-								value={roomActive?.nameRoom || nameRoomId}
+								value={roomActive?.nameRoom || nameRoomId || ''}
 								onChange={onInputChange}
 								className='form-input'
 								placeholder='Room'
@@ -116,8 +116,12 @@ export const ModalFormPost = () => {
 								className='form_input_description'
 								type='text'
 								placeholder='Describe lo ocurrido'
+								maxLength='250'
 								required
 							/>
+						</div>
+						<div className='char-counter'>
+							{description?.length || 0}/250 characters
 						</div>
 					</section>
 				</div>

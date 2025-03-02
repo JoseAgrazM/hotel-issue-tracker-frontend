@@ -40,7 +40,7 @@ export const ModalEditRoom = () => {
 	};
 
 	return (
-		<LayoutModal title='Edit post'>
+		<LayoutModal title='Edit room'>
 			<form onSubmit={onEditRoom} className='form-user-container'>
 				<div className='container-section-form'>
 					<section className='section-register-form'>

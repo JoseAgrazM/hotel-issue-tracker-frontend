@@ -82,3 +82,9 @@
 		color: black;
 	}
 }
+
+.logo_image_hotel{
+	width: 70px;
+	cursor: pointer;
+	filter:drop-shadow(2px 2px 5px rgba(86, 86, 86, 0.666)) ;
+}

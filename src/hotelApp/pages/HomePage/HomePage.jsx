@@ -80,7 +80,7 @@ export const HomePage = () => {
 							) : (
 								reversePost.map(
 									(post, index) =>
-										index < 5 && (
+										index < 4 && (
 											<CardLastPost
 												key={post.id}
 												post={post}

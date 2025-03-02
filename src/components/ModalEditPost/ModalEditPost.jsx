@@ -13,7 +13,7 @@ export const ModalEditPost = () => {
 	const { rooms } = useRoomStore();
 	const { postActive, startEditPost } = usePostsStore();
 	const { closeModal } = useModalStore();
-	
+
 	const { namePost, description, postStatus, nameRoomId, onInputChange } =
 		useForm(postActive);
 
@@ -60,6 +60,8 @@ export const ModalEditPost = () => {
 								required
 							/>
 						</div>
+					</section>
+					<section className='section-register-form'>
 						<div className='form_post_group'>
 							<label>Post status</label>
 							<select
@@ -104,19 +106,23 @@ export const ModalEditPost = () => {
 								))}
 							</datalist>
 						</div>
-						<div className='form_post_group'>
-							<label>Description</label>
-							<textarea
-								name='description'
-								value={description || ''}
-								onChange={onInputChange}
-								className='form_input_description'
-								type='text'
-								placeholder='Describe lo ocurrido'
-								required
-							/>
-						</div>
 					</section>
+				</div>
+				<div className='form_room_group_description'>
+					<label>Description</label>
+					<textarea
+						name='description'
+						value={description || ''}
+						onChange={onInputChange}
+						className='form_input_description'
+						type='text'
+						placeholder='Describe lo ocurrido'
+						maxLength='250'
+						required
+					/>
+				</div>
+				<div className='char_counter'>
+					{description?.length || 0}/250 characters
 				</div>
 				<div className='form-user-group'>
 					<input
