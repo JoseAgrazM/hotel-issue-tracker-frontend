@@ -24,7 +24,7 @@
 	display: inline-block;
 }
 
-.headers_company_dangerZone h2{
+.headers_company_dangerZone h2 {
 	font-size: 1.8rem;
 	color: #ff0000;
 	margin-top: 2rem;
@@ -33,10 +33,45 @@
 	border-bottom: 2px solid #e2e8f0;
 }
 
-.main_company_dangerZone{
+.main_company_dangerZone {
+	height: 100%;
 	display: flex;
-	flex-direction: column;
-	width: 50%;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 	gap: 20px;
-	
+}
+
+.edit_company {
+	width: 200px;
+	background-color: rgb(165, 246, 165);
+	border: none;
+	border-radius: 9px;
+	padding: 10px;
+	font-size: medium;
+	box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	transition: all ease 0.4s;
+
+	&:hover {
+		background-color: rgb(128, 248, 128);
+		transform: scale(1.05);
+	}
+}
+
+.delete_company {
+	width: 200px;
+	background-color: rgb(246, 165, 165);
+	border: none;
+	border-radius: 9px;
+	padding: 10px;
+	font-size: medium;
+	box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	transition: all ease 0.4s;
+
+	&:hover {
+		background-color: rgb(252, 118, 118);
+		transform: scale(1.05);
+	}
 }

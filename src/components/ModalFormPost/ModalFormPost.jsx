@@ -12,7 +12,7 @@ const newPostForm = {
 };
 
 export const ModalFormPost = () => {
-	const { rooms } = useRoomStore();
+	const { rooms, roomActive } = useRoomStore();
 
 	const { startCreatePost } = usePostsStore();
 
@@ -22,10 +22,11 @@ export const ModalFormPost = () => {
 
 	const onCreatePost = async e => {
 		e.preventDefault();
+
 		const resp = await startCreatePost({
 			namePost,
 			description,
-			nameRoomId,
+			nameRoomId: roomActive?.nameRoom || nameRoomId,
 			postStatus,
 		});
 
@@ -83,11 +84,12 @@ export const ModalFormPost = () => {
 							<input
 								list='nameRoomIds'
 								name='nameRoomId'
-								value={nameRoomId}
+								value={roomActive?.nameRoom || nameRoomId}
 								onChange={onInputChange}
 								className='form-input'
 								placeholder='Room'
 								required
+								disabled={roomActive}
 							/>
 
 							<datalist id='nameRoomIds'>

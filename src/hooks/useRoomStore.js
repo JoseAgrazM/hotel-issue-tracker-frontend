@@ -68,6 +68,7 @@ export const useRoomStore = () => {
 	};
 
 	const startActiveRoom = async roomId => {
+		if (!roomId) return;
 		try {
 			const { data } = await hotelManagerApi.get(
 				`/room/${companyActive.id}/${roomId}`

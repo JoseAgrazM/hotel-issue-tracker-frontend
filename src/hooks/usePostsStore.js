@@ -38,6 +38,7 @@ export const usePostsStore = () => {
 				});
 				dispatch(onAddNewPost(data.postAdmin));
 				startLoadCompanyActive(companyActive);
+
 				return data;
 			}
 

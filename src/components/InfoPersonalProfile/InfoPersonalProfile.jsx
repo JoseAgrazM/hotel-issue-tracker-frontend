@@ -5,17 +5,19 @@ export const InfoPersonalProfile = ({ userLog }) => {
 		.charAt(0)
 		.toUpperCase()}${userLog?.role.slice(1).toLowerCase()}`;
 
+	const timeInCompany = Math.floor(
+		(Date.now() - new Date(userLog?.createdAt).getTime()) /
+			(1000 * 60 * 60 * 24)
+	);
+
 	return (
 		<div className='info_personal'>
 			<section>
-				<p>
-					Llevas{' '}
-					{Math.floor(
-						(Date.now() - new Date(userLog?.createdAt).getTime()) /
-							(1000 * 60 * 60 * 24)
-					)}{' '}
-					días en la empresa
-				</p>
+				{timeInCompany === 1 ? (
+					<p>Llevas {timeInCompany} día en la empresa</p>
+				) : (
+					<p>Llevas {timeInCompany} días en la empresa</p>
+				)}
 
 				<p>
 					<strong>Role: </strong>

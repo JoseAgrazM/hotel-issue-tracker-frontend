@@ -9,6 +9,7 @@ import {
 	useRoomStore,
 	useUsersStore,
 } from '@/hooks';
+import './ModalDeleteCompany.css';
 
 const delteCompayForm = {
 	password: '',
@@ -54,9 +55,10 @@ export const ModalDeleteCompany = () => {
 		}
 	};
 	return (
-		<LayoutModal title='Delete company'>
-			<h4>Ingresa la contraseña para eliminar la empresa</h4>
-			<br />
+		<LayoutModal title='Delete company ⚠️'>
+			<h4 className='message_caution'>
+				Ingresa la contraseña para eliminar la empresa
+			</h4>
 			<form onSubmit={onDeleteCompany} className='form-user-container'>
 				<div className='form-group'>
 					<label htmlFor='email'>Email</label>
@@ -81,7 +83,7 @@ export const ModalDeleteCompany = () => {
 						name='loginPassword'
 						value={loginPassword || ''}
 						onChange={onInputChange}
-						placeholder='Enter your password...'
+						placeholder='Your password'
 						required
 					/>
 				</div>

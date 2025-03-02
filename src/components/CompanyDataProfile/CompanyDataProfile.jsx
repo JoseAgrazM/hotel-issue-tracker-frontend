@@ -6,7 +6,7 @@ export const CompanyDataProfile = ({ companyActive }) => {
 	return (
 		<div className='info_company'>
 			<section className='headers_data_company'>
-				<h2>Company Data</h2>
+				<h2>Company Data 🏢</h2>
 				<h3>{companyActive?.companyName}</h3>
 				<section className='main_data_company'>
 					<p>
@@ -37,13 +37,19 @@ export const CompanyDataProfile = ({ companyActive }) => {
 				</section>
 			</section>
 			<section className='headers_company_dangerZone'>
-				<h2>Danger Zone</h2>
+				<h2>Danger Zone ⚠️</h2>
 				<section className='main_company_dangerZone'>
-					<button onClick={() => openModal('edit')}>
+					<button
+						className='edit_company'
+						onClick={() => openModal('edit')}
+					>
 						Edit company
 					</button>
-					<button onClick={() => openModal('delete')}>
-						Delte Company
+					<button
+						className='delete_company'
+						onClick={() => openModal('delete')}
+					>
+						Delete Company
 					</button>
 				</section>
 			</section>

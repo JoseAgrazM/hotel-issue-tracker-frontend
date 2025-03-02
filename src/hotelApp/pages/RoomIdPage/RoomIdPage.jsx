@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useRoomStore, useModalStore } from '@/hooks';
+import {
+	useRoomStore,
+	useModalStore,
+	useAuthStore,
+	usePostsStore,
+} from '@/hooks';
 import {
 	ListPosts,
 	Navbar,
@@ -12,13 +17,13 @@ import { getRoomStateClass } from '@/helpers';
 import { LayoutPage } from '../../Layouts';
 import { EditIconSVG, DeleteIconSVG } from '@/ui';
 import './RoomIdPage.css';
-import { useAuthStore } from '../../../hooks';
 
 export const RoomIdPage = () => {
 	const { id } = useParams();
 	const { roomActive, startActiveRoom, clearRoomActive, startRemoveRoom } =
 		useRoomStore();
 	const { userLog } = useAuthStore();
+	const {} = usePostsStore();
 
 	const { isModalOpen, modalType, openModal } = useModalStore();
 
@@ -38,7 +43,7 @@ export const RoomIdPage = () => {
 		return () => {
 			clearRoomActive();
 		};
-	}, [id]);
+	}, [id, isModalOpen]);
 
 	if (!roomActive) {
 		return (

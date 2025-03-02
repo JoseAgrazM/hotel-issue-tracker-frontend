@@ -36,7 +36,7 @@ export const HomePage = () => {
 	return (
 		<>
 			<Navbar />
-			<LayoutPage title='Home'>
+			<LayoutPage>
 				<div className='header-container'>
 					<div className='welcome-container'>
 						<h2 className='welcome-message'>
