@@ -29,7 +29,7 @@ export const ListPosts = ({ posts = [], openModal }) => {
 		<>
 			<section className='container_options_filter_list'>
 				<button
-					onClick={() => openModal('create')}
+					onClick={() => openModal('createPost')}
 					className='button_new_post'
 				>
 					New Post

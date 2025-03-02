@@ -1,0 +1,35 @@
+.chart-container {
+    height: 300px;
+    margin-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	padding: 1rem;
+	background-color: rgba(225, 225, 225, 0.3);
+	border-radius: 12px;
+}
+
+.legend {
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+}
+
+.legend-item {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.9rem;
+}
+
+.color-box {
+	width: 15px;
+	height: 15px;
+	border-radius: 3px;
+}
+
+text {
+	font-weight: bold;
+	fill: #2d3748;
+}

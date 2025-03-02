@@ -14,6 +14,7 @@ import {
 import { useCompanyStore } from './useCompanyStore';
 import { useCallback } from 'react';
 import { useAuthStore } from './useAuthStore';
+import { useNavigate } from 'react-router-dom';
 
 export const useUsersStore = () => {
 	const { user } = useSelector(state => state.auth);
@@ -21,6 +22,7 @@ export const useUsersStore = () => {
 		state => state.users
 	);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const { companyActive, startLoadCompanyActive } = useCompanyStore();
 	const { startGetUserLogin, userLog } = useAuthStore();
@@ -64,7 +66,14 @@ export const useUsersStore = () => {
 			);
 			dispatch(onLoadUsers(data.users));
 		} catch (error) {
-			handleError(error, 'Error al cargar usuarios');
+			if (error?.response?.data?.msg === 'Token no valido') {
+				navigate('/login');
+			}
+			Swal.fire(
+				'Error al recuperar las habitaciones',
+				error?.response?.data?.msg,
+				'error'
+			);
 		}
 	}, [user.role, companyActive, dispatch]);
 
@@ -77,7 +86,7 @@ export const useUsersStore = () => {
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete it!',
+				confirmButtonText: 'Yes, delete user!',
 			}).then(async result => {
 				if (result.isConfirmed) {
 					const { data } = await hotelManagerApi.delete(
@@ -88,7 +97,7 @@ export const useUsersStore = () => {
 					startLoadCompanyActive(companyActive);
 					Swal.fire({
 						title: 'Deleted!',
-						text: 'Your file has been deleted.',
+						text: 'The user has been successfully deleted.',
 						icon: 'success',
 					});
 				}

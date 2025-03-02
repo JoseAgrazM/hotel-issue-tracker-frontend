@@ -1,17 +1,34 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useRoomStore } from '@/hooks';
-import { ListPosts, Navbar } from '@/components';
+import { useRoomStore, useModalStore } from '@/hooks';
+import {
+	ListPosts,
+	Navbar,
+	ModalEditPost,
+	ModalFormPost,
+	ModalEditRoom,
+} from '@/components';
 import { getRoomStateClass } from '@/helpers';
 import { LayoutPage } from '../../Layouts';
+import { EditIconSVG, DeleteIconSVG } from '@/ui';
 import './RoomIdPage.css';
-import { ModalEditPost, ModalFormPost } from '../../../components';
-import { useModalStore } from '../../../hooks';
+import { useAuthStore } from '../../../hooks';
 
 export const RoomIdPage = () => {
 	const { id } = useParams();
-	const { roomActive, startActiveRoom, clearRoomActive } = useRoomStore();
-	const { isModalOpen, modalType } = useModalStore();
+	const { roomActive, startActiveRoom, clearRoomActive, startRemoveRoom } =
+		useRoomStore();
+	const { userLog } = useAuthStore();
+
+	const { isModalOpen, modalType, openModal } = useModalStore();
+
+	const handleEditRoom = () => {
+		openModal('editRoom');
+	};
+
+	const handleRemoveRoom = id => {
+		startRemoveRoom(id);
+	};
 
 	useEffect(() => {
 		if (!id) return clearRoomActive();
@@ -36,8 +53,11 @@ export const RoomIdPage = () => {
 		<>
 			<Navbar />
 			<LayoutPage title={`Room ${id}`}>
-				{isModalOpen && modalType === 'create' && <ModalFormPost />}
-				{isModalOpen && modalType === 'edit' && <ModalEditPost />}
+				{isModalOpen && modalType === 'createPost' && <ModalFormPost />}
+				{isModalOpen && modalType === 'editPost' && <ModalEditPost />}
+
+				{isModalOpen && modalType === 'editRoom' && <ModalEditRoom />}
+
 				<div className='room_id_container'>
 					<section
 						className={`header_container ${getRoomStateClass(
@@ -50,12 +70,32 @@ export const RoomIdPage = () => {
 							<p>Type: {typeRoom}</p>
 							<p>Description: {description}</p>
 						</div>
+						<div className={`options_room`}>
+							{(userLog.role === 'SUPERADMIN' ||
+								userLog.role === 'RECEPTION') && (
+								<EditIconSVG
+									color='green'
+									size={40}
+									onClick={() => handleEditRoom(id)}
+								/>
+							)}
+
+							{userLog.role === 'SUPERADMIN' && (
+								<DeleteIconSVG
+									color='red'
+									size={40}
+									onClick={() =>
+										handleRemoveRoom(roomActive.id)
+									}
+								/>
+							)}
+						</div>
 					</section>
 					<section className='div2'>
 						{posts < 1 ? (
 							<h3>No hay post en esta habitación</h3>
 						) : (
-							<ListPosts posts={posts} />
+							<ListPosts posts={posts} openModal={openModal} />
 						)}
 					</section>
 				</div>

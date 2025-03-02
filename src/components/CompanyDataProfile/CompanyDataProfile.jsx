@@ -28,7 +28,7 @@ export const CompanyDataProfile = ({ companyActive }) => {
 					</p>
 					<p>
 						<strong>Posts: </strong>
-						{companyActive?.postsCompany?.length || 0}
+						{companyActive?.posts?.length || 0}
 					</p>
 					<p>
 						<strong>Users:</strong>

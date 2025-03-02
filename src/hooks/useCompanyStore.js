@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import hotelManagerApi from '../api/HotelManagerApi';
 import {
 	onAddNewCompany,
-	clearErrorMessageCompany,
 	onLoadCompanies,
 	onSetActiveCompany,
 } from '../store/company/companySlice';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export const useCompanyStore = () => {
 	const { isLoadingCompany, companies, companyActive } = useSelector(
@@ -14,6 +14,7 @@ export const useCompanyStore = () => {
 	);
 	const { user } = useSelector(state => state.auth);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const setActiveCompany = company => {
 		dispatch(onSetActiveCompany(company));
@@ -34,6 +35,14 @@ export const useCompanyStore = () => {
 
 			setActiveCompany(data.company);
 		} catch (error) {
+			if (error?.response?.data?.msg === 'Token no valido') {
+				navigate('/login');
+			}
+			Swal.fire(
+				'Error al recuperar las habitaciones',
+				error?.response?.data?.msg,
+				'error'
+			);
 			localStorage.removeItem('companyActiveId');
 			Swal.fire(
 				'Error',
@@ -68,7 +77,14 @@ export const useCompanyStore = () => {
 
 			dispatch(onLoadCompanies(data?.companies));
 		} catch (error) {
-			throw new Error('Error al recuperar las empresas');
+			if (error?.response?.data?.msg === 'Token no valido') {
+				navigate('/login');
+			}
+			Swal.fire(
+				'Error al recuperar las habitaciones',
+				error?.response?.data?.msg,
+				'error'
+			);
 		}
 	};
 
@@ -91,7 +107,6 @@ export const useCompanyStore = () => {
 					superAdminId: companyActive.superAdminId,
 				}
 			);
-			console.log(data);
 
 			startLoadCompanyActive(companyActive);
 			return data;

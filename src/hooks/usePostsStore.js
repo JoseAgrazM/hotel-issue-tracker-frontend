@@ -9,6 +9,7 @@ import {
 } from '../store';
 import { useCompanyStore, useAuthStore } from './';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export const usePostsStore = () => {
 	const { isLoadingPost, posts, postActive } = useSelector(
@@ -17,6 +18,9 @@ export const usePostsStore = () => {
 	const { companyActive, startLoadCompanyActive } = useCompanyStore();
 	const { userLog } = useAuthStore();
 	const dispatch = useDispatch();
+
+	const navigate = useNavigate();
+
 	const nameComplete = `${userLog?.name} ${userLog?.surname}`;
 
 	const startCreatePost = async post => {
@@ -70,8 +74,11 @@ export const usePostsStore = () => {
 
 			dispatch(onLoadPosts(data?.posts));
 		} catch (error) {
+			if (error?.response?.data?.msg === 'Token no valido') {
+				navigate('/login');
+			}
 			Swal.fire(
-				'Error al recuperar los posts',
+				'Error al recuperar las habitaciones',
 				error?.response?.data?.msg,
 				'error'
 			);
@@ -87,7 +94,7 @@ export const usePostsStore = () => {
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete it!',
+				confirmButtonText: 'Yes, delete post!',
 			}).then(async result => {
 				if (result.isConfirmed) {
 					const { data } = await hotelManagerApi.delete(
@@ -98,7 +105,7 @@ export const usePostsStore = () => {
 					startLoadCompanyActive(companyActive);
 					Swal.fire({
 						title: 'Deleted!',
-						text: 'Your file has been deleted.',
+						text: 'The post has been successfully deleted.',
 						icon: 'success',
 					});
 				}

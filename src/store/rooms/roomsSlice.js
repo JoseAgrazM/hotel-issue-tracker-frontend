@@ -32,9 +32,17 @@ export const roomsSlice = createSlice({
 			state.isLoadingRooms = false;
 			state.roomActive = payload;
 		},
+		onDeleteRoom: (state, { payload }) => {
+			state.rooms.filter(room => room.id !== payload.id);
+		},
 	},
 });
 
 // Action creators are generated for each case reducer function
-export const { onAddNewRoom, onLoadRooms, onLogoutRooms, onActiveRoom } =
-	roomsSlice.actions;
+export const {
+	onAddNewRoom,
+	onLoadRooms,
+	onLogoutRooms,
+	onActiveRoom,
+	onDeleteRoom,
+} = roomsSlice.actions;

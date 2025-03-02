@@ -16,8 +16,8 @@ export const PostPage = () => {
 		<>
 			<Navbar />
 			<LayoutPage title='Posts'>
-				{isModalOpen && modalType === 'create' && <ModalFormPost />}
-				{isModalOpen && modalType === 'edit' && <ModalEditPost />}
+				{isModalOpen && modalType === 'createPost' && <ModalFormPost />}
+				{isModalOpen && modalType === 'editPost' && <ModalEditPost />}
 
 				<div className='container_post_list'>
 					<ListPosts posts={posts} openModal={openModal} />

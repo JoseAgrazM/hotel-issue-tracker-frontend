@@ -1,16 +1,23 @@
 export * from './Navbar/Navbar';
 
+export * from './RoomStatusChart/RoomStatusChart';
+
+// Modals Company
 export * from './ModalFormCompany/ModalFormCompany';
 export * from './ModalEditCompany/ModalEditCompany';
 export * from './ModalDeleteCompany/ModalDeleteCompany';
 
+// Modals Users
 export * from './ModalFormUser/ModalFormUser';
 export * from './ModalFormUser/ModalEditUser';
 
+// Modals Posts
 export * from './ModalFormPost/ModalFormPost';
 export * from './ModalEditPost/ModalEditPost';
 
+// Modals Rooms
 export * from './ModalFormRoom/ModalFormRoom';
+export * from './ModalEditRoom/ModalEditRoom';
 
 export * from './CardCompany/CardCompany';
 export * from './CardRoom/CardRoom';

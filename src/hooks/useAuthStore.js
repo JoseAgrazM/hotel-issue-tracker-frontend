@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import hotelManagerApi from '../api/HotelManagerApi';
 import {
@@ -18,6 +19,8 @@ export const useAuthStore = () => {
 		state => state.auth
 	);
 	const dispatch = useDispatch();
+
+	const navigate = useNavigate();
 
 	const startLogin = async ({ email, password }) => {
 		dispatch(onChecking());
@@ -41,12 +44,14 @@ export const useAuthStore = () => {
 
 	const checkAuthToken = async () => {
 		const token = localStorage.getItem('token');
-		if (!token) return dispatch(onLogout());
+		if (!token) {
+			return startLogout();
+		}
 
 		try {
 			const { data } = await hotelManagerApi.get('/auth/renew');
 
-			localStorage.getItem('token', data.token);
+			localStorage.setItem('token', data.token);
 			localStorage.setItem('token-init-date', new Date().getTime());
 
 			dispatch(
@@ -54,15 +59,22 @@ export const useAuthStore = () => {
 			);
 			startGetUserLogin(data.uid);
 		} catch (error) {
-			localStorage.clear();
-			dispatch(onLogout());
+			if (error?.response?.data?.msg === 'Token no valido') {
+							navigate('/login');
+						}
+						Swal.fire(
+							'Error al recuperar las habitaciones',
+							error?.response?.data?.msg,
+							'error'
+						);
+			startLogout();
 		}
 	};
 
 	const startLogout = () => {
 		localStorage.clear();
-		//TODO: Eliminar hacer logout de los demas estados
 
+		// Eliminar los demas estados
 		dispatch(onLogout());
 		dispatch(onLogoutCompany());
 		dispatch(onLogoutPosts());

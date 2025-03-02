@@ -13,6 +13,7 @@ export const ModalEditPost = () => {
 	const { rooms } = useRoomStore();
 	const { postActive, startEditPost } = usePostsStore();
 	const { closeModal } = useModalStore();
+	
 	const { namePost, description, postStatus, nameRoomId, onInputChange } =
 		useForm(postActive);
 

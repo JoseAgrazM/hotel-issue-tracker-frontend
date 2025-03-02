@@ -83,7 +83,7 @@ export const ModalFormPost = () => {
 							<input
 								list='nameRoomIds'
 								name='nameRoomId'
-								value={nameRoomId || ''}
+								value={nameRoomId}
 								onChange={onInputChange}
 								className='form-input'
 								placeholder='Room'
@@ -91,14 +91,18 @@ export const ModalFormPost = () => {
 							/>
 
 							<datalist id='nameRoomIds'>
-								{rooms?.map(room => (
-									<option
-										key={room.id}
-										value={`${room.nameRoomId}`}
-									>
-										{`${room.nameRoomId}`}
-									</option>
-								))}
+								{rooms && rooms.length > 0 ? (
+									rooms.map(room => (
+										<option
+											key={room.id}
+											value={room.nameRoom}
+										>
+											{room.nameRoom}
+										</option>
+									))
+								) : (
+									<option value='No hay habitaciones' />
+								)}
 							</datalist>
 						</div>
 						<div className='form_post_group'>

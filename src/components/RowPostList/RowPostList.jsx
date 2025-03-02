@@ -1,6 +1,5 @@
-import { useAuthStore, useModalStore, usePostsStore } from '../../hooks';
-import { DeleteIconSVG } from '../../ui/DeleteIconSVG';
-import { EditIconSVG } from '../../ui/EditIconSVG';
+import { useAuthStore, useModalStore, usePostsStore } from '@/hooks';
+import { EditIconSVG, DeleteIconSVG } from '@/ui';
 import './RowPostList.css';
 
 export const RowPostList = ({ post }) => {
@@ -25,7 +24,7 @@ export const RowPostList = ({ post }) => {
 
 	const handleEditPost = post => {
 		startPostActive(post);
-		openModal('edit');
+		openModal('editPost');
 	};
 
 	return (

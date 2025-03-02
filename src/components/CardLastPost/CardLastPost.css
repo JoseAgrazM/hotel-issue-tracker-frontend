@@ -2,15 +2,15 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	gap: 13px;
+	gap: 10px;
 	width: min(90%, 400px);
 	min-height: 400px;
-	background-color: rgba(165, 165, 165, 0.332);
+	background-color: rgba(225, 225, 225, 0.584);
 	border-radius: 12px;
 	padding: 10px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-	margin: 1rem auto;
 	box-sizing: border-box;
+	margin: auto;
 }
 
 .last_post_wrap {
@@ -22,15 +22,32 @@
 .last_post {
 	width: 100%;
 	min-height: 80px;
-	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 8px;
 	padding: 12px;
 	transition: transform 0.2s ease;
 	position: relative;
-	/* display: grid; */
 	grid-template-columns: 60px 1fr;
 	align-items: start;
 	cursor: pointer;
+	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+
+	&.pendinglastPost {
+		background-color: #f9e6a7;
+		color: #c69400;
+	}
+
+	&.donelastPost {
+		background-color: #b1eec0;
+		color: #155724;
+	}
+	&.urgentlastPost {
+		background-color: #fac1c1;
+		color: #571515;
+	}
+	&.processlastPost {
+		background-color: #b5cef2;
+		color: #1f337c;
+	}
 
 	&:hover {
 		transform: translateY(-3px);

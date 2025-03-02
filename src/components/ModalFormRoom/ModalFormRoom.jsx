@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { LayoutModal } from '../../hotelApp/Layouts';
 import { RowRoomForm } from '../RowRoomForm/RowRoomForm';
 import { useModalStore, useRoomStore } from '../../hooks';
-import './ModalFormRoom.css';
 import Swal from 'sweetalert2';
+import './ModalFormRoom.css';
 
 const newRoomForm = {
 	nameRoom: '',
