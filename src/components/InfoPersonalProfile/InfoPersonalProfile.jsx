@@ -1,9 +1,7 @@
 import './InfoPersonalProfile.css';
 
 export const InfoPersonalProfile = ({ userLog }) => {
-	const roleCaptilized = ` ${userLog?.role
-		.charAt(0)
-		.toUpperCase()}${userLog?.role.slice(1).toLowerCase()}`;
+	const roleCaptilized = ` ${userLog?.role?.charAt(0)?.toUpperCase()}${userLog?.role?.slice(1)?.toLowerCase()}`;
 
 	const timeInCompany = Math.floor(
 		(Date.now() - new Date(userLog?.createdAt).getTime()) /

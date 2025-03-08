@@ -30,7 +30,7 @@ export const Navbar = () => {
 				<NavLink to='/'>
 					<img
 						className='logo_image_hotel'
-						src='src/assets/img/icons/hotel-svgrepo-com.svg'
+						src='/src/assets/img/icons/hotel-svgrepo-com.svg'
 						alt='logo'
 					/>
 				</NavLink>

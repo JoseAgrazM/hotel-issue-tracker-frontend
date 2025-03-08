@@ -64,6 +64,21 @@
 	gap: 20px;
 }
 
+.button_edit_room {
+	transition: all ease 0.4s;
+	&:hover {
+		transform: scale(1.1);
+		stroke: rgb(0, 100, 213);
+	}
+}
+.button_delete_room {
+	transition: all ease 0.4s;
+	&:hover {
+		transform: scale(1.1);
+		stroke: rgb(136, 0, 0);
+	}
+}
+
 @media (max-width: 768px) {
 	.room_id_container {
 		grid-template-columns: 1fr;

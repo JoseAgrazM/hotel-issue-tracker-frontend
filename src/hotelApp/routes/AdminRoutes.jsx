@@ -1,4 +1,5 @@
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import {
 	CompaniesPage,
 	HomePage,
@@ -6,10 +7,9 @@ import {
 	RoomIdPage,
 	RoomsPage,
 	MyProfilePage,
+	UsersPage,
 } from '../pages';
-import { UsersPage } from '../pages/UsersPage/UsersPage';
-import { useCompanyStore, useUsersStore } from '../../hooks';
-import { useEffect } from 'react';
+import { useCompanyStore, useUsersStore } from '@/hooks';
 
 export const AdminRoutes = () => {
 	const { companyActive, startLoadCompanies, startLoadCompanyActive } =
@@ -31,7 +31,7 @@ export const AdminRoutes = () => {
 				<>
 					<Route path='/' element={<HomePage />} />
 					<Route path='/rooms' element={<RoomsPage />} />
-					<Route path='/room/:id' element={<RoomIdPage />} />
+					<Route path='/rooms/:id' element={<RoomIdPage />} />
 					<Route path='/post' element={<PostPage />} />
 					<Route path='/users' element={<UsersPage />} />
 					<Route path='/post' element={<RoomIdPage />} />

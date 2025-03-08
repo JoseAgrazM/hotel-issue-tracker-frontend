@@ -1,18 +1,18 @@
 import React from 'react';
 
-export const EditIconSVG = ({ onClick, color = 'green', size = 24 }) => {
+export const EditIconSVG = ({className, onClick, color = 'green', size = 24 }) => {
 	return (
 		<svg
-			className='button_edit_user'
+			className={className}
 			xmlns='http://www.w3.org/2000/svg'
 			width={size}
 			height={size}
 			viewBox='0 0 24 24'
-			fill='none' // Puedes cambiar a `fill={color}` si quieres relleno
-			stroke={color} // Usa la prop `color` para el stroke
-			strokeWidth='2' // Cambiado a camelCase
-			strokeLinecap='round' // Cambiado a camelCase
-			strokeLinejoin='round' // Cambiado a camelCase
+			fill='none'
+			stroke={color}
+			strokeWidth='2'
+			strokeLinecap='round'
+			strokeLinejoin='round'
 			onClick={onClick}
 			style={{ cursor: 'pointer' }}
 		>

@@ -19,6 +19,13 @@
 	}
 }
 
+.truncate_description_room {
+	padding: 3px 5px;
+	max-width: 250px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .roomName_title {
 	text-transform: capitalize;
 	font-size: 30px;

@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import './CardRoom.css';
 import { getRoomStateClass } from '../../helpers';
+import './CardRoom.css';
 
 export const CardRoom = ({ room }) => {
 	const { nameRoom, roomState, floor, description, typeRoom } = room;
 
 	return (
-		<NavLink className='link-card-room' to={`/room/${nameRoom}`}>
+		<NavLink className='link-card-room' to={`/rooms/${nameRoom}`}>
 			<div
 				className={`card_container_room ${getRoomStateClass(
 					roomState
@@ -17,7 +17,7 @@ export const CardRoom = ({ room }) => {
 					<p>
 						<strong>Floor: {floor}</strong>
 					</p>
-					<p>
+					<p className='truncate_description_room'>
 						<strong>Description: {description}</strong>
 					</p>
 					<p>

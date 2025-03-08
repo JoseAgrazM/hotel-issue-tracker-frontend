@@ -102,7 +102,10 @@ export const MyProfilePage = () => {
 			<Navbar />
 			<LayoutPage title={`Profile: ${userLog.name} ${userLog.surname}`}>
 				<div className='parent'>
-					<CompanyDataProfile companyActive={companyActive} />
+					<CompanyDataProfile
+						companyActive={companyActive}
+						userLog={userLog}
+					/>
 
 					<InfoPersonalProfile userLog={userLog} />
 

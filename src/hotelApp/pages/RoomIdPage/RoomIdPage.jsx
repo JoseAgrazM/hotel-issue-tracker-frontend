@@ -60,7 +60,6 @@ export const RoomIdPage = () => {
 			<LayoutPage title={`Room ${id}`}>
 				{isModalOpen && modalType === 'createPost' && <ModalFormPost />}
 				{isModalOpen && modalType === 'editPost' && <ModalEditPost />}
-
 				{isModalOpen && modalType === 'editRoom' && <ModalEditRoom />}
 
 				<div className='room_id_container'>
@@ -79,7 +78,8 @@ export const RoomIdPage = () => {
 							{(userLog.role === 'SUPERADMIN' ||
 								userLog.role === 'RECEPTION') && (
 								<EditIconSVG
-									color='green'
+									className='button_edit_room'
+									color='#3a7bff'
 									size={40}
 									onClick={() => handleEditRoom(id)}
 								/>
@@ -87,7 +87,8 @@ export const RoomIdPage = () => {
 
 							{userLog.role === 'SUPERADMIN' && (
 								<DeleteIconSVG
-									color='red'
+									className='button_delete_room'
+									color='#b20000'
 									size={40}
 									onClick={() =>
 										handleRemoveRoom(roomActive.id)
