@@ -15,7 +15,9 @@ export const InfoPersonalProfile = ({
 	);
 
 	const postsUserLogInCompany = postsCompany?.filter(
-		post => post?.authorAdminId || post?.authorId === userLog?.id
+		post =>
+			post?.authorAdminId === userLog?.id ||
+			post?.authorId === userLog?.id
 	);
 
 	return (
@@ -39,7 +41,7 @@ export const InfoPersonalProfile = ({
 				</p>
 				<p>
 					<strong>Posts completados: </strong>
-					{postsUserLogInCompany?.filter(
+					{postsCompany?.filter(
 						post => post?.solvedById === userLog?.id
 					)?.length || 0}
 				</p>
