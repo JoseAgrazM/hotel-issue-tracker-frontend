@@ -7,6 +7,7 @@ import {
 	useForm,
 	useModalStore,
 	useUsersStore,
+	usePostsStore,
 } from '@/hooks';
 import {
 	Navbar,
@@ -23,6 +24,7 @@ export const MyProfilePage = () => {
 	const { companyActive } = useCompanyStore();
 	const { closeModal, modalType, isModalOpen } = useModalStore();
 	const { startEditUser } = useUsersStore();
+	const { posts } = usePostsStore();
 
 	const navigate = useNavigate();
 
@@ -55,7 +57,7 @@ export const MyProfilePage = () => {
 
 	const onEditUser = async event => {
 		event.preventDefault();
-		if (userName.length < 4) {
+		if (name?.length < 4) {
 			Swal.fire(
 				'Error en la actualización',
 				'El nombre debe de tener minimo 4 caracteres',
@@ -107,7 +109,11 @@ export const MyProfilePage = () => {
 						userLog={userLog}
 					/>
 
-					<InfoPersonalProfile userLog={userLog} />
+					<InfoPersonalProfile
+						userLog={userLog}
+						companyActive={companyActive}
+						postsCompany={posts}
+					/>
 
 					<div className='edit_form_user_profile'>
 						<form onSubmit={onEditUser} action=''>

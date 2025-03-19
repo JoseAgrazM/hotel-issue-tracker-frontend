@@ -63,8 +63,8 @@ export const useAuthStore = () => {
 							navigate('/login');
 						}
 						Swal.fire(
-							'Error al recuperar las habitaciones',
-							error?.response?.data?.msg,
+							'Token invalido',
+							'Inicia sesión de nuevo',
 							'error'
 						);
 			startLogout();

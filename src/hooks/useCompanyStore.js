@@ -72,7 +72,7 @@ export const useCompanyStore = () => {
 
 		try {
 			const { data } = await hotelManagerApi.get(
-				`/company/admin/${user.uid}`
+				`/company/admin/${user?.uid}`
 			);
 
 			dispatch(onLoadCompanies(data?.companies));
