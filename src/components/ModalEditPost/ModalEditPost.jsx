@@ -58,6 +58,7 @@ export const ModalEditPost = () => {
 								type='text'
 								placeholder='Name post'
 								required
+								disabled={postActive.postStatus === 'DONE'}
 							/>
 						</div>
 					</section>
@@ -93,6 +94,7 @@ export const ModalEditPost = () => {
 								className='form-input'
 								placeholder='Room'
 								required
+								disabled={postActive.postStatus === 'DONE'}
 							/>
 
 							<datalist id='nameRoomIds'>
@@ -119,6 +121,7 @@ export const ModalEditPost = () => {
 						placeholder='Describe lo ocurrido'
 						maxLength='250'
 						required
+						disabled={postActive.postStatus === 'DONE'}
 					/>
 				</div>
 				<div className='char_counter'>
