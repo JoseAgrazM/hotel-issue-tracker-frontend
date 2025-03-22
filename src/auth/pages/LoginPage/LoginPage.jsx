@@ -70,9 +70,9 @@ export const LoginPage = () => {
 				<Link to='/auth/register-admin' className='links-auth-pages '>
 					Create admin account
 				</Link>
-				<Link to='/auth/forgot-password' className='links-auth-pages'>
+				{/* <Link to='/auth/forgot-password' className='links-auth-pages'>
 					Forgot your password?
-				</Link>
+				</Link> */}
 			</div>
 		</LayoutAuth>
 	);

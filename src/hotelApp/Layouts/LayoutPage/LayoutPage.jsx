@@ -1,19 +1,21 @@
 import { useSelector } from 'react-redux';
 import './layoutPage.css';
-export const LayoutPage = ({ children, title }) => {
-	const { user } = useSelector(state => state.auth);
 
+export const LayoutPage = ({ children, title }) => {
+	const { userLog } = useSelector(state => state.auth);
+	
+	
 	return (
 		<>
 			<div className='layout-container'>
 				<header className='head-layout-page'>
 					<h1>{title}</h1>
-					<h3 className='dropdown'>
-						{user.name}🔻
+					{/* <h3 className='dropdown'>
+						{userLog.name}🔻
 						<div className='dropdown_menu'>
-							<button>logout</button>
+							<button>Logout</button>
 						</div>
-					</h3>
+					</h3> */}
 				</header>
 
 				<main className='content-page-main'>{children}</main>

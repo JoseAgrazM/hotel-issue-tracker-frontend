@@ -10,11 +10,15 @@ import {
 import './Navbar.css';
 
 export const Navbar = () => {
-	const { startLogout, user } = useAuthStore();
+	const { startLogout, user, userLog } = useAuthStore();
 	const { setActiveCompany } = useCompanyStore();
 	const { startCleanStateUsers } = useUsersStore();
 	const { startClearPost } = usePostsStore();
 	const { startClearRooms } = useRoomStore();
+
+	const roleCaptilized = ` ${userLog?.role
+		?.charAt(0)
+		?.toUpperCase()}${userLog?.role?.slice(1)?.toLowerCase()}`;
 
 	const onSelectCompany = () => {
 		setActiveCompany(null);
@@ -82,7 +86,9 @@ export const Navbar = () => {
 					PROFILE
 				</NavLink>
 			</ul>
-			<span className='user-name'>{user.name || user.userName}</span>
+			<span className='user_name'>
+				{userLog.name || userLog.userName}
+			</span>
 			{user.role === 'SUPERADMIN' && (
 				<NavLink to='/select-companies'>
 					<button
@@ -93,7 +99,10 @@ export const Navbar = () => {
 					</button>
 				</NavLink>
 			)}
-			<LogoutIconSVG onClick={startLogout} size='40' color='red' />
+			<button onClick={startLogout} className='logout_navbar'>
+				<LogoutIconSVG size='40' color='red' />
+				Logout
+			</button>
 		</nav>
 	);
 };

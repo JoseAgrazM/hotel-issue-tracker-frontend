@@ -58,7 +58,6 @@
 }
 
 .btn_logout {
-	margin-bottom: 20px;
 	transition: all 0.3s ease;
 	&:hover {
 		transform: scale(1.05);
@@ -68,6 +67,8 @@
 .user_name {
 	margin-top: 10px;
 	color: black;
+	font-weight: 600;
+	font-size: 20px;
 }
 
 .btn_nav_select_companies {
@@ -83,8 +84,25 @@
 	}
 }
 
-.logo_image_hotel{
+.logo_image_hotel {
 	width: 70px;
 	cursor: pointer;
-	filter:drop-shadow(2px 2px 5px rgba(86, 86, 86, 0.666)) ;
+	filter: drop-shadow(2px 2px 5px rgba(86, 86, 86, 0.666));
+}
+
+.logout_navbar {
+	background-color: transparent;
+	border: none;
+	color: rgb(48, 0, 0);
+	margin-bottom: 20px;
+	width: 150px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.3s ease;
+	&:hover {
+		cursor: pointer;
+		transform: scale(1.05);
+	}
 }

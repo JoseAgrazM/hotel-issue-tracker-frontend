@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import './homePage.css';
 
 export const HomePage = () => {
-	const { user } = useAuthStore();
+	const { userLog } = useAuthStore();
 	const { rooms } = useRoomStore();
 	const { isModalOpen, openModal, modalType } = useModalStore();
 	const { posts, loading, error } = usePostsStore();
@@ -23,11 +23,11 @@ export const HomePage = () => {
 
 	const totalRooms = rooms?.length || 0;
 	const availableRooms =
-		rooms.filter(room => room?.roomState === 'AVAILABLE').length || 0;
+		rooms?.filter(room => room?.roomState === 'AVAILABLE').length || 0;
 	const occupiedRooms =
-		rooms.filter(room => room?.roomState === 'OCCUPIED').length || 0;
+		rooms?.filter(room => room?.roomState === 'OCCUPIED').length || 0;
 	const blockedRooms =
-		rooms.filter(room => room?.roomState === 'BLOCKED').length || 0;
+		rooms?.filter(room => room?.roomState === 'BLOCKED').length || 0;
 
 	useEffect(() => {
 		setReversePost([...posts].reverse());
@@ -42,7 +42,7 @@ export const HomePage = () => {
 						<h2 className='welcome-message'>
 							Welcome back,{' '}
 							<span className='welcome_user_name'>
-								{user.name}
+								{userLog?.name}
 							</span>
 						</h2>
 						<p className='welcome-subtext'>
@@ -75,10 +75,10 @@ export const HomePage = () => {
 						<div className='loading-spinner'></div>
 					) : (
 						<div className='last_post_container'>
-							{reversePost.length < 1 ? (
+							{reversePost?.length < 1 ? (
 								<h3>No hay post</h3>
 							) : (
-								reversePost.map(
+								reversePost?.map(
 									(post, index) =>
 										index < 4 && (
 											<CardLastPost
