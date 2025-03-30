@@ -25,7 +25,7 @@ export const UserRoutes = () => {
 		<Routes>
 			<Route path='/' element={<HomePage />} />
 			<Route path='/rooms' element={<RoomsPage />} />
-			<Route path='/room/:id' element={<RoomIdPage />} />
+			<Route path='/rooms/:id' element={<RoomIdPage />} />
 			<Route path='/post' element={<PostPage />} />
 			<Route path='/post' element={<RoomIdPage />} />
 			<Route path='/profile' element={<MyProfilePage />} />
