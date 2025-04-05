@@ -25,16 +25,16 @@ export const usePostsStore = () => {
 
 	const startCreatePost = async post => {
 		try {
-			if (userLog.role === 'SUPERADMIN') {
+			if (userLog?.role === 'SUPERADMIN') {
 				const { data } = await hotelManagerApi.post('/post/new', {
 					...post,
-					authorAdminId: userLog.id,
+					authorAdminId: userLog?.id,
 					authorName: nameComplete,
-					companyId: companyActive.id,
-					solvedAt: post.postStatus !== 'DONE' ? null : new Date(),
-					solvedById: post.postStatus !== 'DONE' ? null : userLog?.id,
+					companyId: companyActive?.id,
+					solvedAt: post?.postStatus !== 'DONE' ? null : new Date(),
+					solvedById: post?.postStatus !== 'DONE' ? null : userLog?.id,
 					solvedByName:
-						post.postStatus !== 'DONE' ? null : nameComplete,
+						post?.postStatus !== 'DONE' ? null : nameComplete,
 				});
 				dispatch(onAddNewPost(data.postAdmin));
 				startLoadCompanyActive(companyActive);

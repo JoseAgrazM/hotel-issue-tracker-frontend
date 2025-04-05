@@ -92,6 +92,7 @@ export const RegisterAdminPage = () => {
 								name='registerSurname'
 								value={registerSurname || ''}
 								onChange={onInputChange}
+								placeholder='Surname'
 								required
 							/>
 						</div>
@@ -105,6 +106,7 @@ export const RegisterAdminPage = () => {
 								value={registerPhone || ''}
 								onChange={onInputChange}
 								required
+								placeholder='699669966'
 							/>
 						</div>
 					</section>
@@ -118,6 +120,7 @@ export const RegisterAdminPage = () => {
 								value={registerEmail || ''}
 								onChange={onInputChange}
 								required
+								placeholder='example@google.es'
 							/>
 						</div>
 
@@ -130,6 +133,7 @@ export const RegisterAdminPage = () => {
 								value={registerPassword || ''}
 								onChange={onInputChange}
 								required
+								placeholder='You password'
 							/>
 						</div>
 						<div className='form-admin-group'>
@@ -141,6 +145,7 @@ export const RegisterAdminPage = () => {
 								value={registerPassword2 || ''}
 								onChange={onInputChange}
 								required
+								placeholder='You password'
 							/>
 						</div>
 					</section>

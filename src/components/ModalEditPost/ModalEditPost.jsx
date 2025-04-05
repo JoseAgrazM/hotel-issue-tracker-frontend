@@ -94,7 +94,7 @@ export const ModalEditPost = () => {
 								className='form-input'
 								placeholder='Room'
 								required
-								disabled={postActive.postStatus === 'DONE'}
+								disabled={true}
 							/>
 
 							<datalist id='nameRoomIds'>

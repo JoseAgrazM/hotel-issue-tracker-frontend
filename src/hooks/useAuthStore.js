@@ -35,7 +35,7 @@ export const useAuthStore = () => {
 			dispatch(
 				onLogin({ name: data.name, uid: data.uid, role: data.role })
 			);
-			startGetUserLogin(data.uid);
+			startGetUserLogin(data?.uid);
 		} catch (error) {
 			dispatch(onLogout('Credenciales incorrectas'));
 			Swal.fire('Error en login', error?.response?.data?.msg, 'error');

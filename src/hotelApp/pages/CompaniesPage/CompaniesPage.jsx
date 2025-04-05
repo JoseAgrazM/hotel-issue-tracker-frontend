@@ -12,7 +12,7 @@ import './CompaniesPage.css';
 export const CompaniesPage = () => {
 	const { isModalOpen, openModal } = useModalStore();
 	const { startLoadUsers } = useUsersStore();
-	const { startLogout, userLog } = useAuthStore();
+	const { startLogout, userLog, user } = useAuthStore();
 	const { companies } = useCompanyStore();
 
 	useEffect(() => {
@@ -21,14 +21,17 @@ export const CompaniesPage = () => {
 
 	return (
 		<div className='companies_page_container'>
-			<h1>Hello {userLog.name}</h1>
+			<h1>Hello {userLog?.name || user?.name}</h1>
 			<br />
 			<h1>Select your company</h1>
 			<button onClick={openModal} className='button_new_company'>
 				New Company
 			</button>
 
-			<LogoutIconSVG onClick={startLogout} size='40' color='red' />
+			<button onClick={startLogout} className='logout_navbar'>
+				<LogoutIconSVG size='40' color='red' />
+				<span className='logout_companies_page'>Logout</span>
+			</button>
 
 			{isModalOpen && <ModalFormCompany />}
 
