@@ -15,7 +15,7 @@ export const LayoutAuth = ({ children, title }) => {
 				}`}
 			>
 				<img
-					src='/src/assets/img/icons/hotel-svgrepo-com.svg'
+					src='/assets/img/icons/hotel-svgrepo-com.svg'
 					alt=''
 					className='logo_image_hotel_login'
 				/>

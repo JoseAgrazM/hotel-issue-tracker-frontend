@@ -1,6 +1,9 @@
-import React from 'react';
-
-export const EditIconSVG = ({className, onClick, color = 'green', size = 24 }) => {
+export const EditIconSVG = ({
+	className,
+	onClick,
+	color = 'green',
+	size = 24,
+}) => {
 	return (
 		<svg
 			className={className}
