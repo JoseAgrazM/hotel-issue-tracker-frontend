@@ -82,7 +82,8 @@ export const RoomStatusChart = ({ total, occupied, available, blocked }) => {
 				{segments.map((segment, index) => (
 					<path key={index} d={segment.d} fill={segment.fill} />
 				))}
-				{/* Solo muestra el círculo central si no hay segmento completo */}
+				
+				
 				{!segments.some(s => s.d.includes('m -80')) && (
 					<>
 						<circle cx='100' cy='100' r='60' fill='white' />
