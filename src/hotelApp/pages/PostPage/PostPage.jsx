@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Navbar, ListPosts, ModalEditPost, ModalFormPost } from '@/components';
 import { useModalStore, usePostsStore } from '@/hooks';
 import { LayoutPage } from '../../Layouts';
-import './PostPage.css';
+import './postPage.css';
 
 export const PostPage = () => {
 	const { isModalOpen, modalType, openModal } = useModalStore();
