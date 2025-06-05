@@ -57,16 +57,12 @@ export const useAuthStore = () => {
 			dispatch(
 				onLogin({ name: data.name, uid: data.uid, role: data.role })
 			);
-			startGetUserLogin(data.uid);
+			startGetUserLogin(data?.uid);
 		} catch (error) {
 			if (error?.response?.data?.msg === 'Token no valido') {
-							navigate('/login');
-						}
-						Swal.fire(
-							'Token invalido',
-							'Inicia sesión de nuevo',
-							'error'
-						);
+				navigate('/login');
+			}
+			Swal.fire('Token invalido', 'Inicia sesión de nuevo', 'error');
 			startLogout();
 		}
 	};
@@ -134,7 +130,7 @@ export const useAuthStore = () => {
 		try {
 			const { data } = await hotelManagerApi.get(`/auth/user/${id}`);
 
-			dispatch(onUserLogged(data.user));
+			dispatch(onUserLogged(data?.user));
 		} catch (error) {
 			dispatch(onLogout(error.response.data?.msg));
 			Swal.fire('Error en login', error?.response?.data?.msg, 'error');
