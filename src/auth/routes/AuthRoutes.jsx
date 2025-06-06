@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import {
-	ForgotPasswordPage,
+	// ForgotPasswordPage,
 	LoginPage,
 	RegisterAdminPage,
-	RegisterUserPage,
+	// RegisterUserPage,
 } from '../pages';
 
 export const AuthRoutes = () => {

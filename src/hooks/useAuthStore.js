@@ -103,6 +103,7 @@ export const useAuthStore = () => {
 					role: userAdmin.role,
 				})
 			);
+			startGetUserLogin(userAdmin.id);
 		} catch (error) {
 			Swal.fire('Error en registro', error?.response?.data?.msg, 'error');
 		}
@@ -120,7 +121,6 @@ export const useAuthStore = () => {
 					role: data.role,
 				})
 			);
-			console.log(data);
 		} catch (error) {
 			Swal.fire('Error en registro', error?.response?.data?.msg, 'error');
 		}
