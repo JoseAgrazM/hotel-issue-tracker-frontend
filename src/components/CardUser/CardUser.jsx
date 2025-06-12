@@ -1,11 +1,9 @@
 import { useModalStore, useUsersStore } from '../../hooks';
 import { DeleteIconSVG } from '../../ui/DeleteIconSVG';
 import { EditIconSVG } from '../../ui/EditIconSVG';
-import './CardUser.css';
 
 export const CardUser = ({ user }) => {
 	const { id, userName, phone, role, surname } = user;
-
 	const { startDeleteUser, startUserActive } = useUsersStore();
 	const { openModal } = useModalStore();
 
@@ -18,33 +16,55 @@ export const CardUser = ({ user }) => {
 		openModal('edit');
 	};
 
-	
-
 	return (
-		<div role='button' className='card_container_user'>
-			<h3 className='userName_title'>
+		<div
+			role='button'
+			tabIndex={0}
+			className='w-full max-w-sm bg-white rounded-3xl shadow-lg p-6 transition-shadow hover:shadow-2xl cursor-pointer focus:outline-none focus:ring-4 focus:ring-sky-300'
+		>
+			<h3 className='text-2xl font-bold text-gray-900 mb-3 truncate'>
 				{userName} {surname}
 			</h3>
-			<div className='user_details'>
+
+			<div className='text-gray-700 space-y-2 mb-5 text-lg'>
 				<p>
-					<strong>Teléfono:</strong> {phone || 'No disponible'}
+					<span className='font-semibold text-gray-800'>
+						📞 Teléfono:
+					</span>{' '}
+					{phone || 'No disponible'}
 				</p>
 				<p>
-					<strong>Rol:</strong> {role}
+					<span className='font-semibold text-gray-800'>🛡️ Rol:</span>{' '}
+					{role}
 				</p>
 			</div>
-			<div className='container_buttons_options_users'>
-				<EditIconSVG
-					color='green'
-					size={26}
-					onClick={() => handleEditUser(user)}
-				/>
-				<DeleteIconSVG
-					color='red'
-					size={26}
-					onClick={() => handleDeleteUser(id)}
-				/>
+
+			<div className='flex justify-end gap-6'>
+				<button
+					onClick={e => {
+						e.stopPropagation();
+						handleEditUser(user);
+					}}
+					aria-label={`Edit user ${userName} ${surname}`}
+					className='text-green-600 hover:text-green-800 transition text-2xl'
+					type='button'
+				>
+					<EditIconSVG color='currentColor' size={28} />
+				</button>
+
+				<button
+					onClick={e => {
+						e.stopPropagation();
+						handleDeleteUser(id);
+					}}
+					aria-label={`Delete user ${userName} ${surname}`}
+					className='text-red-600 hover:text-red-800 transition text-2xl'
+					type='button'
+				>
+					<DeleteIconSVG color='currentColor' size={28} />
+				</button>
 			</div>
 		</div>
 	);
 };
+  

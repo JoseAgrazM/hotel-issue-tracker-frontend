@@ -17,7 +17,6 @@ import {
 	ModalDeleteCompany,
 } from '@/components';
 import { LayoutPage } from '../../Layouts';
-import './MyProfilePage.css';
 
 export const MyProfilePage = () => {
 	const { userLog } = useAuthStore();
@@ -33,14 +32,6 @@ export const MyProfilePage = () => {
 			navigate('/');
 		}
 	}, [companyActive, navigate]);
-
-	const {
-		id,
-		name: userName,
-		surname: lastName,
-		phone: userPhone,
-		email: userEmail,
-	} = userLog;
 
 	const initialUserData = useMemo(
 		() => ({
@@ -60,7 +51,7 @@ export const MyProfilePage = () => {
 		if (name?.length < 4) {
 			Swal.fire(
 				'Error en la actualización',
-				'El nombre debe de tener minimo 4 caracteres',
+				'El nombre debe de tener mínimo 4 caracteres',
 				'error'
 			);
 			return;
@@ -68,29 +59,21 @@ export const MyProfilePage = () => {
 		if (phone.length < 9) {
 			Swal.fire(
 				'Error en la actualización',
-				'El numero de telefono tiene que tener mas de 9 digitos',
+				'El número de teléfono tiene que tener más de 9 dígitos',
 				'error'
 			);
 			return;
 		}
 
-		const updatedUser = {
-			...userLog,
-			name,
-			surname,
-			phone,
-			email,
-		};
-
+		const updatedUser = { ...userLog, name, surname, phone, email };
 		const resp = await startEditUser(updatedUser);
 
 		if (resp?.ok) {
 			closeModal();
-
 			Swal.fire({
 				position: 'top-end',
 				icon: 'success',
-				title: 'Se actualizo con exito.',
+				title: 'Se actualizó con éxito.',
 				showConfirmButton: false,
 				timer: 2000,
 			});
@@ -103,69 +86,88 @@ export const MyProfilePage = () => {
 			{isModalOpen && modalType === 'delete' && <ModalDeleteCompany />}
 			<Navbar />
 			<LayoutPage title={`Profile: ${userLog.name} ${userLog.surname}`}>
-				<div className='parent'>
-					<CompanyDataProfile
-						companyActive={companyActive}
-						userLog={userLog}
-					/>
+				<div className='flex flex-col lg:flex-row gap-8 p-4'>
+					{/* Información de la empresa y perfil */}
+					<div className='lg:w-1/3 space-y-6'>
+						<InfoPersonalProfile
+							userLog={userLog}
+							companyActive={companyActive}
+							postsCompany={posts}
+						/>
+						<CompanyDataProfile
+							companyActive={companyActive}
+							userLog={userLog}
+						/>
+					</div>
 
-					<InfoPersonalProfile
-						userLog={userLog}
-						companyActive={companyActive}
-						postsCompany={posts}
-					/>
-
-					<div className='edit_form_user_profile'>
-						<form onSubmit={onEditUser} action=''>
-							<div className='form-user-group'>
-								<label>Name</label>
+					{/* Formulario edición usuario */}
+					<div className='lg:w-2/3 max-w-2xl bg-white p-6 rounded-lg shadow-md'>
+						<h2 className='text-2xl font-semibold mb-6'>
+							Edit Profile
+						</h2>
+						<form onSubmit={onEditUser} className='space-y-5'>
+							<div>
+								<label className='block mb-1 font-medium text-gray-700'>
+									Name
+								</label>
 								<input
 									name='name'
 									value={name || ''}
 									onChange={onInputChange}
-									className='form-input'
 									type='text'
 									required
+									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
 								/>
 							</div>
-							<div className='form-user-group'>
-								<label>Surname</label>
+
+							<div>
+								<label className='block mb-1 font-medium text-gray-700'>
+									Surname
+								</label>
 								<input
 									name='surname'
 									value={surname || ''}
 									onChange={onInputChange}
-									className='form-input'
 									type='text'
 									required
+									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
 								/>
 							</div>
-							<div className='form-user-group'>
-								<label>Phone</label>
+
+							<div>
+								<label className='block mb-1 font-medium text-gray-700'>
+									Phone
+								</label>
 								<input
 									name='phone'
 									value={phone || ''}
 									onChange={onInputChange}
-									className='form-input'
 									type='tel'
 									required
+									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
 								/>
 							</div>
-							<div className='form-user-group'>
-								<label>Email</label>
+
+							<div>
+								<label className='block mb-1 font-medium text-gray-700'>
+									Email
+								</label>
 								<input
 									name='email'
 									value={email || ''}
 									onChange={onInputChange}
-									className='form-input'
 									type='email'
 									required
+									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
 								/>
 							</div>
-							<input
-								className='input_submit_profile_save'
+
+							<button
 								type='submit'
-								value='Save'
-							/>
+								className='cursor-pointer bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 rounded-md transition'
+							>
+								Save
+							</button>
 						</form>
 					</div>
 				</div>

@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { LayoutPage } from '../../Layouts';
 import { useModalStore, useRoomStore } from '@/hooks';
 import { GridRooms, ModalFormRoom, Navbar } from '@/components';
-import './roomsPage.css';
 
 export const RoomsPage = () => {
 	const { rooms, startLoadRooms } = useRoomStore();
@@ -10,32 +9,26 @@ export const RoomsPage = () => {
 
 	const [sortById, setSortById] = useState(false);
 	const [filterRoom, setFilterRoom] = useState(null);
+
 	const reverseRooms = useMemo(
 		() => [...rooms].reverse().sort((a, b) => a.nameRoom - b.nameRoom),
 		[rooms]
 	);
 
-	const toggleSortById = () => {
-		setSortById(prevState => !prevState);
-	};
+	const toggleSortById = () => setSortById(prev => !prev);
 
 	const filteredRoom = useMemo(() => {
 		const searchTerm = filterRoom?.trim().toLowerCase();
 		if (!searchTerm) return reverseRooms;
-
 		return reverseRooms.filter(room =>
 			room.nameRoom.toLowerCase().includes(searchTerm)
 		);
 	}, [reverseRooms, filterRoom]);
 
 	const sortedRooms = useMemo(() => {
-		if (sortById === null) return filteredRoom; // No ordenar
-
-		return [...filteredRoom].sort(
-			(a, b) =>
-				sortById
-					? a.nameRoom - b.nameRoom // Ascendente
-					: b.nameRoom - a.nameRoom // Descendente
+		if (sortById === null) return filteredRoom;
+		return [...filteredRoom].sort((a, b) =>
+			sortById ? a.nameRoom - b.nameRoom : b.nameRoom - a.nameRoom
 		);
 	}, [filteredRoom, sortById]);
 
@@ -47,36 +40,40 @@ export const RoomsPage = () => {
 		<>
 			<Navbar />
 			<LayoutPage title='Rooms'>
-				<section className='container_room_options_filter_list'>
-					<button
-						onClick={() => openModal('create')}
-						className='button_new_room'
-					>
-						New Room
-					</button>
-					<button
-						onClick={toggleSortById}
-						className='button_sort_post'
-					>
-						{sortById ? 'Mayor a Menor' : 'Menor a Mayor'}
-					</button>
+				<section className='flex flex-col mt-14 mx-9 md:flex-row flex-wrap gap-4 items-center justify-between mb-6'>
+					{/* Botón crear habitación */}
+					<div className='flex gap-6'>
+						<button
+							onClick={() => openModal('create')}
+							className='cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition'
+						>
+							New Room
+						</button>
 
-					<div className='container_input_button_room'>
+						{/* Botón de ordenación */}
+						<button
+							onClick={toggleSortById}
+							className='cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2 rounded-lg transition border border-gray-300'
+						>
+							{sortById ? 'Mayor a Menor' : 'Menor a Mayor'}
+						</button>
+					</div>
+
+					{/* Filtro de búsqueda */}
+					<div className='flex items-center gap-2 w-full md:w-auto'>
 						<input
 							type='text'
 							value={filterRoom || ''}
-							onChange={e => {
-								setFilterRoom(e.target.value);
-							}}
+							onChange={e => setFilterRoom(e.target.value)}
 							placeholder='Busca por habitación'
-							className='input_search_room'
+							className='w-full md:w-64 px-4 py-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none'
 						/>
 						<button
-							className='button_clear_filter_room'
 							onClick={() => setFilterRoom('')}
 							disabled={!filterRoom}
+							className='cursor-pointer bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition disabled:opacity-50'
 						>
-							Clear filter
+							Clear
 						</button>
 					</div>
 				</section>
@@ -84,7 +81,11 @@ export const RoomsPage = () => {
 				{isModalOpen && modalType === 'create' && <ModalFormRoom />}
 				<GridRooms rooms={sortedRooms} />
 
-				{rooms.length < 1 && <h3>No hay habitaciones</h3>}
+				{rooms.length < 1 && (
+					<h3 className='text-center text-gray-500 mt-8'>
+						No hay habitaciones
+					</h3>
+				)}
 			</LayoutPage>
 		</>
 	);

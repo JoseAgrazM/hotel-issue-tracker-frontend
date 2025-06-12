@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { LayoutAuth } from '@/auth/Layouts/LayoutAuth/LayoutAuth';
-import './registerUserPage.css';
 
 export const RegisterUserPage = () => {
 	return (
@@ -8,75 +7,93 @@ export const RegisterUserPage = () => {
 			title='Register User'
 			className='animate__animated animate__fadeInLeft'
 		>
-			<form className='form-user-container' action=''>
-				<div className='container-section-form'>
-					<section className='section-register-form'>
-						<div className='form-user-group'>
-							<label>Name</label>
+			<form className='w-full max-w-2xl mx-auto space-y-10'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+					<section className='space-y-6'>
+						<div>
+							<label className='block text-base font-medium text-gray-700'>
+								Name
+							</label>
 							<input
-								className='form-input'
 								type='text'
 								required
+								className='mt-2 w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 							/>
 						</div>
-						<div className='form-user-group'>
-							<label>Surname</label>
+						<div>
+							<label className='block text-base font-medium text-gray-700'>
+								Surname
+							</label>
 							<input
-								className='form-input'
 								type='text'
 								required
+								className='mt-2 w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 							/>
 						</div>
-						<div className='form-user-group'>
-							<label>Phone</label>
+						<div>
+							<label className='block text-base font-medium text-gray-700'>
+								Phone
+							</label>
 							<input
-								className='form-input'
 								type='text'
 								required
+								className='mt-2 w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 							/>
 						</div>
 					</section>
-					<section className='section-register-form'>
-						<div className='form-user-group'>
-							<label>Email</label>
+
+					<section className='space-y-6'>
+						<div>
+							<label className='block text-base font-medium text-gray-700'>
+								Email
+							</label>
 							<input
-								className='form-input'
 								type='email'
 								required
+								className='mt-2 w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 							/>
 						</div>
-
-						<div className='form-user-group'>
-							<label>Password</label>
+						<div>
+							<label className='block text-base font-medium text-gray-700'>
+								Password
+							</label>
 							<input
-								className='form-input'
 								type='password'
 								required
+								className='mt-2 w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 							/>
 						</div>
-						<div className='form-user-group'>
-							<label>Repeat password</label>
+						<div>
+							<label className='block text-base font-medium text-gray-700'>
+								Repeat password
+							</label>
 							<input
-								className='form-input'
 								type='password'
 								required
+								className='mt-2 w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 							/>
 						</div>
 					</section>
 				</div>
-				<div className='form-user-group'>
-					<input
-						className='buttton-form-user-send'
+
+				<div>
+					<button
 						type='submit'
-						value='Send'
-					/>
+						className='w-full bg-sky-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-sky-700 transition'
+					>
+						Send
+					</button>
 				</div>
 			</form>
-			<div className='container-links-create'>
-				<Link to='/auth/login' className='links-auth-pages'>
+
+			<div className='mt-8 text-center text-base text-gray-600'>
+				<Link to='/auth/login' className='block hover:underline'>
 					Sign In
 				</Link>
-				<Link to='/auth/register-admin' className='links-auth-pages'>
+				<Link
+					to='/auth/register-admin'
+					className='block hover:underline'
+				>
 					Create admin account
 				</Link>
 			</div>

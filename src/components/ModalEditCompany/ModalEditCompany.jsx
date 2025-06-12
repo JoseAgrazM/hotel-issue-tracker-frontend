@@ -20,7 +20,7 @@ export const ModalEditCompany = () => {
 		if (companyName.length < 4) {
 			Swal.fire(
 				'Error en registro',
-				'El nombre debe de tener minimo 4 caracteres',
+				'El nombre debe tener al menos 4 caracteres',
 				'error'
 			);
 			return;
@@ -28,7 +28,7 @@ export const ModalEditCompany = () => {
 		if (phoneCompany.length < 9) {
 			Swal.fire(
 				'Error en registro',
-				'El numero de telefono tiene que tener mas de 9 digitos',
+				'El número de teléfono debe tener al menos 9 dígitos',
 				'error'
 			);
 			return;
@@ -45,85 +45,115 @@ export const ModalEditCompany = () => {
 			Swal.fire({
 				position: 'top-end',
 				icon: 'success',
-				title: 'Empresa actualizada con exito!',
+				title: '¡Empresa actualizada con éxito!',
 				showConfirmButton: false,
 				timer: 1500,
 			});
 			closeModal();
 		}
 	};
+
 	return (
-		<LayoutModal title='New Company'>
-			<form
-				onSubmit={onEditCompany}
-				className='form-user-container'
-				action=''
-			>
-				<div className='container-section-form'>
-					<div className='form-user-group'>
-						<label>Name Company</label>
+		<LayoutModal title='Editar Empresa'>
+			<form onSubmit={onEditCompany} className='space-y-6'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+					<div>
+						<label
+							htmlFor='companyName'
+							className='block mb-2 font-semibold text-gray-700'
+						>
+							Nombre de la Empresa
+						</label>
 						<input
-							className='form-input'
+							id='companyName'
 							name='companyName'
 							value={companyName || ''}
 							onChange={onInputChange}
 							type='text'
 							required
+							className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
 						/>
 					</div>
-					<div className='form-user-group'>
-						<label>Phone Company</label>
+					<div>
+						<label
+							htmlFor='phoneCompany'
+							className='block mb-2 font-semibold text-gray-700'
+						>
+							Teléfono
+						</label>
 						<input
-							className='form-input'
+							id='phoneCompany'
 							name='phoneCompany'
 							value={phoneCompany || ''}
 							onChange={onInputChange}
 							type='text'
 							required
+							className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
 						/>
 					</div>
 				</div>
-				<div className='container-section-form'>
-					<div className='form-user-group'>
-						<label>Address</label>
+
+				<div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+					<div>
+						<label
+							htmlFor='addressCompany'
+							className='block mb-2 font-semibold text-gray-700'
+						>
+							Dirección
+						</label>
 						<input
-							className='form-input'
+							id='addressCompany'
 							name='addressCompany'
 							value={addressCompany || ''}
 							onChange={onInputChange}
 							type='text'
 							required
+							className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
 						/>
 					</div>
-					<div className='form-user-group'>
-						<label>City</label>
+					<div>
+						<label
+							htmlFor='city'
+							className='block mb-2 font-semibold text-gray-700'
+						>
+							Ciudad
+						</label>
 						<input
-							className='form-input'
+							id='city'
 							name='city'
 							value={city || ''}
 							onChange={onInputChange}
 							type='text'
 							required
+							className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
 						/>
 					</div>
-					<div className='form-user-group'>
-						<label>Country</label>
+					<div>
+						<label
+							htmlFor='country'
+							className='block mb-2 font-semibold text-gray-700'
+						>
+							País
+						</label>
 						<input
-							className='form-input'
+							id='country'
 							name='country'
 							value={country || ''}
 							onChange={onInputChange}
 							type='text'
 							required
+							className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
 						/>
 					</div>
 				</div>
-				<div className='form-user-group'>
-					<input
-						className='buttton-form-user-send'
+
+				<div>
+					<button
 						type='submit'
-						value='Send'
-					/>
+						className='w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-md transition'
+					>
+						Guardar Cambios
+					</button>
 				</div>
 			</form>
 		</LayoutModal>

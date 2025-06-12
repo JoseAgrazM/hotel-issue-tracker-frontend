@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import './RoomStatusChart.css';
 
 export const RoomStatusChart = ({ total, occupied, available, blocked }) => {
 	const [segments, setSegments] = useState([]);

@@ -2,7 +2,6 @@ import Swal from 'sweetalert2';
 import { useForm, useModalStore, useRoomStore } from '../../hooks';
 import { usePostsStore } from '../../hooks/usePostsStore';
 import { LayoutModal } from '../../hotelApp/Layouts';
-import './ModalFormPost.css';
 
 const newPostForm = {
 	namePost: '',
@@ -13,9 +12,7 @@ const newPostForm = {
 
 export const ModalFormPost = () => {
 	const { rooms, roomActive } = useRoomStore();
-
 	const { startCreatePost } = usePostsStore();
-
 	const { namePost, description, nameRoomId, postStatus, onInputChange } =
 		useForm(newPostForm);
 	const { closeModal } = useModalStore();
@@ -35,102 +32,113 @@ export const ModalFormPost = () => {
 			Swal.fire({
 				position: 'top-end',
 				icon: 'success',
-				title: 'Post creado con exito!',
+				title: '¡Post creado con éxito!',
 				showConfirmButton: false,
 				timer: 1500,
 			});
 		}
 	};
 
-	return (
-		<LayoutModal title='New Post'>
-			<form onSubmit={onCreatePost} className='form_user_container'>
-				<div className='container-section-form'>
-					<section className='section-register-form'>
-						<div className='form_post_group'>
-							<label>Post name</label>
-							<input
-								name='namePost'
-								value={namePost || ''}
-								onChange={onInputChange}
-								className='form-input'
-								type='text'
-								placeholder='Name post'
-								required
-							/>
-						</div>
-						<div className='form_post_group'>
-							<label>Post status</label>
-							<select
-								name='postStatus'
-								value={postStatus || ''}
-								onChange={onInputChange}
-								className='form-input'
-								required
-							>
-								<option value='' disabled>
-									Status
-								</option>
-								<option value='PENDING'>Pending</option>
-								<option value='URGENT'>Urgent</option>
-								<option value='PROCESS'>Process</option>
-								<option value='DONE'>Done</option>
-							</select>
-						</div>
-					</section>
-					<section className='section-register-form'>
-						<div className='form_post_group'>
-							<label>Room</label>
-							<input
-								list='nameRoomIds'
-								name='nameRoomId'
-								value={roomActive?.nameRoom || nameRoomId || ''}
-								onChange={onInputChange}
-								className='form-input'
-								placeholder='Room'
-								required
-								disabled={roomActive}
-							/>
+	const inputClass =
+		'w-full text-lg border border-gray-300 rounded-lg px-3 py-2 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none';
 
-							<datalist id='nameRoomIds'>
-								{rooms && rooms.length > 0 ? (
-									rooms.map(room => (
-										<option
-											key={room.id}
-											value={room.nameRoom}
-										>
-											{room.nameRoom}
-										</option>
-									))
-								) : (
-									<option value='No hay habitaciones' />
-								)}
-							</datalist>
+	return (
+		<LayoutModal title='Nuevo Post'>
+			<form onSubmit={onCreatePost} className='text-base sm:space-y-8'>
+				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8'>
+					<div className='flex flex-col gap-2 sm:gap-3'>
+						<label className='text-lg font-semibold text-gray-800'>
+							Título del post
+						</label>
+						<input
+							name='namePost'
+							value={namePost || ''}
+							onChange={onInputChange}
+							type='text'
+							placeholder='Ej: Fuga en baño'
+							required
+							className={inputClass}
+						/>
+					</div>
+
+					{/* Estado del post */}
+					<div className='flex flex-col gap-2 sm:gap-3'>
+						<label className='text-lg font-semibold text-gray-800'>
+							Estado
+						</label>
+						<select
+							name='postStatus'
+							value={postStatus || ''}
+							onChange={onInputChange}
+							required
+							className={inputClass}
+						>
+							<option value='' disabled>
+								Status
+							</option>
+							<option value='PENDING'>Pending</option>
+							<option value='URGENT'>Urgent</option>
+							<option value='PROCESS'>Process</option>
+							<option value='DONE'>Done</option>
+						</select>
+					</div>
+
+					{/* Habitación */}
+					<div className='flex flex-col gap-2 sm:gap-3'>
+						<label className='text-lg font-semibold text-gray-800'>
+							Habitación
+						</label>
+						<input
+							list='nameRoomIds'
+							name='nameRoomId'
+							value={roomActive?.nameRoom || nameRoomId || ''}
+							onChange={onInputChange}
+							placeholder='Ej: 101A'
+							required
+							disabled={roomActive}
+							className={inputClass}
+						/>
+						<datalist id='nameRoomIds'>
+							{rooms?.length > 0 ? (
+								rooms.map(room => (
+									<option key={room.id} value={room.nameRoom}>
+										{room.nameRoom}
+									</option>
+								))
+							) : (
+								<option value='No hay habitaciones disponibles' />
+							)}
+						</datalist>
+					</div>
+
+					{/* Descripción */}
+					<div className='flex flex-col gap-2 sm:gap-3 sm:col-span-2'>
+						<label className='text-lg font-semibold text-gray-800'>
+							Descripción
+						</label>
+						<textarea
+							name='description'
+							value={description || ''}
+							onChange={onInputChange}
+							placeholder='Describe el problema con detalles...'
+							maxLength={250}
+							required
+							className={`${inputClass} h-40 resize-none`}
+						/>
+						<div className='text-sm text-gray-500 text-right'>
+							{description?.length || 0}/250 caracteres
 						</div>
-						<div className='form_post_group'>
-							<label>Description</label>
-							<textarea
-								name='description'
-								value={description || ''}
-								onChange={onInputChange}
-								className='form_input_description'
-								type='text'
-								placeholder='Describe lo ocurrido'
-								maxLength='250'
-								required
-							/>
-						</div>
-						<div className='char-counter'>
-							{description?.length || 0}/250 characters
-						</div>
-					</section>
+					</div>
 				</div>
-				<div className='form-user-group'>
-					<input
-						className='buttton-form-user-send'
+
+				{/* Botón de guardar */}
+				<div className='flex justify-center'>
+					<button
 						type='submit'
-						value='Save'
-					/>
+						className='bg-blue-600 text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition'
+					>
+						Guardar
+					</button>
 				</div>
 			</form>
 		</LayoutModal>

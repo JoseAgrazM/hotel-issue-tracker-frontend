@@ -7,7 +7,6 @@ import {
 } from '@/hooks';
 import { ModalFormCompany, GridCompanies } from '@/components';
 import { LoadingSpinner, LogoutIconSVG, ZeroCompanies } from '@/ui';
-import './CompaniesPage.css';
 
 export const CompaniesPage = () => {
 	const { isModalOpen, openModal } = useModalStore();
@@ -20,26 +19,43 @@ export const CompaniesPage = () => {
 	}, []);
 
 	return (
-		<div className='companies_page_container'>
-			<h1>Hello {userLog?.name || user?.name}</h1>
-			<br />
-			<h1>Select your company</h1>
-			<button onClick={openModal} className='button_new_company'>
-				New Company
-			</button>
+		<div className='min-h-screen p-6 sm:p-8 bg-gray-50'>
+			<div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8'>
+				<div>
+					<h1 className='text-3xl sm:text-4xl font-bold text-gray-800'>
+						Hello{' '}
+						<span className='text-sky-600'>
+							{userLog?.name || user?.name}
+						</span>
+					</h1>
+					<p className='text-lg mt-1 text-gray-600'>
+						Select your company
+					</p>
+				</div>
 
-			<button onClick={startLogout} className='logout_navbar'>
-				<LogoutIconSVG size='40' color='red' />
-				<span className='logout_companies_page'>Logout</span>
-			</button>
+				<div className='flex gap-4'>
+					<button
+						onClick={openModal}
+						className='bg-sky-600 cursor-pointer hover:bg-sky-700 text-white px-4 py-2 rounded-xl shadow-md transition duration-200'
+					>
+						New Company
+					</button>
+
+					<button
+						onClick={startLogout}
+						className='flex items-center gap-2 border border-red-500 text-red-600 px-4 py-2 rounded-xl hover:bg-red-50 transition duration-200'
+					>
+						<LogoutIconSVG size='24' color='red' />
+						<span className='hidden sm:inline cursor-pointer'>Logout</span>
+					</button>
+				</div>
+			</div>
 
 			{isModalOpen && <ModalFormCompany />}
 
-			{!companies && companies.length < 1 && <LoadingSpinner />}
-
+			{!companies && <LoadingSpinner />}
 			{companies.length < 1 && <ZeroCompanies />}
-
-			<GridCompanies companies={companies} />
+			{companies.length > 0 && <GridCompanies companies={companies} />}
 		</div>
 	);
 };

@@ -25,22 +25,25 @@ export const ModalFormCompany = () => {
 
 	const onCreateCompany = async event => {
 		event.preventDefault();
+
 		if (companyName.length < 4) {
 			Swal.fire(
 				'Error en registro',
-				'El nombre debe de tener minimo 4 caracteres',
+				'El nombre debe de tener mínimo 4 caracteres',
 				'error'
 			);
 			return;
 		}
+
 		if (phoneCompany.length < 9) {
 			Swal.fire(
 				'Error en registro',
-				'El numero de telefono tiene que tener mas de 9 digitos',
+				'El número de teléfono debe tener al menos 9 dígitos',
 				'error'
 			);
 			return;
 		}
+
 		const resp = await startCreateCompany({
 			companyName,
 			phoneCompany,
@@ -53,85 +56,120 @@ export const ModalFormCompany = () => {
 			Swal.fire({
 				position: 'top-end',
 				icon: 'success',
-				title: 'Empresa creada con exito!',
+				title: '¡Empresa creada con éxito!',
 				showConfirmButton: false,
 				timer: 1500,
 			});
 			closeModal();
 		}
 	};
+
 	return (
-		<LayoutModal title='New Company'>
-			<form
-				onSubmit={onCreateCompany}
-				className='form-user-container'
-				action=''
-			>
-				<div className='container-section-form'>
-					<div className='form-user-group'>
-						<label>Name Company</label>
+		<LayoutModal title='New Company' onClose={closeModal}>
+			<form onSubmit={onCreateCompany} className='space-y-6'>
+				{/* Primera fila de inputs */}
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+					<div className='space-y-2'>
+						<label className='block text-sm font-medium text-gray-700'>
+							Company Name *
+						</label>
 						<input
-							className='form-input'
+							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
 							name='companyName'
 							value={companyName || ''}
 							onChange={onInputChange}
 							type='text'
+							placeholder='Enter company name'
 							required
+							minLength={4}
 						/>
+						{companyName.length > 0 && companyName.length < 4 && (
+							<p className='text-xs text-red-500'>
+								Minimum 4 characters required
+							</p>
+						)}
 					</div>
-					<div className='form-user-group'>
-						<label>Phone Company</label>
+
+					<div className='space-y-2'>
+						<label className='block text-sm font-medium text-gray-700'>
+							Phone Number *
+						</label>
 						<input
-							className='form-input'
+							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
 							name='phoneCompany'
 							value={phoneCompany || ''}
 							onChange={onInputChange}
-							type='text'
+							type='tel'
+							placeholder='Enter phone number'
 							required
+							minLength={9}
 						/>
+						{phoneCompany.length > 0 && phoneCompany.length < 9 && (
+							<p className='text-xs text-red-500'>
+								Minimum 9 digits required
+							</p>
+						)}
 					</div>
 				</div>
-				<div className='container-section-form'>
-					<div className='form-user-group'>
-						<label>Address</label>
+
+				{/* Segunda fila de inputs */}
+				<div className='space-y-6'>
+					<div className='space-y-2'>
+						<label className='block text-sm font-medium text-gray-700'>
+							Address *
+						</label>
 						<input
-							className='form-input'
+							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
 							name='addressCompany'
 							value={addressCompany || ''}
 							onChange={onInputChange}
 							type='text'
+							placeholder='Enter company address'
 							required
 						/>
 					</div>
-					<div className='form-user-group'>
-						<label>City</label>
-						<input
-							className='form-input'
-							name='city'
-							value={city || ''}
-							onChange={onInputChange}
-							type='text'
-							required
-						/>
-					</div>
-					<div className='form-user-group'>
-						<label>Country</label>
-						<input
-							className='form-input'
-							name='country'
-							value={country || ''}
-							onChange={onInputChange}
-							type='text'
-							required
-						/>
+
+					<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+						<div className='space-y-2'>
+							<label className='block text-sm font-medium text-gray-700'>
+								City *
+							</label>
+							<input
+								className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
+								name='city'
+								value={city || ''}
+								onChange={onInputChange}
+								type='text'
+								placeholder='Enter city'
+								required
+							/>
+						</div>
+
+						<div className='space-y-2'>
+							<label className='block text-sm font-medium text-gray-700'>
+								Country *
+							</label>
+							<input
+								className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
+								name='country'
+								value={country || ''}
+								onChange={onInputChange}
+								type='text'
+								placeholder='Enter country'
+								required
+							/>
+						</div>
 					</div>
 				</div>
-				<div className='form-user-group'>
-					<input
-						className='buttton-form-user-send'
+
+				{/* Botón de submit */}
+				<div className='flex justify-end pt-4 mt-6'>
+					<button
 						type='submit'
-						value='Send'
-					/>
+						className='px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors'
+					>
+						Create Company
+					</button>
 				</div>
 			</form>
 		</LayoutModal>

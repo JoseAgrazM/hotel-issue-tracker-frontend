@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { LayoutAuth } from '@/auth/Layouts/LayoutAuth/LayoutAuth';
-import './registerAdminPage.css';
 import Swal from 'sweetalert2';
 import { useAuthStore, useForm } from '../../../hooks';
 
@@ -40,7 +39,7 @@ export const RegisterAdminPage = () => {
 		if (registerPassword.length < 6) {
 			Swal.fire(
 				'Error en registro',
-				'La contraseña debe de tener mas de 5 caracteres',
+				'La contraseña debe de tener más de 5 caracteres',
 				'error'
 			);
 			return;
@@ -48,7 +47,7 @@ export const RegisterAdminPage = () => {
 		if (registerPhone.length < 9) {
 			Swal.fire(
 				'Error en registro',
-				'El numero de telefono tiene que tener mas de 9 digitos',
+				'El número de teléfono debe tener más de 9 dígitos',
 				'error'
 			);
 			return;
@@ -67,15 +66,16 @@ export const RegisterAdminPage = () => {
 		<LayoutAuth title='Register Admin'>
 			<form
 				onSubmit={registerAdminSubmit}
-				className='form-admin-container'
-				action=''
+				className='max-w-6xl min-w-full mx-auto space-y-10 p-6'
 			>
-				<div className='container-section-form'>
-					<section className='section-register-form'>
-						<div className='form-admin-group'>
-							<label>Name</label>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
+					<section className='space-y-8'>
+						<div>
+							<label className='block text-base font-medium text-gray-700 mb-2'>
+								Name
+							</label>
 							<input
-								className='form-input'
+								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='text'
 								name='registerName'
 								value={registerName || ''}
@@ -84,10 +84,12 @@ export const RegisterAdminPage = () => {
 								required
 							/>
 						</div>
-						<div className='form-admin-group'>
-							<label>Surname</label>
+						<div>
+							<label className='block text-base font-medium text-gray-700 mb-2'>
+								Surname
+							</label>
 							<input
-								className='form-input'
+								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='text'
 								name='registerSurname'
 								value={registerSurname || ''}
@@ -96,11 +98,12 @@ export const RegisterAdminPage = () => {
 								required
 							/>
 						</div>
-
-						<div className='form-admin-group'>
-							<label>Phone</label>
+						<div>
+							<label className='block text-base font-medium text-gray-700 mb-2'>
+								Phone
+							</label>
 							<input
-								className='form-input'
+								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='text'
 								name='registerPhone'
 								value={registerPhone || ''}
@@ -110,11 +113,14 @@ export const RegisterAdminPage = () => {
 							/>
 						</div>
 					</section>
-					<section className='section-register-form'>
-						<div className='form-admin-group'>
-							<label>Email</label>
+
+					<section className='space-y-8'>
+						<div>
+							<label className='block text-base font-medium text-gray-700 mb-2'>
+								Email
+							</label>
 							<input
-								className='form-input'
+								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='email'
 								name='registerEmail'
 								value={registerEmail || ''}
@@ -123,50 +129,53 @@ export const RegisterAdminPage = () => {
 								placeholder='example@google.es'
 							/>
 						</div>
-
-						<div className='form-admin-group'>
-							<label>Password</label>
+						<div>
+							<label className='block text-base font-medium text-gray-700 mb-2'>
+								Password
+							</label>
 							<input
-								className='form-input'
+								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='password'
 								name='registerPassword'
 								value={registerPassword || ''}
 								onChange={onInputChange}
 								required
-								placeholder='You password'
+								placeholder='Your password'
 							/>
 						</div>
-						<div className='form-admin-group'>
-							<label>Repeat password</label>
+						<div>
+							<label className='block text-base font-medium text-gray-700 mb-2'>
+								Repeat password
+							</label>
 							<input
-								className='form-input'
+								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='password'
 								name='registerPassword2'
 								value={registerPassword2 || ''}
 								onChange={onInputChange}
 								required
-								placeholder='You password'
+								placeholder='Repeat your password'
 							/>
 						</div>
 					</section>
 				</div>
 
-				<div className='form-admin-group'>
+				<div>
 					<input
-						className='buttton-form-admin-send'
+						className='w-full bg-sky-600 text-white py-3 rounded-lg text-lg font-semibold cursor-pointer hover:bg-sky-700 transition'
 						type='submit'
 						value='Send'
 					/>
 				</div>
 			</form>
 
-			<div className='container-links-create'>
-				<Link to='/auth/login' className='links-auth-pages'>
+			<div className='mt-8 text-center text-base text-gray-600 space-y-4'>
+				<Link to='/auth/login' className='block hover:underline'>
 					Sign In
 				</Link>
-				{/* <Link to='/auth/register-user' className='links-auth-pages'>
-					Create user account
-				</Link> */}
+				{/* <Link to='/auth/register-user' className='block hover:underline'>
+						  Create user account
+					  </Link> */}
 			</div>
 		</LayoutAuth>
 	);

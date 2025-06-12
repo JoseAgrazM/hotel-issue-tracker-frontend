@@ -7,7 +7,6 @@ import {
 } from '../../hooks';
 import { LayoutModal } from '../../hotelApp/Layouts';
 import Swal from 'sweetalert2';
-import './ModalEditPost.css';
 
 export const ModalEditPost = () => {
 	const { rooms } = useRoomStore();
@@ -32,107 +31,117 @@ export const ModalEditPost = () => {
 
 		if (resp?.ok) {
 			closeModal();
-
 			Swal.fire({
 				position: 'top-end',
 				icon: 'success',
-				title: 'Post actualizado con exito!',
+				title: 'Post actualizado con éxito!',
 				showConfirmButton: false,
 				timer: 1500,
 			});
 		}
 	};
 
+	const inputClass =
+		'w-full text-base border border-gray-300 rounded-lg px-3 py-2 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none';
+
+	const isDisabled = postStatus === 'DONE';
+
 	return (
 		<LayoutModal title='Edit post'>
-			<form onSubmit={onEditPost} className='form-user-container'>
-				<div className='container-section-form'>
-					<section className='section-register-form'>
-						<div className='form_post_group'>
-							<label>Post name</label>
-							<input
-								name='namePost'
-								value={namePost || ''}
-								onChange={onInputChange}
-								className='form-input'
-								type='text'
-								placeholder='Name post'
-								required
-								disabled={postActive.postStatus === 'DONE'}
-							/>
-						</div>
-					</section>
-					<section className='section-register-form'>
-						<div className='form_post_group'>
-							<label>Post status</label>
-							<select
-								name='postStatus'
-								value={postStatus || ''}
-								onChange={onInputChange}
-								className='form-input'
-								required
-								disabled={postActive.postStatus === 'DONE'}
-							>
-								<option value='' disabled>
-									Status
-								</option>
-								<option value='PENDING'>Pending</option>
-								<option value='URGENT'>Urgent</option>
-								<option value='PROCESS'>Process</option>
-								<option value='DONE'>Done</option>
-							</select>
-						</div>
-					</section>
-					<section className='section-register-form'>
-						<div className='form_post_group'>
-							<label>Room</label>
-							<input
-								list='nameRoomIds'
-								name='nameRoomId'
-								value={nameRoomId || ''}
-								onChange={onInputChange}
-								className='form-input'
-								placeholder='Room'
-								required
-								disabled={true}
-							/>
+			<form onSubmit={onEditPost} className='space-y-6'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+					{/* Nombre del post */}
+					<div className='flex flex-col gap-2'>
+						<label className='text-base font-medium text-gray-800'>
+							Post name
+						</label>
+						<input
+							name='namePost'
+							value={namePost || ''}
+							onChange={onInputChange}
+							type='text'
+							placeholder='Name post'
+							className={inputClass}
+							required
+							disabled={isDisabled}
+						/>
+					</div>
 
-							<datalist id='nameRoomIds'>
-								{rooms?.map(room => (
-									<option
-										key={room.id}
-										value={`${room.nameRoomId}`}
-									>
-										{`${room.nameRoomId}`}
-									</option>
-								))}
-							</datalist>
-						</div>
-					</section>
+					{/* Estado del post */}
+					<div className='flex flex-col gap-2'>
+						<label className='text-base font-medium text-gray-800'>
+							Post status
+						</label>
+						<select
+							name='postStatus'
+							value={postStatus || ''}
+							onChange={onInputChange}
+							className={inputClass}
+							required
+							disabled={isDisabled}
+						>
+							<option value='' disabled>
+								Status
+							</option>
+							<option value='PENDING'>Pending</option>
+							<option value='URGENT'>Urgent</option>
+							<option value='PROCESS'>Process</option>
+							<option value='DONE'>Done</option>
+						</select>
+					</div>
+
+					{/* Habitación */}
+					<div className='flex flex-col gap-2'>
+						<label className='text-base font-medium text-gray-800'>
+							Room
+						</label>
+						<input
+							list='nameRoomIds'
+							name='nameRoomId'
+							value={nameRoomId || ''}
+							onChange={onInputChange}
+							placeholder='Room'
+							className={inputClass}
+							required
+							disabled
+						/>
+						<datalist id='nameRoomIds'>
+							{rooms?.map(room => (
+								<option key={room.id} value={room.nameRoomId}>
+									{room.nameRoomId}
+								</option>
+							))}
+						</datalist>
+					</div>
 				</div>
-				<div className='form_room_group_description'>
-					<label>Description</label>
+
+				{/* Descripción */}
+				<div className='flex flex-col gap-2'>
+					<label className='text-base font-medium text-gray-800'>
+						Description
+					</label>
 					<textarea
 						name='description'
 						value={description || ''}
 						onChange={onInputChange}
-						className='form_input_description'
-						type='text'
 						placeholder='Describe lo ocurrido'
-						maxLength='250'
+						maxLength={250}
+						className={`${inputClass} h-36 resize-none`}
 						required
-						disabled={postActive.postStatus === 'DONE'}
+						disabled={isDisabled}
 					/>
+					<div className='text-sm text-gray-500 text-right'>
+						{description?.length || 0}/250 characters
+					</div>
 				</div>
-				<div className='char_counter'>
-					{description?.length || 0}/250 characters
-				</div>
-				<div className='form-user-group'>
+
+				{/* Botón guardar */}
+				<div className='flex justify-center'>
 					<input
-						className='buttton_form_post_send'
 						type='submit'
 						value='Save'
-						disabled={postActive.postStatus === 'DONE'}
+						disabled={isDisabled}
+						className= {` bg-sky-600 text-white text-2xl font-semibold px-6 py-3 rounded-lg hover:bg-sky-700 transition cursor-pointer disabled:opacity-50`}
 					/>
 				</div>
 			</form>

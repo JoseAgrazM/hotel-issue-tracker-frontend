@@ -1,6 +1,5 @@
 import { useAuthStore, useModalStore, usePostsStore } from '@/hooks';
 import { EditIconSVG, DeleteIconSVG } from '@/ui';
-import './RowPostList.css';
 
 export const RowPostList = ({ post }) => {
 	const {
@@ -27,50 +26,79 @@ export const RowPostList = ({ post }) => {
 		openModal('editPost');
 	};
 
+	const getBadgeColor = status => {
+		switch (status.toLowerCase()) {
+			case 'pending':
+				return 'bg-yellow-200 text-yellow-900';
+			case 'process':
+				return 'bg-blue-200 text-blue-900';
+			case 'done':
+				return 'bg-green-200 text-green-900';
+			case 'urgent':
+				return 'bg-red-200 text-red-900';
+			default:
+				return 'bg-gray-200 text-gray-900';
+		}
+	};
+
 	return (
-		<tr>
-			<td>
+		<tr className='hover:bg-gray-50 transition'>
+			<td className='px-4 py-3'>
 				<span
-					className={`status_badge_row_list ${postStatus.toLowerCase()}`}
+					className={`px-3 py-1 rounded-full text-sm font-semibold capitalize ${getBadgeColor(
+						postStatus
+					)}`}
 				>
 					{postStatus}
 				</span>
 			</td>
 
-			<td>{new Date(createdAt).toLocaleDateString()}</td>
-			<td>{nameRoomId}</td>
-			<td>{namePost}</td>
-			<td className='truncate_row_list'>{description}</td>
-			<td>{authorName}</td>
+			<td className='px-4 py-3 text-base text-gray-700'>
+				{new Date(createdAt).toLocaleDateString()}
+			</td>
 
-			<td>{solvedAt ? new Date(solvedAt).toLocaleDateString() : '-'}</td>
+			<td className='px-4 py-3 text-base text-gray-700'>{nameRoomId}</td>
 
-			<td>{solvedByName || '-'}</td>
+			<td className='px-4 py-3 text-base font-semibold text-gray-900'>
+				{namePost}
+			</td>
 
-			{authorById === userLog.id || userLog.role === 'SUPERADMIN' ? (
-				<td className='container_buttons_options_list'>
-					<EditIconSVG
-						color='green'
-						size={23}
-						onClick={() => handleEditPost(post)}
-					/>
-					<DeleteIconSVG
-						color='red'
-						size={23}
-						onClick={() => startRemovePost(id)}
-					/>
-				</td>
-			) : userLog.role !== 'SUPERADMIN' ? (
-				<td className='container_buttons_options_list'>
-					<EditIconSVG
-						color='green'
-						size={23}
-						onClick={() => handleEditPost(post)}
-					/>
-				</td>
-			) : (
-				<td>-</td>
-			)}
+			<td className='px-4 py-3 max-w-xs truncate text-base text-gray-600'>
+				{description}
+			</td>
+
+			<td className='px-4 py-3 text-base text-gray-700'>{authorName}</td>
+
+			<td className='px-4 py-3 text-base text-gray-700'>
+				{solvedAt ? new Date(solvedAt).toLocaleDateString() : '-'}
+			</td>
+
+			<td className='px-4 py-3 text-base text-gray-700'>
+				{solvedByName || '-'}
+			</td>
+
+			<td className='px-4 py-3'>
+				<div className='flex gap-4 items-center'>
+					{(authorById === userLog.id ||
+						userLog.role === 'SUPERADMIN') && (
+						<EditIconSVG
+							color='green'
+							size={28} // icono más grande
+							className='cursor-pointer hover:scale-110 transition-transform'
+							onClick={() => handleEditPost(post)}
+						/>
+					)}
+
+					{userLog.role === 'SUPERADMIN' && (
+						<DeleteIconSVG
+							color='red'
+							size={28} // icono más grande
+							className='cursor-pointer hover:scale-110 transition-transform'
+							onClick={() => startRemovePost(id)}
+						/>
+					)}
+				</div>
+			</td>
 		</tr>
 	);
 };

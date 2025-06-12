@@ -4,7 +4,7 @@ import { useUsersStore } from '../../hooks/useUsersStore';
 import { LayoutModal } from '../../hotelApp/Layouts';
 
 const newUserForm = {
-	name: '',
+	userName: '',
 	surname: '',
 	phone: '',
 	email: '',
@@ -39,7 +39,7 @@ export const ModalFormUser = () => {
 		if (userName.length < 4) {
 			Swal.fire(
 				'Error en registro',
-				'El nombre debe de tener minimo 4 caracteres',
+				'El nombre debe tener mínimo 4 caracteres',
 				'error'
 			);
 			return;
@@ -47,7 +47,7 @@ export const ModalFormUser = () => {
 		if (phone.length < 9) {
 			Swal.fire(
 				'Error en registro',
-				'El numero de telefono tiene que tener mas de 9 digitos',
+				'El número de teléfono debe tener al menos 9 dígitos',
 				'error'
 			);
 			return;
@@ -66,7 +66,7 @@ export const ModalFormUser = () => {
 			Swal.fire({
 				position: 'top-end',
 				icon: 'success',
-				title: 'Usuario creado con exito!',
+				title: 'Usuario creado con éxito!',
 				showConfirmButton: false,
 				timer: 1500,
 			});
@@ -77,88 +77,99 @@ export const ModalFormUser = () => {
 		<LayoutModal title='New User'>
 			<form
 				onSubmit={onCreateUser}
-				className='form-user-container'
-				action=''
+				className='px-6 py-4 space-y-4 max-w-md mx-auto'
 			>
-				<div className='container-section-form'>
-					<section className='section-register-form'>
-						<div className='form-user-group'>
-							<label>Name</label>
-							<input
-								name='userName'
-								value={userName || ''}
-								onChange={onInputChange}
-								className='form-input'
-								type='text'
-								required
-							/>
-						</div>
-						<div className='form-user-group'>
-							<label>Surname</label>
-							<input
-								name='surname'
-								value={surname || ''}
-								onChange={onInputChange}
-								className='form-input'
-								type='text'
-								required
-							/>
-						</div>
-						<div className='form-user-group'>
-							<label>Phone</label>
-							<input
-								name='phone'
-								value={phone || ''}
-								onChange={onInputChange}
-								className='form-input'
-								type='text'
-								required
-							/>
-						</div>
-					</section>
-					<section className='section-register-form'>
-						<div className='form-user-group'>
-							<label>Email</label>
-							<input
-								name='email'
-								value={email || ''}
-								onChange={onInputChange}
-								className='form-input'
-								type='email'
-								required
-							/>
-						</div>
-
-						<div className='form-user-group'>
-							<label>Password</label>
-							<input
-								name='password'
-								value={password || ''}
-								onChange={onInputChange}
-								className='form-input'
-								type='password'
-								required
-							/>
-						</div>
-						<div className='form-user-group'>
-							<label>Repeat password</label>
-							<input
-								name='password2'
-								value={password2 || ''}
-								onChange={onInputChange}
-								className='form-input'
-								type='password'
-								required
-							/>
-						</div>
-					</section>
-				</div>
-				<div className='form-user-group'>
+				<section className='flex flex-col space-y-1 '>
+					<label className='font-semibold text-gray-700 '>Name</label>
 					<input
-						className='buttton-form-user-send'
-						type='submit'
-						value='Send'
+						name='userName'
+						value={userName || ''}
+						onChange={onInputChange}
+						type='text'
+						required
+						className='form-input border rounded-lg py-1 px-2'
+						placeholder='Enter name'
 					/>
+				</section>
+
+				<section className='flex flex-col space-y-1'>
+					<label className='font-semibold text-gray-700'>
+						Surname
+					</label>
+					<input
+						name='surname'
+						value={surname || ''}
+						onChange={onInputChange}
+						type='text'
+						required
+						className='form-input border rounded-lg py-1 px-2'
+						placeholder='Enter surname'
+					/>
+				</section>
+
+				<section className='flex flex-col space-y-1'>
+					<label className='font-semibold text-gray-700'>Phone</label>
+					<input
+						name='phone'
+						value={phone || ''}
+						onChange={onInputChange}
+						type='text'
+						required
+						className='form-input border rounded-lg py-1 px-2'
+						placeholder='Enter phone number'
+					/>
+				</section>
+
+				<section className='flex flex-col space-y-1'>
+					<label className='font-semibold text-gray-700'>Email</label>
+					<input
+						name='email'
+						value={email || ''}
+						onChange={onInputChange}
+						type='email'
+						required
+						className='form-input border rounded-lg py-1 px-2'
+						placeholder='Enter email'
+					/>
+				</section>
+
+				<section className='flex flex-col space-y-1'>
+					<label className='font-semibold text-gray-700'>
+						Password
+					</label>
+					<input
+						name='password'
+						value={password || ''}
+						onChange={onInputChange}
+						type='password'
+						required
+						className='form-input border rounded-lg py-1 px-2'
+						placeholder='Enter password'
+					/>
+				</section>
+
+				<section className='flex flex-col space-y-1'>
+					<label className='font-semibold text-gray-700'>
+						Repeat Password
+					</label>
+					<input
+						name='password2'
+						value={password2 || ''}
+						onChange={onInputChange}
+						type='password'
+						required
+						className='form-input border rounded-lg py-1 px-2'
+						placeholder='Repeat password'
+					/>
+				</section>
+
+				<div className='flex justify-end'>
+					<button
+						type='submit'
+						className='bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-sky-400'
+					>
+						Send
+					</button>
 				</div>
 			</form>
 		</LayoutModal>

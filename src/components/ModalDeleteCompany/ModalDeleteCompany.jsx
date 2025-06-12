@@ -9,9 +9,8 @@ import {
 	useRoomStore,
 	useUsersStore,
 } from '@/hooks';
-import './ModalDeleteCompany.css';
 
-const delteCompayForm = {
+const deleteCompanyForm = {
 	password: '',
 };
 
@@ -24,7 +23,7 @@ export const ModalDeleteCompany = () => {
 		useCompanyStore();
 	const { closeModal } = useModalStore();
 
-	const { loginPassword, onInputChange } = useForm(delteCompayForm);
+	const { loginPassword, onInputChange } = useForm(deleteCompanyForm);
 
 	const onDeleteCompany = async event => {
 		event.preventDefault();
@@ -41,7 +40,7 @@ export const ModalDeleteCompany = () => {
 				Swal.fire({
 					position: 'top-end',
 					icon: 'success',
-					title: 'Empresa eliminada con exito!',
+					title: '¡Empresa eliminada con éxito!',
 					showConfirmButton: false,
 					timer: 1500,
 				});
@@ -52,18 +51,30 @@ export const ModalDeleteCompany = () => {
 				localStorage.removeItem('companyActiveId');
 				closeModal();
 			}
+		} else {
+			Swal.fire({
+				icon: 'error',
+				title: 'Contraseña incorrecta',
+				text: 'Por favor verifica tu contraseña e inténtalo de nuevo.',
+			});
 		}
 	};
+
 	return (
-		<LayoutModal title='Delete company ⚠️'>
-			<h4 className='message_caution'>
-				Ingresa la contraseña para eliminar la empresa
-			</h4>
-			<form onSubmit={onDeleteCompany} className='form-user-container'>
-				<div className='form-group'>
-					<label htmlFor='email'>Email</label>
+		<LayoutModal title='Eliminar empresa ⚠️'>
+			<p className='mb-6 text-center text-red-600 font-semibold'>
+				Ingresa tu contraseña para eliminar la empresa
+			</p>
+
+			<form onSubmit={onDeleteCompany} className='space-y-6'>
+				<div>
+					<label
+						htmlFor='email'
+						className='block mb-2 font-medium text-gray-700'
+					>
+						Email
+					</label>
 					<input
-						className='form-input'
 						id='email'
 						type='email'
 						name='loginEmail'
@@ -72,27 +83,36 @@ export const ModalDeleteCompany = () => {
 						placeholder='example@google.es'
 						disabled
 						required
+						className='w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-100 cursor-not-allowed text-gray-600'
 					/>
 				</div>
-				<div className='form-group'>
-					<label htmlFor='password'>Password</label>
+
+				<div>
+					<label
+						htmlFor='password'
+						className='block mb-2 font-medium text-gray-700'
+					>
+						Contraseña
+					</label>
 					<input
-						className='form-input'
 						id='password'
 						type='password'
 						name='loginPassword'
 						value={loginPassword || ''}
 						onChange={onInputChange}
-						placeholder='Your password'
+						placeholder='Tu contraseña'
 						required
+						className='w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500'
 					/>
 				</div>
-				<div className='form-group'>
-					<input
-						className='buttton-form-send'
+
+				<div>
+					<button
 						type='submit'
-						value='Send'
-					/>
+						className='w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-md transition'
+					>
+						Eliminar
+					</button>
 				</div>
 			</form>
 		</LayoutModal>

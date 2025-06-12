@@ -14,20 +14,19 @@ export const RowRoomForm = ({
 					name='nameRoom'
 					value={room.nameRoom}
 					onChange={e => onInputChange(index, e)}
-					className={`form_input_rooms`}
+					className={`form_input_rooms border `}
 					type='text'
 					placeholder='Name room'
 					required
 				/>
 			</div>
-
 			<div className='form-room-group'>
 				<label>Floor</label>
 				<input
 					name='floor'
 					value={room.floor}
 					onChange={e => onInputChange(index, e)}
-					className='form_input_rooms'
+					className='form_input_rooms border '
 					type='number'
 					required
 				/>
@@ -38,7 +37,7 @@ export const RowRoomForm = ({
 					name='typeRoom'
 					value={room.typeRoom || ''}
 					onChange={e => onInputChange(index, e)}
-					className='form_input_rooms'
+					className='form_input_rooms border '
 					required
 				>
 					<option value='' disabled>
@@ -49,28 +48,29 @@ export const RowRoomForm = ({
 					<option value='SUITE'>Suite</option>
 				</select>
 			</div>
-
 			<div className='form-room-group'>
 				<label>Description</label>
 				<input
 					name='description'
 					value={room.description}
 					onChange={e => onInputChange(index, e)}
-					className='form_input_rooms'
+					className='form_input_rooms border'
 					type='text'
 					required
 					maxLength='250'
 				/>
 			</div>
-			<div className='char_counter_room'>
-				{room.description?.length || 0}/250
+			<div className='form-room-group'>
+				<button
+					className='remove-row-room'
+					onClick={e => onRemoveRowForm(e, index)}
+				>
+					❌
+				</button>
+				<div className='char_counter_room'>
+					{room.description?.length || 0}/250
+				</div>
 			</div>
-			<button
-				className='remove-row-room'
-				onClick={e => onRemoveRowForm(e, index)}
-			>
-				❌
-			</button>
 		</section>
 	);
 };

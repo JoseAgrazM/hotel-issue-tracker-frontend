@@ -1,25 +1,12 @@
-import { useSelector } from 'react-redux';
-import './layoutPage.css';
+import { Navbar } from '../../../components/Navbar/Navbar';
 
-export const LayoutPage = ({ children, title }) => {
-	const { userLog } = useSelector(state => state.auth);
-	
-	
+export const LayoutPage = ({ children }) => {
 	return (
-		<>
-			<div className='layout-container'>
-				<header className='head-layout-page'>
-					<h1>{title}</h1>
-					{/* <h3 className='dropdown'>
-						{userLog.name}🔻
-						<div className='dropdown_menu'>
-							<button>Logout</button>
-						</div>
-					</h3> */}
-				</header>
-
-				<main className='content-page-main'>{children}</main>
-			</div>
-		</>
+		<div className='flex flex-col md:flex-row'>
+			<Navbar />
+			<main className='w-full md:ml-64 min-h-screen bg-gray-50 p-6'>
+				{children}
+			</main>
+		</div>
 	);
 };
