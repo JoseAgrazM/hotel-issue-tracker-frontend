@@ -65,3 +65,9 @@
 	width: 100%;
 	box-sizing: border-box;
 }
+
+@media (max-width: 767px) {
+	.room-entry {
+		flex-direction: column;
+	}
+}

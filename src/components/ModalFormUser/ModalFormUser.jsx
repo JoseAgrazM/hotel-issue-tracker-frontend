@@ -74,13 +74,15 @@ export const ModalFormUser = () => {
 	};
 
 	return (
-		<LayoutModal title='New User'>
+		<LayoutModal title='Nuevo usuario'>
 			<form
 				onSubmit={onCreateUser}
-				className='px-6 py-4 space-y-4 max-w-md mx-auto'
+				className='py-4 space-y-4 max-w-md mx-auto grid grid-cols-2 gap-2'
 			>
 				<section className='flex flex-col space-y-1 '>
-					<label className='font-semibold text-gray-700 '>Name</label>
+					<label className='font-semibold text-gray-700 '>
+						Nombre
+					</label>
 					<input
 						name='userName'
 						value={userName || ''}
@@ -94,7 +96,7 @@ export const ModalFormUser = () => {
 
 				<section className='flex flex-col space-y-1'>
 					<label className='font-semibold text-gray-700'>
-						Surname
+						Apellidos
 					</label>
 					<input
 						name='surname'
@@ -108,7 +110,9 @@ export const ModalFormUser = () => {
 				</section>
 
 				<section className='flex flex-col space-y-1'>
-					<label className='font-semibold text-gray-700'>Phone</label>
+					<label className='font-semibold text-gray-700'>
+						Teléfono
+					</label>
 					<input
 						name='phone'
 						value={phone || ''}
@@ -135,7 +139,7 @@ export const ModalFormUser = () => {
 
 				<section className='flex flex-col space-y-1'>
 					<label className='font-semibold text-gray-700'>
-						Password
+						Contraseña
 					</label>
 					<input
 						name='password'
@@ -150,7 +154,7 @@ export const ModalFormUser = () => {
 
 				<section className='flex flex-col space-y-1'>
 					<label className='font-semibold text-gray-700'>
-						Repeat Password
+						Repite contraseña
 					</label>
 					<input
 						name='password2'
@@ -166,9 +170,9 @@ export const ModalFormUser = () => {
 				<div className='flex justify-end'>
 					<button
 						type='submit'
-						className='bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-sky-400'
+						className='cursor-pointer bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-sky-400'
 					>
-						Send
+						Crear
 					</button>
 				</div>
 			</form>

@@ -28,23 +28,29 @@ export const UsersPage = () => {
 		<>
 			<Navbar />
 			<LayoutPage title='Users'>
-				<div className='flex justify-evenly items-center mb-6 mt-10'>
-					<h2 className='text-xl font-semibold text-gray-800'>
-						Manage Users
-					</h2>
+				<section className='px-4 sm:px-8 py-6 w-full'>
+					<header className='mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4'>
+						<h2 className='text-2xl font-bold text-gray-800'>
+							Listado de Empleados
+						</h2>
+					</header>
 					<button
 						onClick={() => openModal('create')}
-						className='cursor-pointer bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-1 text-white px-4 py-2 rounded-lg shadow-md transition duration-200'
+						className='cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition mb-5'
 						aria-label='Create new user'
 						type='button'
 					>
-						New User
+						Nuevo empleado
 					</button>
-				</div>
+					<ModalSelector isOpen={isModalOpen} type={modalType} />
 
-				<ModalSelector isOpen={isModalOpen} type={modalType} />
-
-				{users?.length > 0 ? <GridUsers users={users} /> : <NotUsers />}
+					{users?.length > 0 ? (
+						<GridUsers users={users} />
+					) : (
+						<NotUsers />
+					)}
+				</section>
+				<div className='flex justify-start items-center mb-6 mt-10'></div>
 			</LayoutPage>
 		</>
 	);

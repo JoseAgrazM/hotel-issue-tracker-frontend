@@ -8,28 +8,28 @@ export const LayoutAuth = ({ children, title }) => {
 		: 'animate-fadeInRight';
 
 	return (
-		<div className='flex flex-col md:flex-row bg-gradient-to-br from-blue-50 to-indigo-100 min-h-[calc(100vh-2rem)] p-4'>
+		<div className='flex flex-col md:flex-row bg-gradient-to-br from-blue-50 to-indigo-100 min-h-[calc(100vh-2rem)] h-screen p-4'>
 			<div
 				className={`
           hidden md:flex md:w-1/2 
           flex-col items-center justify-center 
-          p-8 ${animationDirection}
+          p-6 ${animationDirection}
         `}
 			>
 				<div className='flex flex-col items-center max-w-md'>
-					<div className='bg-white p-6 rounded-full shadow-xl mb-8'>
+					<div className='bg-white p-5 rounded-full shadow-xl mb-4'>
 						<img
 							src='/assets/img/icons/hotel-svgrepo-com.svg'
 							alt='Hotel Logo'
-							className='w-24 h-24 text-blue-600'
+							className='w-20 h-20 text-blue-600'
 						/>
 					</div>
 
-					<h1 className='text-6xl font-bold text-gray-800 text-center mb-4'>
+					<h1 className='text-4xl font-bold text-gray-800 text-center mb-2'>
 						Hotel Issue Tracker
 					</h1>
 
-					<p className='text-2xl text-gray-600 text-center'>
+					<p className='text-lg text-gray-600 text-center'>
 						La solución perfecta para gestionar incidencias y
 						mejorar la experiencia de tus huéspedes
 					</p>
@@ -44,26 +44,27 @@ export const LayoutAuth = ({ children, title }) => {
         `}
 			>
 				<div className='w-full max-w-xl bg-white rounded-2xl shadow-xl overflow-hidden'>
-					<div className='p-1 bg-gradient-to-r from-blue-500 to-indigo-600 '>
-						<div className='bg-white p-8 rounded-t-xl '>
-							<div className='md:hidden flex justify-center mb-6 '>
-								<div className='bg-gray-100 p-4 rounded-full'>
+					<div className='p-1 bg-gradient-to-r from-blue-500 to-indigo-600'>
+						<div className='bg-white p-6 rounded-t-xl'>
+							<div className='md:hidden flex justify-center mb-4'>
+								<div className='bg-gray-100 p-3 rounded-full'>
 									<img
 										src='/assets/img/icons/hotel-svgrepo-com.svg'
 										alt='Hotel Logo'
-										className='w-16 h-16 text-blue-600'
+										className='w-14 h-14 text-blue-600'
 									/>
 								</div>
 							</div>
 
-							<h2 className='text-3xl font-bold text-center text-gray-800 mb-2'>
+							<h2 className='text-2xl font-bold text-center text-gray-800 mb-2'>
 								{title}
 							</h2>
-							<div className='mt-8'>{children}</div>
+
+							<div className='mt-6'>{children}</div>
 						</div>
 					</div>
 
-					<div className='bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-4 text-center'>
+					<div className='bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-3 text-center text-sm'>
 						<p>
 							© {new Date().getFullYear()} Hotel Issue Tracker -
 							Todos los derechos reservados

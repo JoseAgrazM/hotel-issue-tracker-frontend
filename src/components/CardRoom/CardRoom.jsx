@@ -12,35 +12,35 @@ export const CardRoom = ({ room }) => {
 			className='block transition-transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl'
 		>
 			<div
-				className={`p-6 rounded-xl shadow-lg border-l-6 ${stateClass} bg-white hover:shadow-xl transition duration-300 flex flex-col justify-between`}
-				style={{ height: '280px' }} // Altura fija para todas las cards
+				className={`p-4 rounded-xl shadow-md border-l-4 ${stateClass} bg-white hover:shadow-lg transition duration-300 flex flex-col justify-between`}
+				style={{ height: '240px' }} // más compacta
 			>
-				<h3 className='text-2xl font-extrabold text-gray-900 mb-3 flex items-center gap-2'>
+				<h3 className='text-xl font-bold text-gray-900 mb-2 flex items-center gap-2'>
 					<span className='text-blue-600'>🛏️</span> {nameRoom}
 				</h3>
-				<div className='text-base text-gray-700 space-y-2 leading-relaxed flex-grow'>
+
+				<div className='text-sm text-gray-700 space-y-1 flex-grow'>
 					<p>
 						<strong className='font-semibold text-gray-800'>
-							Floor:
+							Piso:
 						</strong>{' '}
 						{floor}
 					</p>
-
 					<p>
 						<strong className='font-semibold text-gray-800'>
-							State:
+							Estado:
 						</strong>{' '}
 						<span className='capitalize'>{roomState}</span>
 					</p>
 					<p>
 						<strong className='font-semibold text-gray-800'>
-							Type:
+							Tipo:
 						</strong>{' '}
 						{typeRoom}
 					</p>
-					<p className='line-clamp-3'>
+					<p className='line-clamp-2'>
 						<strong className='font-semibold text-gray-800'>
-							Description:
+							Descripción:
 						</strong>{' '}
 						{description}
 					</p>

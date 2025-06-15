@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { LayoutPage } from '../../Layouts';
-import { useModalStore, useRoomStore } from '@/hooks';
+import { useModalStore, useRoomStore, useAuthStore } from '@/hooks';
 import { GridRooms, ModalFormRoom, Navbar } from '@/components';
 
 export const RoomsPage = () => {
@@ -8,6 +8,7 @@ export const RoomsPage = () => {
 	const { isModalOpen, openModal, modalType } = useModalStore();
 
 	const [sortById, setSortById] = useState(false);
+	const { userLog } = useAuthStore();
 	const [filterRoom, setFilterRoom] = useState(null);
 
 	const reverseRooms = useMemo(
@@ -41,16 +42,19 @@ export const RoomsPage = () => {
 			<Navbar />
 			<LayoutPage title='Rooms'>
 				<section className='flex flex-col mt-14 mx-9 md:flex-row flex-wrap gap-4 items-center justify-between mb-6'>
-					{/* Botón crear habitación */}
 					<div className='flex gap-6'>
-						<button
-							onClick={() => openModal('create')}
-							className='cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition'
-						>
-							New Room
-						</button>
+						{userLog?.role === 'SUPERADMIN' ||
+						userLog?.role === 'RECEPTION' ? (
+							<button
+								onClick={() => openModal('create')}
+								className='cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition'
+							>
+								Nueva habitación
+							</button>
+						) : (
+							''
+						)}
 
-						{/* Botón de ordenación */}
 						<button
 							onClick={toggleSortById}
 							className='cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-4 py-2 rounded-lg transition border border-gray-300'
@@ -58,8 +62,6 @@ export const RoomsPage = () => {
 							{sortById ? 'Mayor a Menor' : 'Menor a Mayor'}
 						</button>
 					</div>
-
-					{/* Filtro de búsqueda */}
 					<div className='flex items-center gap-2 w-full md:w-auto'>
 						<input
 							type='text'
@@ -73,7 +75,7 @@ export const RoomsPage = () => {
 							disabled={!filterRoom}
 							className='cursor-pointer bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition disabled:opacity-50'
 						>
-							Clear
+							Limpiar
 						</button>
 					</div>
 				</section>

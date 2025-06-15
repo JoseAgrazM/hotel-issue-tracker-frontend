@@ -16,7 +16,6 @@ export const HomePage = () => {
 	const { posts, loading, error } = usePostsStore();
 	const [reversePost, setReversePost] = useState([]);
 
-	// Estadísticas de habitaciones
 	const totalRooms = rooms?.length ?? 0;
 	const availableRooms =
 		rooms?.filter(r => r.roomState === 'AVAILABLE').length ?? 0;
@@ -32,70 +31,88 @@ export const HomePage = () => {
 	return (
 		<>
 			<Navbar />
-			<LayoutPage title='Dashboard'>
-				<section className='mb-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-					<h2 className='text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight'>
-						Welcome back,{' '}
+			<LayoutPage title='Panel de Control'>
+				<section className='mb-6 max-w-7xl mx-aut sm:px-5 lg:px-6'>
+					<h2 className='text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight'>
+						Bienvenido de nuevo,{' '}
 						<span className='text-gradient bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-transparent'>
 							{userLog?.name}
 						</span>
 					</h2>
-					<p className='mt-3 text-lg sm:text-xl text-gray-600 font-medium max-w-xl'>
-						What would you like to share today? <br /> Create posts
-						or check room statuses instantly.
+					<p className='mt-2 text-base sm:text-lg text-gray-600 font-medium max-w-xl'>
+						¿Qué te gustaría compartir hoy? <br /> Crea
+						publicaciones o consulta el estado de las habitaciones
+						al instante.
 					</p>
 				</section>
 
-				{/* Error */}
 				{error && (
-					<div className='max-w-3xl mx-auto mb-8 rounded-lg bg-red-100 border border-red-400 p-4 text-red-800 shadow-lg animate-fadeIn'>
-						Error loading posts: {error}
+					<div className='max-w-3xl mx-auto mb-6 rounded-lg bg-red-100 border border-red-400 p-3 text-red-800 shadow animate-fadeIn'>
+						Error al cargar publicaciones: {error}
 					</div>
 				)}
 
-				{/* Botón crear post */}
-				<div className='flex justify-center sm:justify-start max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10'>
+				<div className='flex justify-center sm:justify-start max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 mb-6'>
 					<button
 						onClick={() => openModal('create')}
-						className='group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-bold rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 text-white shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-sky-300'
-						aria-label='Create new post'
+						className='group relative inline-flex items-center justify-center px-6 py-2 rounded-lg bg-gradient-to-r from-sky-600 to-indigo-600 text-white font-semibold shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-300'
+						aria-label='Crear nueva publicación'
 					>
-						<span className='absolute inset-0 bg-gradient-to-r from-indigo-600 to-sky-600 opacity-50 blur-md filter'></span>
-						<span className='relative z-10 cursor-pointer'>Create New Post</span>
+						<span className='absolute inset-0 bg-gradient-to-r from-indigo-600 to-sky-600 opacity-40 blur-sm filter'></span>
+						<span className='relative z-10 cursor-pointer'>
+							Crear Nueva Publicación
+						</span>
 					</button>
 				</div>
 
-				{/* Contenido principal */}
-				<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-12'>
-					{/* Gráfico estado habitaciones */}
-					<div className='lg:w-1/3 bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center'>
-						<h3 className='text-2xl font-semibold mb-6 text-gray-800'>
-							Room Status Overview
-						</h3>
-						<RoomStatusChart
-							total={totalRooms}
-							occupied={occupiedRooms}
-							available={availableRooms}
-							blocked={blockedRooms}
-						/>
+				<div className='max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 flex flex-col lg:flex-row gap-8'>
+					<div className='lg:w-1/3 bg-white rounded-xl shadow-md p-6 flex flex-col items-center h-full'>
+						<div>
+							<h3 className='text-xl font-semibold mb-4 text-gray-800'>
+								Resumen Estado Habitaciones
+							</h3>
+						</div>
+						<div className='flex justify-center items-center'>
+							<RoomStatusChart
+								total={totalRooms}
+								occupied={occupiedRooms}
+								available={availableRooms}
+								blocked={blockedRooms}
+							/>
+							<div className='mt-6 w-full'>
+								<ul className='space-y-3'>
+									<li className='flex items-center gap-4'>
+										<span className='w-5 h-5 rounded-full bg-[#36A2EB] block'></span>
+										<span>Disponible</span>
+									</li>
+									<li className='flex items-center gap-4'>
+										<span className='w-5 h-5 rounded-full bg-[#FF6384] block'></span>
+										<span>Ocupada</span>
+									</li>
+									<li className='flex items-center gap-4'>
+										<span className='w-5 h-5 rounded-full bg-[#FFCE56] block'></span>
+										<span>Bloqueada</span>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 
-					{/* Posts y modal */}
-					<div className='lg:w-2/3 bg-white rounded-2xl shadow-xl p-8 min-h-[480px]'>
+					<div className='lg:w-2/3 bg-white rounded-xl shadow-md p-6 min-h-auto'>
 						{isModalOpen && modalType === 'create' && (
 							<ModalFormPost />
 						)}
 
 						{loading ? (
-							<div className='flex justify-center items-center h-full'>
-								<div className='loader ease-linear rounded-full border-8 border-t-8 border-gray-300 h-20 w-20 animate-spin'></div>
+							<div className='flex justify-center items-center h-full py-10'>
+								<div className='loader ease-linear rounded-full border-4 border-t-4 border-gray-300 h-12 w-12 animate-spin'></div>
 							</div>
 						) : (
-							<div className='grid grid-cols-1 sm:grid-cols-2 gap-8'>
+							<div className='grid grid-cols-1 sm:grid-cols-2'>
 								{reversePost.length === 0 ? (
-									<h3 className='text-center text-gray-400 text-xl font-light'>
-										No posts available yet. Be the first to
-										create one!
+									<h3 className='text-center text-gray-400 text-lg font-light'>
+										Aún no hay publicaciones. ¡Sé el primero
+										en crear una!
 									</h3>
 								) : (
 									reversePost
@@ -105,7 +122,7 @@ export const HomePage = () => {
 												key={post.id}
 												post={post}
 												isLast={index === 0}
-												className='hover:shadow-2xl transition-shadow duration-300'
+												className='hover:shadow-lg transition-shadow duration-300 rounded-lg'
 											/>
 										))
 								)}

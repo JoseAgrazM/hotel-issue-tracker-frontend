@@ -46,20 +46,20 @@ export const MyProfilePage = () => {
 	const { name, surname, phone, email, onInputChange } =
 		useForm(initialUserData);
 
-	const onEditUser = async event => {
-		event.preventDefault();
+	const onEditUser = async e => {
+		e.preventDefault();
 		if (name?.length < 4) {
 			Swal.fire(
-				'Error en la actualización',
-				'El nombre debe de tener mínimo 4 caracteres',
+				'Error',
+				'El nombre debe tener al menos 4 caracteres',
 				'error'
 			);
 			return;
 		}
 		if (phone.length < 9) {
 			Swal.fire(
-				'Error en la actualización',
-				'El número de teléfono tiene que tener más de 9 dígitos',
+				'Error',
+				'El teléfono debe tener mínimo 9 dígitos',
 				'error'
 			);
 			return;
@@ -73,9 +73,9 @@ export const MyProfilePage = () => {
 			Swal.fire({
 				position: 'top-end',
 				icon: 'success',
-				title: 'Se actualizó con éxito.',
+				title: 'Actualizado con éxito',
 				showConfirmButton: false,
-				timer: 2000,
+				timer: 1500,
 			});
 		}
 	};
@@ -85,10 +85,10 @@ export const MyProfilePage = () => {
 			{isModalOpen && modalType === 'edit' && <ModalEditCompany />}
 			{isModalOpen && modalType === 'delete' && <ModalDeleteCompany />}
 			<Navbar />
-			<LayoutPage title={`Profile: ${userLog.name} ${userLog.surname}`}>
-				<div className='flex flex-col lg:flex-row gap-8 p-4'>
-					{/* Información de la empresa y perfil */}
-					<div className='lg:w-1/3 space-y-6'>
+			<LayoutPage title={`Perfil: ${userLog.name} ${userLog.surname}`}>
+				<div className='flex flex-col lg:flex-row gap-6 p-3'>
+					{/* Info empresa y perfil */}
+					<div className='lg:w-1/3 space-y-4 text-sm'>
 						<InfoPersonalProfile
 							userLog={userLog}
 							companyActive={companyActive}
@@ -100,15 +100,15 @@ export const MyProfilePage = () => {
 						/>
 					</div>
 
-					{/* Formulario edición usuario */}
-					<div className='lg:w-2/3 max-w-2xl bg-white p-6 rounded-lg shadow-md'>
-						<h2 className='text-2xl font-semibold mb-6'>
-							Edit Profile
+					{/* Form editar usuario */}
+					<div className='lg:w-2/3 max-w-xl bg-white p-4 rounded-md shadow-sm text-sm'>
+						<h2 className='text-xl font-semibold mb-4'>
+							Editar Perfil
 						</h2>
-						<form onSubmit={onEditUser} className='space-y-5'>
+						<form onSubmit={onEditUser} className='space-y-4'>
 							<div>
 								<label className='block mb-1 font-medium text-gray-700'>
-									Name
+									Nombre
 								</label>
 								<input
 									name='name'
@@ -116,13 +116,13 @@ export const MyProfilePage = () => {
 									onChange={onInputChange}
 									type='text'
 									required
-									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
+									className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm'
 								/>
 							</div>
 
 							<div>
 								<label className='block mb-1 font-medium text-gray-700'>
-									Surname
+									Apellidos
 								</label>
 								<input
 									name='surname'
@@ -130,13 +130,13 @@ export const MyProfilePage = () => {
 									onChange={onInputChange}
 									type='text'
 									required
-									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
+									className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm'
 								/>
 							</div>
 
 							<div>
 								<label className='block mb-1 font-medium text-gray-700'>
-									Phone
+									Teléfono
 								</label>
 								<input
 									name='phone'
@@ -144,7 +144,7 @@ export const MyProfilePage = () => {
 									onChange={onInputChange}
 									type='tel'
 									required
-									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
+									className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm'
 								/>
 							</div>
 
@@ -158,15 +158,15 @@ export const MyProfilePage = () => {
 									onChange={onInputChange}
 									type='email'
 									required
-									className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500'
+									className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm'
 								/>
 							</div>
 
 							<button
 								type='submit'
-								className='cursor-pointer bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 rounded-md transition'
+								className='cursor-pointer bg-sky-600 hover:bg-sky-700 text-white font-semibold px-5 py-2 rounded-md transition text-sm'
 							>
-								Save
+								Guardar
 							</button>
 						</form>
 					</div>

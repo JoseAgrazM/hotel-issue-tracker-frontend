@@ -64,8 +64,8 @@ export const ModalFormRoom = () => {
 	}
 
 	return (
-		<LayoutModal title='New Room'>
-			<form onSubmit={onCreateRooms} className='form-rooms-container'>
+		<LayoutModal title='Crear habitación'>
+			<form onSubmit={onCreateRooms} className='md:form-rooms-container'>
 				<div className='container-section-form form-room'>
 					{rooms.map((room, index) => (
 						<RowRoomForm
@@ -79,12 +79,12 @@ export const ModalFormRoom = () => {
 				</div>
 				<div className='form-room-group'>
 					<button className='add-new-room' onClick={newRowRoom}>
-						Add new Room
+						Añadir habitación
 					</button>
 					<input
 						className='buttton-form-room-send'
 						type='submit'
-						value='Send'
+						value='Crear'
 					/>
 				</div>
 			</form>

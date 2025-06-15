@@ -40,15 +40,16 @@ export const ModalFormPost = () => {
 	};
 
 	const inputClass =
-		'w-full text-lg border border-gray-300 rounded-lg px-3 py-2 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none';
+		'w-full text-sm border border-gray-300 rounded px-2 py-1 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none';
 
 	return (
-		<LayoutModal title='Nuevo Post'>
-			<form onSubmit={onCreatePost} className='text-base sm:space-y-8'>
-				<div className='grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8'>
-					<div className='flex flex-col gap-2 sm:gap-3'>
-						<label className='text-lg font-semibold text-gray-800'>
-							Título del post
+		<LayoutModal title='Nuevo post'>
+			<form onSubmit={onCreatePost} className='space-y-4 text-sm'>
+				<div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+					{/* Título */}
+					<div className='flex flex-col gap-1'>
+						<label className='font-medium text-gray-700'>
+							Título
 						</label>
 						<input
 							name='namePost'
@@ -61,9 +62,9 @@ export const ModalFormPost = () => {
 						/>
 					</div>
 
-					{/* Estado del post */}
-					<div className='flex flex-col gap-2 sm:gap-3'>
-						<label className='text-lg font-semibold text-gray-800'>
+					{/* Estado */}
+					<div className='flex flex-col gap-1'>
+						<label className='font-medium text-gray-700'>
 							Estado
 						</label>
 						<select
@@ -74,18 +75,18 @@ export const ModalFormPost = () => {
 							className={inputClass}
 						>
 							<option value='' disabled>
-								Status
+								Seleccionar estado
 							</option>
-							<option value='PENDING'>Pending</option>
-							<option value='URGENT'>Urgent</option>
-							<option value='PROCESS'>Process</option>
-							<option value='DONE'>Done</option>
+							<option value='PENDING'>Pendiente</option>
+							<option value='URGENT'>Urgente</option>
+							<option value='PROCESS'>En proceso</option>
+							<option value='DONE'>Hecho</option>
 						</select>
 					</div>
 
 					{/* Habitación */}
-					<div className='flex flex-col gap-2 sm:gap-3'>
-						<label className='text-lg font-semibold text-gray-800'>
+					<div className='flex flex-col gap-1 sm:col-span-2'>
+						<label className='font-medium text-gray-700'>
 							Habitación
 						</label>
 						<input
@@ -112,8 +113,8 @@ export const ModalFormPost = () => {
 					</div>
 
 					{/* Descripción */}
-					<div className='flex flex-col gap-2 sm:gap-3 sm:col-span-2'>
-						<label className='text-lg font-semibold text-gray-800'>
+					<div className='flex flex-col gap-1 sm:col-span-2'>
+						<label className='font-medium text-gray-700'>
 							Descripción
 						</label>
 						<textarea
@@ -123,19 +124,19 @@ export const ModalFormPost = () => {
 							placeholder='Describe el problema con detalles...'
 							maxLength={250}
 							required
-							className={`${inputClass} h-40 resize-none`}
+							className={`${inputClass} h-32 resize-none`}
 						/>
-						<div className='text-sm text-gray-500 text-right'>
+						<div className='text-xs text-right text-gray-500'>
 							{description?.length || 0}/250 caracteres
 						</div>
 					</div>
 				</div>
 
-				{/* Botón de guardar */}
+				{/* Botón */}
 				<div className='flex justify-center'>
 					<button
 						type='submit'
-						className='bg-blue-600 text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition'
+						className='bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded hover:bg-blue-700 transition'
 					>
 						Guardar
 					</button>

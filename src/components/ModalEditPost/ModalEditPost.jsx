@@ -34,7 +34,7 @@ export const ModalEditPost = () => {
 			Swal.fire({
 				position: 'top-end',
 				icon: 'success',
-				title: 'Post actualizado con éxito!',
+				title: '¡Post actualizado con éxito!',
 				showConfirmButton: false,
 				timer: 1500,
 			});
@@ -42,35 +42,35 @@ export const ModalEditPost = () => {
 	};
 
 	const inputClass =
-		'w-full text-base border border-gray-300 rounded-lg px-3 py-2 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none';
+		'w-full text-sm border border-gray-300 rounded px-2 py-1 focus:border-sky-500 focus:ring focus:ring-sky-200 focus:outline-none';
 
 	const isDisabled = postStatus === 'DONE';
 
 	return (
-		<LayoutModal title='Edit post'>
-			<form onSubmit={onEditPost} className='space-y-6'>
-				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+		<LayoutModal title='Editar post'>
+			<form onSubmit={onEditPost} className='space-y-4'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 					{/* Nombre del post */}
-					<div className='flex flex-col gap-2'>
-						<label className='text-base font-medium text-gray-800'>
-							Post name
+					<div className='flex flex-col gap-1'>
+						<label className='text-sm font-medium text-gray-700'>
+							Nombre del post
 						</label>
 						<input
 							name='namePost'
 							value={namePost || ''}
 							onChange={onInputChange}
 							type='text'
-							placeholder='Name post'
+							placeholder='Nombre'
 							className={inputClass}
 							required
 							disabled={isDisabled}
 						/>
 					</div>
 
-					{/* Estado del post */}
-					<div className='flex flex-col gap-2'>
-						<label className='text-base font-medium text-gray-800'>
-							Post status
+					{/* Estado */}
+					<div className='flex flex-col gap-1'>
+						<label className='text-sm font-medium text-gray-700'>
+							Estado
 						</label>
 						<select
 							name='postStatus'
@@ -81,26 +81,26 @@ export const ModalEditPost = () => {
 							disabled={isDisabled}
 						>
 							<option value='' disabled>
-								Status
+								Seleccionar estado
 							</option>
-							<option value='PENDING'>Pending</option>
-							<option value='URGENT'>Urgent</option>
-							<option value='PROCESS'>Process</option>
-							<option value='DONE'>Done</option>
+							<option value='PENDING'>Pendiente</option>
+							<option value='URGENT'>Urgente</option>
+							<option value='PROCESS'>En proceso</option>
+							<option value='DONE'>Hecho</option>
 						</select>
 					</div>
 
 					{/* Habitación */}
-					<div className='flex flex-col gap-2'>
-						<label className='text-base font-medium text-gray-800'>
-							Room
+					<div className='flex flex-col gap-1 md:col-span-2'>
+						<label className='text-sm font-medium text-gray-700'>
+							Habitación
 						</label>
 						<input
 							list='nameRoomIds'
 							name='nameRoomId'
 							value={nameRoomId || ''}
 							onChange={onInputChange}
-							placeholder='Room'
+							placeholder='ID de habitación'
 							className={inputClass}
 							required
 							disabled
@@ -116,32 +116,32 @@ export const ModalEditPost = () => {
 				</div>
 
 				{/* Descripción */}
-				<div className='flex flex-col gap-2'>
-					<label className='text-base font-medium text-gray-800'>
-						Description
+				<div className='flex flex-col gap-1'>
+					<label className='text-sm font-medium text-gray-700'>
+						Descripción
 					</label>
 					<textarea
 						name='description'
 						value={description || ''}
 						onChange={onInputChange}
-						placeholder='Describe lo ocurrido'
+						placeholder='Describe lo ocurrido...'
 						maxLength={250}
-						className={`${inputClass} h-36 resize-none`}
+						className={`${inputClass} h-28 resize-none`}
 						required
 						disabled={isDisabled}
 					/>
-					<div className='text-sm text-gray-500 text-right'>
-						{description?.length || 0}/250 characters
+					<div className='text-xs text-right text-gray-500'>
+						{description?.length || 0}/250 caracteres
 					</div>
 				</div>
 
-				{/* Botón guardar */}
+				{/* Botón */}
 				<div className='flex justify-center'>
 					<input
 						type='submit'
-						value='Save'
+						value='Guardar'
 						disabled={isDisabled}
-						className= {` bg-sky-600 text-white text-2xl font-semibold px-6 py-3 rounded-lg hover:bg-sky-700 transition cursor-pointer disabled:opacity-50`}
+						className='bg-sky-600 text-white text-base font-medium px-4 py-2 rounded hover:bg-sky-700 transition disabled:opacity-50 cursor-pointer'
 					/>
 				</div>
 			</form>

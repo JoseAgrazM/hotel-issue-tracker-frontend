@@ -98,13 +98,13 @@ export const useRoomStore = () => {
 	const startRemoveRoom = async id => {
 		try {
 			Swal.fire({
-				title: 'Are you sure?',
-				text: "You won't be able to revert this!",
+				title: '¿Estás seguro?',
+				text: '¡No podrás revertir esto!',
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete room!',
+				confirmButtonText: '¡Sí, eliminar habitación!',
 			}).then(async result => {
 				if (result.isConfirmed) {
 					const { data } = await hotelManagerApi.delete(
@@ -115,12 +115,13 @@ export const useRoomStore = () => {
 					startLoadCompanyActive(companyActive);
 					navigate('/rooms');
 					Swal.fire({
-						title: 'Deleted!',
-						text: 'The room has been successfully deleted.',
+						title: '¡Eliminado!',
+						text: 'La habitación ha sido eliminada con éxito.',
 						icon: 'success',
 					});
 				}
 			});
+			  
 		} catch (error) {
 			Swal.fire(
 				'Error al eliminar la habitación',

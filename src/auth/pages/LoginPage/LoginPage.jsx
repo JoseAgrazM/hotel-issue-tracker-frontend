@@ -25,15 +25,15 @@ export const LoginPage = () => {
 	}, [errorMessage]);
 
 	return (
-		<LayoutAuth title='Login'>
+		<LayoutAuth title='Iniciar sesión'>
 			<form
 				onSubmit={loginSubmit}
-				className='w-full max-w-sm mx-auto space-y-8'
+				className='w-full max-w-md mx-auto space-y-6'
 			>
 				<div>
 					<label
 						htmlFor='email'
-						className='block text-base font-medium text-gray-700'
+						className='block text-sm font-medium text-gray-700'
 					>
 						Email
 					</label>
@@ -44,7 +44,7 @@ export const LoginPage = () => {
 						value={loginEmail || ''}
 						onChange={onInputChange}
 						required
-						className='mt-2 w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
+						className='mt-1 w-full px-4 py-2 border rounded-md text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 						placeholder='example@google.es'
 					/>
 				</div>
@@ -52,9 +52,9 @@ export const LoginPage = () => {
 				<div>
 					<label
 						htmlFor='password'
-						className='block text-base font-medium text-gray-700'
+						className='block text-sm font-medium text-gray-700'
 					>
-						Password
+						Contraseña
 					</label>
 					<input
 						id='password'
@@ -63,34 +63,25 @@ export const LoginPage = () => {
 						value={loginPassword || ''}
 						onChange={onInputChange}
 						required
-						className='mt-2 w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
+						className='mt-1 w-full px-4 py-2 border rounded-md text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 						placeholder='Enter your password...'
 					/>
 				</div>
 
-				<div>
+				<div className='flex items-center justify-center'>
 					<button
 						type='submit'
-						className='w-full bg-sky-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-sky-700 transition'
+						className='w-72 bg-sky-600 text-white py-2.5 rounded-md text-base font-medium hover:bg-sky-700 transition'
 					>
-						Login
+						Iniciar sesión
 					</button>
 				</div>
 			</form>
 
-			<div className='mt-8 text-center text-base text-gray-600'>
-				{/* <Link to='/auth/register-user' className='block hover:underline'>
-					Create user account
-				</Link> */}
-				<Link
-					to='/auth/register-admin'
-					className='block hover:underline'
-				>
-					Create admin account
+			<div className='mt-6 text-center text-sm text-gray-600'>
+				<Link to='/auth/register-admin' className='hover:underline'>
+					Crear cuenta de administrador
 				</Link>
-				{/* <Link to='/auth/forgot-password' className='block hover:underline'>
-					Forgot your password?
-				</Link> */}
 			</div>
 		</LayoutAuth>
 	);

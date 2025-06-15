@@ -147,10 +147,10 @@ export const ModalEditCompany = () => {
 					</div>
 				</div>
 
-				<div>
+				<div className='flex justify-center'>
 					<button
 						type='submit'
-						className='w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-md transition'
+						className='cursor-pointer w-60 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-md transition'
 					>
 						Guardar Cambios
 					</button>

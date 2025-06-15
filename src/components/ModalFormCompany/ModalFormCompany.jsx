@@ -2,7 +2,7 @@ import { LayoutModal } from '@/hotelApp/Layouts/LayoutModal/LayoutModal';
 import { useCompanyStore, useForm, useModalStore } from '../../hooks';
 import Swal from 'sweetalert2';
 
-const newCompanyForm = {
+const initialForm = {
 	companyName: '',
 	phoneCompany: '',
 	addressCompany: '',
@@ -21,35 +21,47 @@ export const ModalFormCompany = () => {
 		city,
 		country,
 		onInputChange,
-	} = useForm(newCompanyForm);
+	} = useForm(initialForm);
 
-	const onCreateCompany = async event => {
-		event.preventDefault();
-
-		if (companyName.length < 4) {
+	const validateForm = () => {
+		if (companyName.trim().length < 4) {
 			Swal.fire(
 				'Error en registro',
-				'El nombre debe de tener mínimo 4 caracteres',
+				'El nombre debe tener mínimo 4 caracteres',
 				'error'
 			);
-			return;
+			return false;
 		}
-
-		if (phoneCompany.length < 9) {
+		if (phoneCompany.trim().length < 9) {
 			Swal.fire(
 				'Error en registro',
 				'El número de teléfono debe tener al menos 9 dígitos',
 				'error'
 			);
-			return;
+			return false;
 		}
+		if (!addressCompany.trim() || !city.trim() || !country.trim()) {
+			Swal.fire(
+				'Error en registro',
+				'Todos los campos son obligatorios',
+				'error'
+			);
+			return false;
+		}
+		return true;
+	};
+
+	const onCreateCompany = async event => {
+		event.preventDefault();
+
+		if (!validateForm()) return;
 
 		const resp = await startCreateCompany({
-			companyName,
-			phoneCompany,
-			addressCompany,
-			city,
-			country,
+			companyName: companyName.trim(),
+			phoneCompany: phoneCompany.trim(),
+			addressCompany: addressCompany.trim(),
+			city: city.trim(),
+			country: country.trim(),
 		});
 
 		if (resp.ok) {
@@ -65,110 +77,137 @@ export const ModalFormCompany = () => {
 	};
 
 	return (
-		<LayoutModal title='New Company' onClose={closeModal}>
+		<LayoutModal title='Nueva Empresa' onClose={closeModal}>
 			<form onSubmit={onCreateCompany} className='space-y-6'>
-				{/* Primera fila de inputs */}
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 					<div className='space-y-2'>
-						<label className='block text-sm font-medium text-gray-700'>
-							Company Name *
+						<label
+							htmlFor='companyName'
+							className='block text-sm font-medium text-gray-700'
+						>
+							Nombre de la empresa{' '}
+							<span className='text-red-500'>*</span>
 						</label>
 						<input
-							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
+							id='companyName'
 							name='companyName'
-							value={companyName || ''}
-							onChange={onInputChange}
 							type='text'
-							placeholder='Enter company name'
+							placeholder='Ingrese nombre de la empresa'
+							value={companyName}
+							onChange={onInputChange}
 							required
 							minLength={4}
+							className={`w-full px-4 py-2 border rounded-lg transition
+								${
+									companyName.length > 0 &&
+									companyName.length < 4
+										? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+										: 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+								}`}
 						/>
 						{companyName.length > 0 && companyName.length < 4 && (
-							<p className='text-xs text-red-500'>
-								Minimum 4 characters required
+							<p className='text-xs text-red-600'>
+								Mínimo 4 caracteres
 							</p>
 						)}
 					</div>
 
 					<div className='space-y-2'>
-						<label className='block text-sm font-medium text-gray-700'>
-							Phone Number *
+						<label
+							htmlFor='phoneCompany'
+							className='block text-sm font-medium text-gray-700'
+						>
+							Teléfono <span className='text-red-500'>*</span>
 						</label>
 						<input
-							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
+							id='phoneCompany'
 							name='phoneCompany'
-							value={phoneCompany || ''}
-							onChange={onInputChange}
 							type='tel'
-							placeholder='Enter phone number'
+							placeholder='Ingrese número de teléfono'
+							value={phoneCompany}
+							onChange={onInputChange}
 							required
 							minLength={9}
+							className={`w-full px-4 py-2 border rounded-lg transition
+								${
+									phoneCompany.length > 0 &&
+									phoneCompany.length < 9
+										? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+										: 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+								}`}
 						/>
 						{phoneCompany.length > 0 && phoneCompany.length < 9 && (
-							<p className='text-xs text-red-500'>
-								Minimum 9 digits required
+							<p className='text-xs text-red-600'>
+								Mínimo 9 dígitos
 							</p>
 						)}
 					</div>
 				</div>
 
-				{/* Segunda fila de inputs */}
-				<div className='space-y-6'>
+				<div className='space-y-2'>
+					<label
+						htmlFor='addressCompany'
+						className='block text-sm font-medium text-gray-700'
+					>
+						Dirección <span className='text-red-500'>*</span>
+					</label>
+					<input
+						id='addressCompany'
+						name='addressCompany'
+						type='text'
+						placeholder='Ingrese dirección de la empresa'
+						value={addressCompany}
+						onChange={onInputChange}
+						required
+						className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
+					/>
+				</div>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 					<div className='space-y-2'>
-						<label className='block text-sm font-medium text-gray-700'>
-							Address *
+						<label
+							htmlFor='city'
+							className='block text-sm font-medium text-gray-700'
+						>
+							Ciudad <span className='text-red-500'>*</span>
 						</label>
 						<input
-							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
-							name='addressCompany'
-							value={addressCompany || ''}
-							onChange={onInputChange}
+							id='city'
+							name='city'
 							type='text'
-							placeholder='Enter company address'
+							placeholder='Ingrese ciudad'
+							value={city}
+							onChange={onInputChange}
 							required
+							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
 						/>
 					</div>
 
-					<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-						<div className='space-y-2'>
-							<label className='block text-sm font-medium text-gray-700'>
-								City *
-							</label>
-							<input
-								className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
-								name='city'
-								value={city || ''}
-								onChange={onInputChange}
-								type='text'
-								placeholder='Enter city'
-								required
-							/>
-						</div>
-
-						<div className='space-y-2'>
-							<label className='block text-sm font-medium text-gray-700'>
-								Country *
-							</label>
-							<input
-								className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
-								name='country'
-								value={country || ''}
-								onChange={onInputChange}
-								type='text'
-								placeholder='Enter country'
-								required
-							/>
-						</div>
+					<div className='space-y-2'>
+						<label
+							htmlFor='country'
+							className='block text-sm font-medium text-gray-700'
+						>
+							País <span className='text-red-500'>*</span>
+						</label>
+						<input
+							id='country'
+							name='country'
+							type='text'
+							placeholder='Ingrese país'
+							value={country}
+							onChange={onInputChange}
+							required
+							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition'
+						/>
 					</div>
 				</div>
 
-				{/* Botón de submit */}
-				<div className='flex justify-end pt-4 mt-6'>
+				<div className='flex justify-center pt-4 mt-6'>
 					<button
 						type='submit'
-						className='px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors'
+						className='cursor-pointer px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors'
 					>
-						Create Company
+						Crear Empresa
 					</button>
 				</div>
 			</form>

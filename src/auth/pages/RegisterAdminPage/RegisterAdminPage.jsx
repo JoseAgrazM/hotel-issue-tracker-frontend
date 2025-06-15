@@ -4,12 +4,12 @@ import Swal from 'sweetalert2';
 import { useAuthStore, useForm } from '../../../hooks';
 
 const registerForm = {
-	name: '',
-	surname: '',
-	email: '',
-	phone: '',
-	password: '',
-	password2: '',
+	registerName: '',
+	registerSurname: '',
+	registerEmail: '',
+	registerPhone: '',
+	registerPassword: '',
+	registerPassword2: '',
 };
 
 export const RegisterAdminPage = () => {
@@ -39,7 +39,7 @@ export const RegisterAdminPage = () => {
 		if (registerPassword.length < 6) {
 			Swal.fire(
 				'Error en registro',
-				'La contraseña debe de tener más de 5 caracteres',
+				'La contraseña debe tener al menos 6 caracteres',
 				'error'
 			);
 			return;
@@ -47,7 +47,7 @@ export const RegisterAdminPage = () => {
 		if (registerPhone.length < 9) {
 			Swal.fire(
 				'Error en registro',
-				'El número de teléfono debe tener más de 9 dígitos',
+				'El número de teléfono debe tener al menos 9 dígitos',
 				'error'
 			);
 			return;
@@ -63,119 +63,125 @@ export const RegisterAdminPage = () => {
 	};
 
 	return (
-		<LayoutAuth title='Register Admin'>
+		<LayoutAuth title='Registrar administrador'>
 			<form
 				onSubmit={registerAdminSubmit}
-				className='max-w-6xl min-w-full mx-auto space-y-10 p-6'
+				className='w-full max-w-md mx-auto space-y-6'
 			>
-				<div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
-					<section className='space-y-8'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+					<section className='space-y-6'>
 						<div>
-							<label className='block text-base font-medium text-gray-700 mb-2'>
-								Name
+							<label className='block text-sm font-medium text-gray-700 mb-1'>
+								Nombre
 							</label>
 							<input
-								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
+								className='w-full px-4 py-2 border rounded-md text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='text'
 								name='registerName'
-								value={registerName || ''}
+								value={registerName}
 								onChange={onInputChange}
 								placeholder='Name'
 								required
+								autoComplete='given-name'
 							/>
 						</div>
 						<div>
-							<label className='block text-base font-medium text-gray-700 mb-2'>
-								Surname
+							<label className='block text-sm font-medium text-gray-700 mb-1'>
+								Apellidos
 							</label>
 							<input
-								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
+								className='w-full px-4 py-2 border rounded-md text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='text'
 								name='registerSurname'
-								value={registerSurname || ''}
+								value={registerSurname}
 								onChange={onInputChange}
 								placeholder='Surname'
 								required
+								autoComplete='family-name'
 							/>
 						</div>
 						<div>
-							<label className='block text-base font-medium text-gray-700 mb-2'>
-								Phone
+							<label className='block text-sm font-medium text-gray-700 mb-1'>
+								Teléfono
 							</label>
 							<input
-								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
-								type='text'
+								className='w-full px-4 py-2 border rounded-md text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
+								type='tel'
 								name='registerPhone'
-								value={registerPhone || ''}
+								value={registerPhone}
 								onChange={onInputChange}
-								required
 								placeholder='699669966'
+								required
+								autoComplete='tel'
+								maxLength={15}
 							/>
 						</div>
 					</section>
 
-					<section className='space-y-8'>
+					<section className='space-y-6'>
 						<div>
-							<label className='block text-base font-medium text-gray-700 mb-2'>
+							<label className='block text-sm font-medium text-gray-700 mb-1'>
 								Email
 							</label>
 							<input
-								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
+								className='w-full px-4 py-2 border rounded-md text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='email'
 								name='registerEmail'
-								value={registerEmail || ''}
+								value={registerEmail}
 								onChange={onInputChange}
-								required
 								placeholder='example@google.es'
+								required
+								autoComplete='email'
 							/>
 						</div>
 						<div>
-							<label className='block text-base font-medium text-gray-700 mb-2'>
-								Password
+							<label className='block text-sm font-medium text-gray-700 mb-1'>
+								Contraseña
 							</label>
 							<input
-								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
+								className='w-full px-4 py-2 border rounded-md text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='password'
 								name='registerPassword'
-								value={registerPassword || ''}
+								value={registerPassword}
 								onChange={onInputChange}
-								required
 								placeholder='Your password'
+								required
+								autoComplete='new-password'
+								minLength={6}
 							/>
 						</div>
 						<div>
-							<label className='block text-base font-medium text-gray-700 mb-2'>
-								Repeat password
+							<label className='block text-sm font-medium text-gray-700 mb-1'>
+								Repite la contraseña
 							</label>
 							<input
-								className='w-full px-5 py-3 border rounded-lg text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
+								className='w-full px-4 py-2 border rounded-md text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400'
 								type='password'
 								name='registerPassword2'
-								value={registerPassword2 || ''}
+								value={registerPassword2}
 								onChange={onInputChange}
-								required
 								placeholder='Repeat your password'
+								required
+								autoComplete='new-password'
+								minLength={6}
 							/>
 						</div>
 					</section>
 				</div>
 
-				<div>
+				<div className='flex items-center justify-center'>
 					<input
-						className='w-full bg-sky-600 text-white py-3 rounded-lg text-lg font-semibold cursor-pointer hover:bg-sky-700 transition'
+						className='w-72 bg-sky-600 text-white py-2.5 rounded-md text-base font-medium cursor-pointer hover:bg-sky-700 transition'
 						type='submit'
-						value='Send'
+						value='Crear cuenta'
 					/>
 				</div>
 			</form>
 
-			<div className='mt-8 text-center text-base text-gray-600 space-y-4'>
-				<Link to='/auth/login' className='block hover:underline'>
-					Sign In
+			<div className='text-center text-sm text-gray-600'>
+				<Link to='/auth/login' className='hover:underline'>
+					¿Ya tienes una cuenta? Inicia sesión
 				</Link>
-				{/* <Link to='/auth/register-user' className='block hover:underline'>
-						  Create user account
-					  </Link> */}
 			</div>
 		</LayoutAuth>
 	);

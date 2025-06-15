@@ -32,7 +32,8 @@ export const usePostsStore = () => {
 					authorName: nameComplete,
 					companyId: companyActive?.id,
 					solvedAt: post?.postStatus !== 'DONE' ? null : new Date(),
-					solvedById: post?.postStatus !== 'DONE' ? null : userLog?.id,
+					solvedById:
+						post?.postStatus !== 'DONE' ? null : userLog?.id,
 					solvedByName:
 						post?.postStatus !== 'DONE' ? null : nameComplete,
 				});
@@ -89,13 +90,13 @@ export const usePostsStore = () => {
 	const startRemovePost = async id => {
 		try {
 			Swal.fire({
-				title: 'Are you sure?',
-				text: "You won't be able to revert this!",
+				title: '¿Estás seguro?',
+				text: '¡No podrás revertir esto!',
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete post!',
+				confirmButtonText: '¡Sí, eliminar publicación!',
 			}).then(async result => {
 				if (result.isConfirmed) {
 					const { data } = await hotelManagerApi.delete(
@@ -105,8 +106,8 @@ export const usePostsStore = () => {
 					dispatch(onDeletePost(data.postDelete));
 					startLoadCompanyActive(companyActive);
 					Swal.fire({
-						title: 'Deleted!',
-						text: 'The post has been successfully deleted.',
+						title: '¡Eliminado!',
+						text: 'La publicación ha sido eliminada con éxito.',
 						icon: 'success',
 					});
 				}

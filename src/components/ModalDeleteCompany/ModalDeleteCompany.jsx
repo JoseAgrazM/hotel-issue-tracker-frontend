@@ -10,8 +10,8 @@ import {
 	useUsersStore,
 } from '@/hooks';
 
-const deleteCompanyForm = {
-	password: '',
+const initialForm = {
+	loginPassword: '',
 };
 
 export const ModalDeleteCompany = () => {
@@ -23,40 +23,40 @@ export const ModalDeleteCompany = () => {
 		useCompanyStore();
 	const { closeModal } = useModalStore();
 
-	const { loginPassword, onInputChange } = useForm(deleteCompanyForm);
+	const { loginPassword, onInputChange } = useForm(initialForm);
 
-	const onDeleteCompany = async event => {
-		event.preventDefault();
+	const onDeleteCompany = async e => {
+		e.preventDefault();
 
 		const verifyAdmin = await verifyUserPassword({
 			email: userLog.email,
 			password: loginPassword,
 		});
 
-		if (verifyAdmin.ok) {
-			const resp = await startDeleteCompany(companyActive.id);
-
-			if (resp.ok) {
-				Swal.fire({
-					position: 'top-end',
-					icon: 'success',
-					title: '¡Empresa eliminada con éxito!',
-					showConfirmButton: false,
-					timer: 1500,
-				});
-				setActiveCompany(null);
-				startCleanStateUsers();
-				startClearPost();
-				startClearRooms();
-				localStorage.removeItem('companyActiveId');
-				closeModal();
-			}
-		} else {
-			Swal.fire({
+		if (!verifyAdmin.ok) {
+			return Swal.fire({
 				icon: 'error',
 				title: 'Contraseña incorrecta',
 				text: 'Por favor verifica tu contraseña e inténtalo de nuevo.',
 			});
+		}
+
+		const resp = await startDeleteCompany(companyActive.id);
+
+		if (resp.ok) {
+			Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: '¡Empresa eliminada con éxito!',
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			setActiveCompany(null);
+			startCleanStateUsers();
+			startClearPost();
+			startClearRooms();
+			localStorage.removeItem('companyActiveId');
+			closeModal();
 		}
 	};
 
@@ -79,10 +79,7 @@ export const ModalDeleteCompany = () => {
 						type='email'
 						name='loginEmail'
 						value={userLog.email}
-						onChange={onInputChange}
-						placeholder='example@google.es'
 						disabled
-						required
 						className='w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-100 cursor-not-allowed text-gray-600'
 					/>
 				</div>
@@ -98,7 +95,7 @@ export const ModalDeleteCompany = () => {
 						id='password'
 						type='password'
 						name='loginPassword'
-						value={loginPassword || ''}
+						value={loginPassword}
 						onChange={onInputChange}
 						placeholder='Tu contraseña'
 						required
@@ -106,14 +103,13 @@ export const ModalDeleteCompany = () => {
 					/>
 				</div>
 
-				<div>
-					<button
-						type='submit'
-						className='w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-md transition'
-					>
-						Eliminar
-					</button>
-				</div>
+				<button
+					type='submit'
+					className='cursor-pointer w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-md transition'
+					disabled={!loginPassword.trim()}
+				>
+					Eliminar
+				</button>
 			</form>
 		</LayoutModal>
 	);

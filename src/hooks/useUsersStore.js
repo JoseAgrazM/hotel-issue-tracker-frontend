@@ -80,13 +80,13 @@ export const useUsersStore = () => {
 	const startDeleteUser = async id => {
 		try {
 			Swal.fire({
-				title: 'Are you sure?',
-				text: "You won't be able to revert this!",
+				title: '¿Estás seguro?',
+				text: '¡No podrás revertir esto!',
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete user!',
+				confirmButtonText: '¡Sí, eliminar usuario!',
 			}).then(async result => {
 				if (result.isConfirmed) {
 					const { data } = await hotelManagerApi.delete(
@@ -96,12 +96,13 @@ export const useUsersStore = () => {
 					dispatch(onDeleteUser(data.user));
 					startLoadCompanyActive(companyActive);
 					Swal.fire({
-						title: 'Deleted!',
-						text: 'The user has been successfully deleted.',
+						title: '¡Eliminado!',
+						text: 'El usuario ha sido eliminado con éxito.',
 						icon: 'success',
 					});
 				}
 			});
+			  
 		} catch (error) {
 			Swal.fire(
 				'Error al eliminar usuario',

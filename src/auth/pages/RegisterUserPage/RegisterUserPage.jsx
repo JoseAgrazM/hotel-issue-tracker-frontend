@@ -7,11 +7,11 @@ export const RegisterUserPage = () => {
 			title='Register User'
 			className='animate__animated animate__fadeInLeft'
 		>
-			<form className='w-full max-w-2xl mx-auto space-y-10'>
+			<form className='w-full max-w-2xl mx-auto space-y-8'>
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
 					<section className='space-y-6'>
 						<div>
-							<label className='block text-base font-medium text-gray-700'>
+							<label className='block text-lg font-medium text-gray-700'>
 								Name
 							</label>
 							<input
@@ -21,7 +21,7 @@ export const RegisterUserPage = () => {
 							/>
 						</div>
 						<div>
-							<label className='block text-base font-medium text-gray-700'>
+							<label className='block text-lg font-medium text-gray-700'>
 								Surname
 							</label>
 							<input
@@ -31,7 +31,7 @@ export const RegisterUserPage = () => {
 							/>
 						</div>
 						<div>
-							<label className='block text-base font-medium text-gray-700'>
+							<label className='block text-lg font-medium text-gray-700'>
 								Phone
 							</label>
 							<input
@@ -44,7 +44,7 @@ export const RegisterUserPage = () => {
 
 					<section className='space-y-6'>
 						<div>
-							<label className='block text-base font-medium text-gray-700'>
+							<label className='block text-lg font-medium text-gray-700'>
 								Email
 							</label>
 							<input
@@ -54,7 +54,7 @@ export const RegisterUserPage = () => {
 							/>
 						</div>
 						<div>
-							<label className='block text-base font-medium text-gray-700'>
+							<label className='block text-lg font-medium text-gray-700'>
 								Password
 							</label>
 							<input
@@ -64,7 +64,7 @@ export const RegisterUserPage = () => {
 							/>
 						</div>
 						<div>
-							<label className='block text-base font-medium text-gray-700'>
+							<label className='block text-lg font-medium text-gray-700'>
 								Repeat password
 							</label>
 							<input
@@ -86,7 +86,7 @@ export const RegisterUserPage = () => {
 				</div>
 			</form>
 
-			<div className='mt-8 text-center text-base text-gray-600'>
+			<div className='mt-8 text-center text-base text-gray-600 space-y-2'>
 				<Link to='/auth/login' className='block hover:underline'>
 					Sign In
 				</Link>

@@ -1,5 +1,6 @@
 import { useAuthStore, useModalStore, usePostsStore } from '@/hooks';
 import { EditIconSVG, DeleteIconSVG } from '@/ui';
+import { getPostStatus } from '../../helpers/getPostStatus';
 
 export const RowPostList = ({ post }) => {
 	const {
@@ -21,80 +22,112 @@ export const RowPostList = ({ post }) => {
 	const { startRemovePost, startPostActive } = usePostsStore();
 	const { openModal } = useModalStore();
 
-	const handleEditPost = post => {
+	const handleEditPost = () => {
 		startPostActive(post);
 		openModal('editPost');
 	};
 
-	const getBadgeColor = status => {
-		switch (status.toLowerCase()) {
-			case 'pending':
-				return 'bg-yellow-200 text-yellow-900';
-			case 'process':
-				return 'bg-blue-200 text-blue-900';
-			case 'done':
-				return 'bg-green-200 text-green-900';
-			case 'urgent':
-				return 'bg-red-200 text-red-900';
-			default:
-				return 'bg-gray-200 text-gray-900';
-		}
-	};
-
 	return (
-		<tr className='hover:bg-gray-50 transition'>
-			<td className='px-4 py-3'>
+		<tr className='hover:bg-gray-50 transition' role='row'>
+			<td className='px-4 py-3' role='cell'>
 				<span
-					className={`px-3 py-1 rounded-full text-sm font-semibold capitalize ${getBadgeColor(
+					className={`px-3 py-1 rounded-full text-sm font-semibold capitalize ${getPostStatus(
 						postStatus
 					)}`}
+					aria-label={`Estado: ${postStatus}`}
 				>
 					{postStatus}
 				</span>
 			</td>
 
-			<td className='px-4 py-3 text-base text-gray-700'>
+			<td
+				className='px-4 py-3 text-base text-gray-700'
+				role='cell'
+				title={new Date(createdAt).toLocaleString()}
+			>
 				{new Date(createdAt).toLocaleDateString()}
 			</td>
 
-			<td className='px-4 py-3 text-base text-gray-700'>{nameRoomId}</td>
+			<td
+				className='px-4 py-3 text-base text-gray-700'
+				role='cell'
+				title={nameRoomId}
+			>
+				{nameRoomId}
+			</td>
 
-			<td className='px-4 py-3 text-base font-semibold text-gray-900'>
+			<td
+				className='px-4 py-3 text-base font-semibold text-gray-900'
+				role='cell'
+				title={namePost}
+			>
 				{namePost}
 			</td>
 
-			<td className='px-4 py-3 max-w-xs truncate text-base text-gray-600'>
+			<td
+				className='px-4 py-3 max-w-xs truncate text-base text-gray-600'
+				role='cell'
+				title={description}
+			>
 				{description}
 			</td>
 
-			<td className='px-4 py-3 text-base text-gray-700'>{authorName}</td>
+			<td
+				className='px-4 py-3 text-base text-gray-700'
+				role='cell'
+				title={authorName}
+			>
+				{authorName}
+			</td>
 
-			<td className='px-4 py-3 text-base text-gray-700'>
+			<td
+				className='px-4 py-3 text-base text-gray-700'
+				role='cell'
+				title={solvedAt ? new Date(solvedAt).toLocaleString() : '-'}
+			>
 				{solvedAt ? new Date(solvedAt).toLocaleDateString() : '-'}
 			</td>
 
-			<td className='px-4 py-3 text-base text-gray-700'>
+			<td
+				className='px-4 py-3 text-base text-gray-700'
+				role='cell'
+				title={solvedByName || '-'}
+			>
 				{solvedByName || '-'}
 			</td>
 
-			<td className='px-4 py-3'>
+			<td className='px-4 py-3' role='cell'>
 				<div className='flex gap-4 items-center'>
 					{(authorById === userLog.id ||
 						userLog.role === 'SUPERADMIN') && (
 						<EditIconSVG
 							color='green'
-							size={28} // icono más grande
+							size={28}
 							className='cursor-pointer hover:scale-110 transition-transform'
-							onClick={() => handleEditPost(post)}
+							onClick={handleEditPost}
+							role='button'
+							aria-label={`Editar post ${namePost}`}
+							tabIndex={0}
+							onKeyDown={e => {
+								if (e.key === 'Enter' || e.key === ' ')
+									handleEditPost();
+							}}
 						/>
 					)}
 
 					{userLog.role === 'SUPERADMIN' && (
 						<DeleteIconSVG
 							color='red'
-							size={28} // icono más grande
+							size={28}
 							className='cursor-pointer hover:scale-110 transition-transform'
 							onClick={() => startRemovePost(id)}
+							role='button'
+							aria-label={`Eliminar post ${namePost}`}
+							tabIndex={0}
+							onKeyDown={e => {
+								if (e.key === 'Enter' || e.key === ' ')
+									startRemovePost(id);
+							}}
 						/>
 					)}
 				</div>

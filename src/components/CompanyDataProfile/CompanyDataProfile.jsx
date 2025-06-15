@@ -4,23 +4,23 @@ export const CompanyDataProfile = ({ companyActive, userLog }) => {
 	const { openModal } = useModalStore();
 
 	return (
-		<div className='w-full max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-8 space-y-8'>
+		<div className='w-full max-w-3xl mx-auto bg-white rounded-xl shadow p-6 space-y-6 text-gray-800 text-sm'>
 			<section>
-				<h2 className='text-3xl font-extrabold text-gray-800 mb-2 flex items-center gap-3'>
+				<h2 className='text-2xl font-extrabold mb-2 flex items-center gap-2'>
 					<span
 						role='img'
 						aria-label='Company Building'
-						className='text-4xl'
+						className='text-3xl'
 					>
 						🏢
-					</span>{' '}
+					</span>
 					Company Data
 				</h2>
-				<h3 className='text-xl text-gray-700 font-semibold'>
+				<h3 className='text-lg font-semibold text-gray-700'>
 					{companyActive?.companyName}
 				</h3>
 
-				<div className='mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-gray-700 text-lg'>
+				<div className='mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-gray-700'>
 					<p>
 						<strong className='text-gray-800'>Country:</strong>{' '}
 						{companyActive?.country}
@@ -54,26 +54,26 @@ export const CompanyDataProfile = ({ companyActive, userLog }) => {
 
 			{userLog?.role === 'SUPERADMIN' && (
 				<section>
-					<h2 className='text-2xl font-bold text-red-600 mb-4 flex items-center gap-2'>
+					<h2 className='text-xl font-bold text-red-600 mb-3 flex items-center gap-1'>
 						<span
 							role='img'
 							aria-label='Warning'
-							className='text-3xl'
+							className='text-2xl'
 						>
 							⚠️
-						</span>{' '}
+						</span>
 						Danger Zone
 					</h2>
-					<div className='flex flex-col sm:flex-row gap-6'>
+					<div className='flex flex-col sm:flex-row gap-4'>
 						<button
 							onClick={() => openModal('edit')}
-							className='cursor-pointer px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-white font-semibold rounded-lg transition focus:outline-none focus:ring-2 focus:ring-yellow-500'
+							className='cursor-pointer px-5 py-2 bg-yellow-400 hover:bg-yellow-500 text-white font-semibold rounded-lg transition focus:outline-none focus:ring-2 focus:ring-yellow-500'
 						>
 							Edit Company
 						</button>
 						<button
 							onClick={() => openModal('delete')}
-							className='cursor-pointer px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition focus:outline-none focus:ring-2 focus:ring-red-600'
+							className='cursor-pointer px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition focus:outline-none focus:ring-2 focus:ring-red-600'
 						>
 							Delete Company
 						</button>

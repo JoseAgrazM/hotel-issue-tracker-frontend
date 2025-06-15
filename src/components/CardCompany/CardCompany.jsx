@@ -18,30 +18,30 @@ export const CardCompany = ({ company }) => {
 	);
 
 	return (
-		<div className='w-full max-w-xl p-8 bg-white rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition duration-300 space-y-6'>
-			<div className='flex items-center gap-4'>
-				<Building2 className='text-blue-600 w-8 h-8' />
-				<h3 className='text-2xl font-bold text-gray-900'>
+		<div className='w-full max-w-md p-5 bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition space-y-4'>
+			<div className='flex items-center gap-3'>
+				<Building2 className='text-blue-600 w-6 h-6' />
+				<h3 className='text-xl font-bold text-gray-900'>
 					{company?.companyName}
 				</h3>
 			</div>
 
-			<div className='space-y-3 text-lg text-gray-700'>
+			<div className='space-y-2 text-sm text-gray-700'>
 				<p>
-					<strong>Número de trabajadores:</strong>{' '}
-					<span className='text-blue-600 font-semibold'>
+					<strong>Trabajadores:</strong>{' '}
+					<span className='text-blue-600 font-medium'>
 						{company?.users?.length || 0}
 					</span>
 				</p>
 				<p>
 					<strong>País:</strong>{' '}
-					<span className='text-blue-600 font-semibold'>
+					<span className='text-blue-600 font-medium'>
 						{company?.country}
 					</span>
 				</p>
 				<p>
-					<strong>Empresa creada:</strong>{' '}
-					<span className='text-blue-600 font-semibold'>
+					<strong>Creada:</strong>{' '}
+					<span className='text-blue-600 font-medium'>
 						{formatDate}
 					</span>
 				</p>
@@ -50,7 +50,7 @@ export const CardCompany = ({ company }) => {
 			<div className='flex justify-center'>
 				<button
 					onClick={onSelectCompany}
-					className='cursor-pointer px-6 py-3 bg-blue-600 text-white text-base font-semibold rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition'
+					className='cursor-pointer px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition'
 				>
 					Seleccionar
 				</button>

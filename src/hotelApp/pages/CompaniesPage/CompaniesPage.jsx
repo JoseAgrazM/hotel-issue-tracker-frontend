@@ -19,34 +19,36 @@ export const CompaniesPage = () => {
 	}, []);
 
 	return (
-		<div className='min-h-screen p-6 sm:p-8 bg-gray-50'>
-			<div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8'>
+		<div className='min-h-screen p-4 sm:p-6 bg-gray-50'>
+			<div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6'>
 				<div>
-					<h1 className='text-3xl sm:text-4xl font-bold text-gray-800'>
-						Hello{' '}
+					<h1 className='text-2xl sm:text-3xl font-bold text-gray-800'>
+						Hola{' '}
 						<span className='text-sky-600'>
 							{userLog?.name || user?.name}
 						</span>
 					</h1>
-					<p className='text-lg mt-1 text-gray-600'>
-						Select your company
+					<p className='text-sm sm:text-base mt-1 text-gray-600'>
+						Selecciona tu compañía
 					</p>
 				</div>
 
-				<div className='flex gap-4'>
+				<div className='flex gap-3'>
 					<button
 						onClick={openModal}
-						className='bg-sky-600 cursor-pointer hover:bg-sky-700 text-white px-4 py-2 rounded-xl shadow-md transition duration-200'
+						className='bg-sky-600 cursor-pointer hover:bg-sky-700 text-white px-3 py-1.5 rounded-lg shadow transition text-sm'
 					>
-						New Company
+						Nueva Compañía
 					</button>
 
 					<button
 						onClick={startLogout}
-						className='flex items-center gap-2 border border-red-500 text-red-600 px-4 py-2 rounded-xl hover:bg-red-50 transition duration-200'
+						className='flex items-center gap-2 border border-red-500 text-red-600 px-3 py-1.5 rounded-lg hover:bg-red-50 transition text-sm'
 					>
-						<LogoutIconSVG size='24' color='red' />
-						<span className='hidden sm:inline cursor-pointer'>Logout</span>
+						<LogoutIconSVG size='20' color='red' />
+						<span className='sm:inline cursor-pointer'>
+							Cerrar sesión
+						</span>
 					</button>
 				</div>
 			</div>

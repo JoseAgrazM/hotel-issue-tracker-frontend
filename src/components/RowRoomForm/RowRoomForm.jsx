@@ -9,7 +9,7 @@ export const RowRoomForm = ({
 	return (
 		<section className='room-entry'>
 			<div className='form-room-group'>
-				<label>Name</label>
+				<label>Nombre</label>
 				<input
 					name='nameRoom'
 					value={room.nameRoom}
@@ -21,7 +21,7 @@ export const RowRoomForm = ({
 				/>
 			</div>
 			<div className='form-room-group'>
-				<label>Floor</label>
+				<label>Planta</label>
 				<input
 					name='floor'
 					value={room.floor}
@@ -32,7 +32,7 @@ export const RowRoomForm = ({
 				/>
 			</div>
 			<div className='form-room-group'>
-				<label>Type room</label>
+				<label>Tipo</label>
 				<select
 					name='typeRoom'
 					value={room.typeRoom || ''}

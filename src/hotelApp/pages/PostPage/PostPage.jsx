@@ -30,10 +30,11 @@ export const PostPage = () => {
 
 				<button
 					onClick={() => openModal('createPost')}
-					className='cursor-pointer fixed bottom-20 right-4 z-40 p-4 shadow-lg bg-blue-600 size-14 text-white rounded-full  hover:bg-blue-700 transition md:hidden'
+					className='fixed bottom-20 right-4 z-40 p-4 shadow-lg bg-blue-600 text-white rounded-full hover:bg-blue-700 transition md:hidden'
 					aria-label='Crear nuevo post'
+					title='Crear nuevo post'
 				>
-					+
+					<span className='text-2xl font-bold leading-none'>+</span>
 				</button>
 			</LayoutPage>
 		</>

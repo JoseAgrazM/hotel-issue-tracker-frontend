@@ -19,29 +19,29 @@ export const InfoPersonalProfile = ({
 	);
 
 	return (
-		<div className='max-w-md mx-auto bg-white rounded-2xl shadow-md p-6 space-y-6 text-gray-800'>
-			<section className='text-lg space-y-4'>
-				<p className='font-semibold text-xl'>
+		<div className='max-w-md mx-auto bg-white rounded-xl shadow p-4 space-y-4 text-gray-800 text-sm'>
+			<section className='space-y-2'>
+				<p className='font-semibold text-base'>
 					{timeInCompany === 1
 						? `Llevas ${timeInCompany} día en la empresa`
 						: `Llevas ${timeInCompany} días en la empresa`}
 				</p>
 
-				<p className='text-lg'>
-					<strong className='font-semibold'>Role:</strong>{' '}
-					<span className='info_role_profile text-blue-600 font-medium'>
+				<p>
+					<strong className='font-semibold'>Rol:</strong>{' '}
+					<span className='text-blue-600 font-medium'>
 						{roleCapitalized}
 					</span>
 				</p>
 
-				<p className='text-lg'>
+				<p>
 					<strong className='font-semibold'>Posts publicados:</strong>{' '}
 					<span className='font-medium'>
 						{postsUserLogInCompany?.length || 0}
 					</span>
 				</p>
 
-				<p className='text-lg'>
+				<p>
 					<strong className='font-semibold'>
 						Posts completados:
 					</strong>{' '}

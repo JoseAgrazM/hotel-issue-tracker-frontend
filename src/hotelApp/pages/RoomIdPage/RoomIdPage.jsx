@@ -14,7 +14,7 @@ import { EditIconSVG, DeleteIconSVG } from '@/ui';
 
 export const RoomIdPage = () => {
 	const { id } = useParams();
-	const navigate = useNavigate(); // <-- Inicializa navigate
+	const navigate = useNavigate();
 	const { roomActive, startActiveRoom, clearRoomActive, startRemoveRoom } =
 		useRoomStore();
 	const { userLog } = useAuthStore();
@@ -41,27 +41,24 @@ export const RoomIdPage = () => {
 	const handleEditRoom = () => openModal('editRoom');
 	const handleRemoveRoom = () => startRemoveRoom(roomActive.id);
 
-	const handleBack = () => navigate('/rooms'); // <-- Función para volver
+	const handleBack = () => navigate('/rooms');
 
 	return (
 		<>
 			<Navbar />
 
-			{/* Botón para volver a Rooms */}
-			<div className='max-w-7xl mx-auto px-4 mt-4'>
-				<button
-					onClick={handleBack}
-					className='bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-4 py-2 rounded-lg transition'
-				>
-					← Volver a Rooms
-				</button>
-			</div>
-
 			<LayoutPage title={`Room ${id}`}>
 				{isModalOpen && modalType === 'createPost' && <ModalFormPost />}
 				{isModalOpen && modalType === 'editPost' && <ModalEditPost />}
 				{isModalOpen && modalType === 'editRoom' && <ModalEditRoom />}
-
+				<div className='max-w-7xl mx-auto px-4 mt-4'>
+					<button
+						onClick={handleBack}
+						className='bg-gray-200 cursor-pointer hover:bg-gray-300 text-gray-800 font-semibold px-4 py-2 rounded-lg transition'
+					>
+						← Volver a Rooms
+					</button>
+				</div>
 				<div className='max-w-7xl mx-auto p-4 space-y-6'>
 					<section
 						className={`rounded-lg p-6 flex flex-col md:flex-row justify-between items-start md:items-center shadow-md ${getRoomStateClass(
