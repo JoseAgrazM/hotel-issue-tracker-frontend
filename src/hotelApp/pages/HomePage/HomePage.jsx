@@ -41,7 +41,10 @@ export const HomePage = () => {
 							{userLog?.name}
 						</span>
 					</h2>
-					<p className='mt-2 text-base sm:text-lg text-gray-600 font-medium max-w-xl'>
+					<p
+						fetchPriority='high'
+						className='mt-2 text-base sm:text-lg text-gray-600 font-medium max-w-xl'
+					>
 						¿Qué te gustaría compartir hoy? <br /> Crea
 						publicaciones o consulta el estado de las habitaciones
 						al instante.
