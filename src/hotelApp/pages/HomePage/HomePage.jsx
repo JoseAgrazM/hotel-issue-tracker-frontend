@@ -119,7 +119,7 @@ export const HomePage = () => {
 						) : (
 							<div className='grid grid-cols-1 sm:grid-cols-2'>
 								{reversePost.length === 0 ? (
-									<h3 className='text-center text-gray-400 text-lg font-light'>
+									<h3 className='text-center text-gray-600 text-lg font-light'>
 										Aún no hay publicaciones. ¡Sé el primero
 										en crear una!
 									</h3>
