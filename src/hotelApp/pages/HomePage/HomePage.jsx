@@ -8,9 +8,11 @@ import {
 import { LayoutPage } from '../../Layouts';
 import { useEffect, useState } from 'react';
 import { Navbar } from '../../../components/Navbar/Navbar';
+import { LogoutIconSVG } from '@/ui';
 
 export const HomePage = () => {
-	const { userLog } = useAuthStore();
+	const { startLogout, userLog } = useAuthStore();
+
 	const { rooms } = useRoomStore();
 	const { isModalOpen, openModal, modalType } = useModalStore();
 	const { posts, loading, error } = usePostsStore();
@@ -52,16 +54,23 @@ export const HomePage = () => {
 					</div>
 				)}
 
-				<div className='flex justify-center sm:justify-start max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 mb-6'>
+				<div className='flex justify-between sm:justify-start max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 mb-6 items-center gap-9'>
 					<button
 						onClick={() => openModal('create')}
-						className='group relative inline-flex items-center justify-center px-6 py-2 rounded-lg bg-gradient-to-r from-sky-600 to-indigo-600 text-white font-semibold shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-300'
+						className='group relative inline-flex items-center justify-center px-2 py-1 rounded-lg bg-gradient-to-r from-sky-600 to-indigo-600 text-white font-semibold shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky-300'
 						aria-label='Crear nueva publicación'
 					>
 						<span className='absolute inset-0 bg-gradient-to-r from-indigo-600 to-sky-600 opacity-40 blur-sm filter'></span>
 						<span className='relative z-10 cursor-pointer'>
 							Crear Nueva Publicación
 						</span>
+					</button>
+					<button
+						onClick={startLogout}
+						className='cursor-pointer md:hidden flex items-center gap-3 border rounded-lg px-2 py-1 text-red-600 hover:text-red-700 text-base font-semibold transition'
+					>
+						<LogoutIconSVG size='40' color='red' />
+						Cerrar sesión
 					</button>
 				</div>
 
@@ -79,22 +88,22 @@ export const HomePage = () => {
 								available={availableRooms}
 								blocked={blockedRooms}
 							/>
-							<div className='mt-6 w-full'>
-								<ul className='space-y-3'>
-									<li className='flex items-center gap-4'>
-										<span className='w-5 h-5 rounded-full bg-[#36A2EB] block'></span>
-										<span>Disponible</span>
-									</li>
-									<li className='flex items-center gap-4'>
-										<span className='w-5 h-5 rounded-full bg-[#FF6384] block'></span>
-										<span>Ocupada</span>
-									</li>
-									<li className='flex items-center gap-4'>
-										<span className='w-5 h-5 rounded-full bg-[#FFCE56] block'></span>
-										<span>Bloqueada</span>
-									</li>
-								</ul>
-							</div>
+						</div>
+						<div className='mt-6 w-full'>
+							<ul className='space-y-3'>
+								<li className='flex items-center gap-4'>
+									<span className='w-5 h-5 rounded-full bg-[#36A2EB] block'></span>
+									<span>Disponible</span>
+								</li>
+								<li className='flex items-center gap-4'>
+									<span className='w-5 h-5 rounded-full bg-[#FF6384] block'></span>
+									<span>Ocupada</span>
+								</li>
+								<li className='flex items-center gap-4'>
+									<span className='w-5 h-5 rounded-full bg-[#FFCE56] block'></span>
+									<span>Bloqueada</span>
+								</li>
+							</ul>
 						</div>
 					</div>
 
