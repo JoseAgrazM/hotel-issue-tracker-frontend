@@ -37,9 +37,9 @@ export const Navbar = () => {
 					<div className='flex items-center justify-center py-4 border-b'>
 						<NavLink to='/'>
 							<img
-								src='/assets/img/icons/hotel-svgrepo-com.svg'
+								src='/assets/img/LogoHotel.png'
 								alt='Hotel Logo'
-								className='h-20'
+								className='h-30 drop-shadow-lg'
 							/>
 						</NavLink>
 					</div>
