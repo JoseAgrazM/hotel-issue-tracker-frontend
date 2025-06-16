@@ -21,7 +21,7 @@ Este es mi proyecto final del curso, una aplicación web desarrollada con **Reac
 
 ## 📸 Vista previa
 
-> _(Incluye aquí capturas de pantalla si lo deseas para mostrar la interfaz)_
+![alt text](image.png)
 
 ---
 
