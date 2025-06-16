@@ -1,4 +1,3 @@
-import React from 'react';
 import {
 	useForm,
 	useModalStore,
@@ -44,13 +43,12 @@ export const ModalEditPost = () => {
 	const inputClass =
 		'w-full text-sm border border-gray-300 rounded px-2 py-1 focus:border-sky-500 focus:ring focus:ring-sky-200 focus:outline-none';
 
-	const isDisabled = postStatus === 'DONE';
+	const isDisabled = postActive.postStatus === 'DONE';
 
 	return (
 		<LayoutModal title='Editar post'>
 			<form onSubmit={onEditPost} className='space-y-4'>
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-					{/* Nombre del post */}
 					<div className='flex flex-col gap-1'>
 						<label className='text-sm font-medium text-gray-700'>
 							Nombre del post
@@ -67,7 +65,6 @@ export const ModalEditPost = () => {
 						/>
 					</div>
 
-					{/* Estado */}
 					<div className='flex flex-col gap-1'>
 						<label className='text-sm font-medium text-gray-700'>
 							Estado
@@ -90,7 +87,6 @@ export const ModalEditPost = () => {
 						</select>
 					</div>
 
-					{/* Habitación */}
 					<div className='flex flex-col gap-1 md:col-span-2'>
 						<label className='text-sm font-medium text-gray-700'>
 							Habitación
@@ -115,7 +111,6 @@ export const ModalEditPost = () => {
 					</div>
 				</div>
 
-				{/* Descripción */}
 				<div className='flex flex-col gap-1'>
 					<label className='text-sm font-medium text-gray-700'>
 						Descripción
@@ -135,13 +130,14 @@ export const ModalEditPost = () => {
 					</div>
 				</div>
 
-				{/* Botón */}
 				<div className='flex justify-center'>
 					<input
 						type='submit'
 						value='Guardar'
 						disabled={isDisabled}
-						className='bg-sky-600 text-white text-base font-medium px-4 py-2 rounded hover:bg-sky-700 transition disabled:opacity-50 cursor-pointer'
+						className={` ${
+							isDisabled ? 'bg-gray-500' : 'bg-sky-600'
+						} text-white text-base font-medium px-4 py-2 rounded hover:bg-sky-700 transition disabled:opacity-50 cursor-pointer`}
 					/>
 				</div>
 			</form>

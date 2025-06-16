@@ -87,7 +87,6 @@ export const MyProfilePage = () => {
 			<Navbar />
 			<LayoutPage title={`Perfil: ${userLog.name} ${userLog.surname}`}>
 				<div className='flex flex-col lg:flex-row gap-6 p-3'>
-					{/* Info empresa y perfil */}
 					<div className='lg:w-1/3 space-y-4 text-sm'>
 						<InfoPersonalProfile
 							userLog={userLog}
@@ -100,7 +99,6 @@ export const MyProfilePage = () => {
 						/>
 					</div>
 
-					{/* Form editar usuario */}
 					<div className='lg:w-2/3 max-w-xl bg-white p-4 rounded-md shadow-sm text-sm'>
 						<h2 className='text-xl font-semibold mb-4'>
 							Editar Perfil

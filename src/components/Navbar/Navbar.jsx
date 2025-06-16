@@ -7,8 +7,8 @@ import {
 	useUsersStore,
 	useRoomStore,
 } from '@/hooks';
-import { NavItem, NavItemMobile } from '../../NavItem/NavItem.jsx/NavItem';
 import { LogoutIconSVG } from '@/ui';
+import { NavItem, NavItemMobile } from '../../NavItem/NavItem';
 
 export const Navbar = () => {
 	const { startLogout, user, userLog } = useAuthStore();

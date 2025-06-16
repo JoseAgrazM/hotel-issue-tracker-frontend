@@ -46,7 +46,6 @@ export const ModalFormPost = () => {
 		<LayoutModal title='Nuevo post'>
 			<form onSubmit={onCreatePost} className='space-y-4 text-sm'>
 				<div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-					{/* Título */}
 					<div className='flex flex-col gap-1'>
 						<label className='font-medium text-gray-700'>
 							Título
@@ -62,7 +61,6 @@ export const ModalFormPost = () => {
 						/>
 					</div>
 
-					{/* Estado */}
 					<div className='flex flex-col gap-1'>
 						<label className='font-medium text-gray-700'>
 							Estado
@@ -84,7 +82,6 @@ export const ModalFormPost = () => {
 						</select>
 					</div>
 
-					{/* Habitación */}
 					<div className='flex flex-col gap-1 sm:col-span-2'>
 						<label className='font-medium text-gray-700'>
 							Habitación
@@ -112,7 +109,6 @@ export const ModalFormPost = () => {
 						</datalist>
 					</div>
 
-					{/* Descripción */}
 					<div className='flex flex-col gap-1 sm:col-span-2'>
 						<label className='font-medium text-gray-700'>
 							Descripción
@@ -132,7 +128,6 @@ export const ModalFormPost = () => {
 					</div>
 				</div>
 
-				{/* Botón */}
 				<div className='flex justify-center'>
 					<button
 						type='submit'

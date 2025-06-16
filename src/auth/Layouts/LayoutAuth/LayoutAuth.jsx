@@ -17,19 +17,19 @@ export const LayoutAuth = ({ children, title }) => {
         `}
 			>
 				<div className='flex flex-col items-center max-w-md'>
-					<div className='bg-white p-5 rounded-full shadow-xl mb-4'>
+					<div className='drop-shadow-lg'>
 						<img
-							src='/assets/img/icons/hotel-svgrepo-com.svg'
+							src='/assets/img/LogoHotel.png'
 							alt='Hotel Logo'
-							className='w-20 h-20 text-blue-600'
+							className='w-80 h-80 text-blue-600'
 						/>
 					</div>
 
-					<h1 className='text-4xl font-bold text-gray-800 text-center mb-2'>
+					{/* <h1 className='text-5xl font-bold text-gradient bg-gradient-to-r from-sky-500 to-indigo-600 text-transparent bg-clip-text'>
 						Hotel Issue Tracker
-					</h1>
+					</h1> */}
 
-					<p className='text-lg text-gray-600 text-center'>
+					<p className='text-xl text-gray-600 text-center'>
 						La solución perfecta para gestionar incidencias y
 						mejorar la experiencia de tus huéspedes
 					</p>
@@ -47,11 +47,11 @@ export const LayoutAuth = ({ children, title }) => {
 					<div className='p-1 bg-gradient-to-r from-blue-500 to-indigo-600'>
 						<div className='bg-white p-6 rounded-t-xl'>
 							<div className='md:hidden flex justify-center mb-4'>
-								<div className='bg-gray-100 p-3 rounded-full'>
+								<div className=' drop-shadow-lg'>
 									<img
-										src='/assets/img/icons/hotel-svgrepo-com.svg'
+										src='/assets/img/LogoHotel.png'
 										alt='Hotel Logo'
-										className='w-14 h-14 text-blue-600'
+										className='w-50 h-50'
 									/>
 								</div>
 							</div>

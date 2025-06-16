@@ -13,7 +13,7 @@ export const CardRoom = ({ room }) => {
 		>
 			<div
 				className={`p-4 rounded-xl shadow-md border-l-4 ${stateClass} bg-white hover:shadow-lg transition duration-300 flex flex-col justify-between`}
-				style={{ height: '240px' }} // más compacta
+				style={{ height: '240px' }} 
 			>
 				<h3 className='text-xl font-bold text-gray-900 mb-2 flex items-center gap-2'>
 					<span className='text-blue-600'>🛏️</span> {nameRoom}
