@@ -178,7 +178,7 @@ export const RegisterAdminPage = () => {
 				</div>
 			</form>
 
-			<div className='text-center text-sm text-gray-600'>
+			<div className='text-center text-sm text-gray-600 mt-6 '>
 				<Link to='/auth/login' className='hover:underline'>
 					¿Ya tienes una cuenta? Inicia sesión
 				</Link>
